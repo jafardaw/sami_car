@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عناية سامي | تواصل معنا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0906; --coal:#14110C;
+  --gold:#CE9234; --gold-bright:#E8BE6C; --gold-deep:#9C6B1F;
+  --champagne:#F0E6CF; --ivory:#F8F4EB; --paper:#F5F1E7; --card:#FFFFFF;
+  --smoke:#9A9080; --mute:#7d745f; --text:#2A2519;
+  --line:rgba(143,113,52,.22); --line-dark:rgba(198,161,91,.22);
+  --green:#2E8B57; --green-bright:#3fa46b;
+  --ease:cubic-bezier(.33,.9,.35,1); --dur:.26s;
+  --font-d:'Noto Kufi Arabic',serif; --font-b:'Readex Pro',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-b);background:var(--ink);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--ink)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font-family:inherit;font-size:14px;color:var(--ink);outline:none}
+.wrap{width:min(1280px,94%);margin-inline:auto}
+
+/* ===== الهيدر ===== */
+header{background:var(--ink);position:sticky;top:0;z-index:400;border-bottom:1px solid var(--line-dark)}
+.nav{display:flex;align-items:center;gap:26px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:11px}
+.logo .mark{width:56px;height:56px;display:grid;place-items:center;border:1.5px solid var(--gold);
+  border-radius:14px;font-family:var(--font-d);font-weight:700;font-size:18px;color:var(--gold-bright);
+  background:radial-gradient(circle at 30% 20%,rgba(233,207,142,.18),transparent 70%);
+  overflow:hidden}
+.logo .mark img{width:100%;height:100%;object-fit:contain;transform:scale(1.6);border-radius:11px}
+.logo .name b{font-family:var(--font-d);font-size:17px;color:var(--champagne);display:block;line-height:1.15}
+.logo .name span{font-size:10px;color:var(--smoke);letter-spacing:.08em}
+nav.links{display:flex;gap:22px;margin-inline-start:auto}
+nav.links a{font-size:13.5px;color:var(--champagne);opacity:.82;transition:var(--dur);position:relative;padding-bottom:4px}
+nav.links a:hover,nav.links a.on{opacity:1;color:var(--gold-bright)}
+nav.links a.on::after{content:"";position:absolute;bottom:0;right:0;left:0;height:2px;background:var(--gold-bright);border-radius:2px}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.loyal{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);color:var(--gold-bright);
+  padding:9px 18px;border-radius:999px;font-size:13px}
+
+.shell{background:var(--paper);border-radius:26px 26px 0 0;min-height:calc(100vh - 71px);padding:50px 0 80px;position:relative}
+
+/* ===== الأزرار ===== */
+.btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;padding:14px 30px;border-radius:14px;
+  font-size:14.5px;font-weight:700;position:relative;overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn-gold{color:var(--ink);background:linear-gradient(135deg,var(--gold-bright) 0%,var(--gold) 50%,var(--gold-deep) 120%);
+  box-shadow:0 12px 26px -10px rgba(143,113,52,.65)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 34px -10px rgba(143,113,52,.7)}
+
+/* ===== محتوى صفحة تواصل معنا ===== */
+.contact-grid{display:grid;grid-template-columns:1.2fr 1.5fr;gap:30px;margin-top:20px;align-items:stretch}
+
+/* البطاقة اليسرى: فورم الإدخال */
+.form-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px;position:relative;overflow:hidden;
+  box-shadow:0 14px 30px -22px rgba(80,60,20,.25);display:flex;flex-direction:column;justify-content:space-between}
+/* زاوية ذهبية جمالية مثل الصورة */
+.form-card::before{content:"";position:absolute;top:0;left:0;width:70px;height:70px;
+  background:linear-gradient(135deg, var(--gold-bright) 50%, transparent 50%);opacity:.85}
+.form-card h2{font-family:var(--font-d);font-size:26px;color:var(--ink);margin-bottom:24px;padding-top:10px}
+.fld{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.fld label{font-size:12.5px;color:var(--mute);font-weight:600}
+.fld input, .fld textarea{border:1px solid var(--line);border-radius:12px;padding:13px 16px;background:var(--ivory);
+  transition:border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease)}
+.fld input:focus, .fld textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(206,146,52,.12);background:#fff}
+.fld textarea{resize:none;height:110px}
+
+/* البطاقة اليمنى: بيانات التواصل والمعلومات */
+.info-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px;
+  box-shadow:0 14px 30px -22px rgba(80,60,20,.25);display:flex;flex-direction:column;gap:30px}
+
+.info-section{border-bottom:1px dashed var(--line);padding-bottom:24px}
+.info-section:last-of-type{border:none;padding-bottom:0}
+.info-section h3{font-family:var(--font-d);font-size:19px;color:var(--gold-deep);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.info-section h3 svg{color:var(--gold-deep)}
+
+/* تفاصيل المواعيد والعناوين */
+.sched-detail{font-size:15px;color:var(--ink);line-height:1.7}
+.sched-detail b{color:var(--gold-deep)}
+
+.addresses-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.addr-box h4{font-family:var(--font-d);font-size:16.5px;color:var(--ink);margin-bottom:6px}
+.addr-box p{font-size:13.5px;color:var(--mute);line-height:1.6}
+.addr-box a{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--gold-deep);font-weight:700;margin-top:8px}
+
+.home-services p{font-size:14.5px;color:var(--mute);line-height:1.6;margin-bottom:8px}
+.home-services a{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--gold-deep);font-weight:700}
+
+/* زر الواتساب الأخضر الأنيق والسريع */
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#fff;
+  padding:16px;border-radius:14px;font-size:15.5px;font-weight:700;box-shadow:0 10px 22px -10px rgba(46,139,87,.45);
+  transition:all var(--dur) var(--ease)}
+.whatsapp-btn:hover{background:var(--green-bright);transform:translateY(-2px);box-shadow:0 14px 26px -10px rgba(46,139,87,.55)}
+
+/* توست النجاح */
+.toast{position:fixed;bottom:24px;right:24px;z-index:500;background:var(--ink);color:var(--champagne);
+  border:1px solid var(--line);padding:14px 24px;border-radius:14px;display:flex;align-items:center;gap:10px;
+  font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:all .3s var(--ease);box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+.toast.on{opacity:1;transform:translateY(-10px)}
+.toast svg{color:var(--gold-bright)}
+
+/* ===== الفوتر ===== */
+footer{background:#070604;border-top:1px solid var(--line);padding:70px 0 30px;color:var(--champagne)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1.5fr;gap:40px;margin-bottom:50px}
+.foot-brand h3{font-family:var(--font-d);font-size:24px;color:var(--gold-bright);margin-bottom:14px}
+.foot-brand p{font-size:14px;color:var(--smoke);line-height:1.8;max-width:320px}
+.foot-links h4{font-family:var(--font-d);font-size:17px;color:var(--gold-bright);margin-bottom:22px}
+.foot-links ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.foot-links a{font-size:13.5px;color:var(--smoke);transition:var(--dur)}
+.foot-links a:hover{color:var(--gold-bright);padding-inline-start:6px}
+.foot-contact h4{font-family:var(--font-d);font-size:17px;color:var(--gold-bright);margin-bottom:22px}
+.foot-contact p{font-size:14px;color:var(--smoke);line-height:1.8;margin-bottom:10px}
+.foot-copy{border-top:1px solid rgba(198,161,91,.1);padding-top:30px;text-align:center;font-size:12.5px;color:var(--smoke)}
+
+@media(max-width:1024px){
+  .contact-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  nav.links{display:none}
+  .form-card{padding:24px}
+  .info-card{padding:24px}
+  .addresses-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+}
+
+/* ===== تحسين الهيدر الموحد ===== */
+body{padding-top:82px}
+html{scroll-padding-top:96px}
+header{position:fixed!important;inset-inline:0;top:0;z-index:1200;background:var(--ink,#0A0906);border-bottom:1px solid var(--line-dark,var(--line,rgba(198,161,91,.22)));box-shadow:0 12px 30px rgba(0,0,0,.22)}
+.nav{gap:22px;min-height:82px}
+nav.links{gap:18px;align-items:center;white-space:nowrap}
+nav.links a{font-weight:500}
+.logo{flex-shrink:0}.nav-actions{flex-shrink:0}
+@media(max-width:1180px){nav.links{gap:12px}.loyal{padding-inline:13px}.nav{gap:14px}}
+/* ===== فوتر موحد ===== */
+footer{background:#070604;color:#f5efe4;padding:56px 24px 20px;border-top:1px solid rgba(198,161,91,.28)}
+.f-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.25fr .85fr 1fr 1.1fr;gap:28px;align-items:start}
+.f-brand img{width:64px;height:64px;object-fit:cover;border-radius:18px;border:1px solid rgba(198,161,91,.5);margin-bottom:14px}
+.f-brand h3,.f-links h4,.f-branch h4{font-family:var(--font-d,var(--fd));color:#e7c46f;margin:0 0 12px;font-size:22px}
+.f-brand p,.f-branch p,.f-links a{color:#cfc5b3;line-height:1.9;font-size:14px}
+.f-brand p{max-width:330px}.socials{display:flex;gap:10px;margin-top:18px}.socials a,.pay{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(198,161,91,.34);color:#e7c46f;background:rgba(255,255,255,.03)}
+.f-links{display:grid;gap:8px}.f-links a:hover{color:#e7c46f}.f-branch strong{color:#fff}.f-bottom{max-width:1200px;margin:34px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#b8ad9d;font-size:13px}.pay-row{display:flex;gap:8px}.pay{width:auto;min-width:48px;border-radius:999px;padding:0 12px;font-size:12px}
+@media(max-width:900px){.f-grid{grid-template-columns:1fr 1fr}.nav{overflow-x:auto;justify-content:flex-start}.nav::-webkit-scrollbar{height:0}}
+@media(max-width:640px){footer{padding-top:44px}.f-grid{grid-template-columns:1fr}.f-bottom{justify-content:center;text-align:center}.f-brand p{max-width:none}}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="عناية-سامي-التصميم-الجديد.html">
+      <span class="mark"><img src="logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span>
+      <div class="name"><b>عناية سامي</b><span>SAMI CARE</span></div>
+    </a>
+    <nav class="links"><a href="عناية-سامي-التصميم-الجديد.html">الرئيسية</a><a href="عناية-سامي-صفحات-الحجز.html">حجز موعد</a><a href="عناية-سامي-التصميم-الجديد.html#services">خدماتنا</a><a id="navPk" href="عناية-سامي-صفحات-الباقات-والإهداء.html">الباقات</a><a id="navGift" href="عناية-سامي-صفحات-الهدايا.html">الهدايا</a><a href="عناية-سامي-المتجر.html">المتجر</a><a href="عناية-سامي-فروعنا.html">فروعنا</a><a href="عناية-سامي-تواصل-معنا.html" class="on">تواصل معنا</a></nav>
+    <div class="nav-actions">
+      <a href="عناية-سامي-صفحات-الحجز.html" class="loyal">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+        احجز الآن
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="wrap">
+    <div class="contact-grid">
+      <!-- نموذج التواصل اليساري -->
+      <div class="form-card">
+        <div>
+          <h2>تواصل معنا</h2>
+          <div class="fld">
+            <label>الاسم بالكامل *</label>
+            <input type="text" id="cName" placeholder="أدخل اسمك بالكامل">
+          </div>
+          <div class="fld">
+            <label>رقم الهاتف *</label>
+            <input type="text" id="cPhone" placeholder="05xxxxxxxx">
+          </div>
+          <div class="fld">
+            <label>البريد الإلكتروني</label>
+            <input type="email" id="cMail" placeholder="name@example.com">
+          </div>
+          <div class="fld">
+            <label>الرسالة</label>
+            <textarea id="cMsg" placeholder="اكتب استفسارك أو رسالتك هنا..."></textarea>
+          </div>
+        </div>
+        <button class="btn btn-gold" id="sendBtn" style="margin-top: 15px;">إرسال الرسالة</button>
+      </div>
+
+      <!-- معلومات التواصل اليمينية -->
+      <div class="info-card">
+        <!-- مواعيد العمل -->
+        <div class="info-section">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            مواعيد العمل
+          </h3>
+          <div class="sched-detail">
+            يومياً من <b>9:00 صباحاً</b> إلى <b>1:00 صباحاً</b> (بعد منتصف الليل)
+          </div>
+        </div>
+
+        <!-- العناوين وفروعنا -->
+        <div class="info-section">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            العناوين
+          </h3>
+          <div class="addresses-grid">
+            <!-- فرع قريش -->
+            <div class="addr-box">
+              <h4>فرع قريش</h4>
+              <p>جدة — البوادي، شارع قريش</p>
+              <a href="tel:+966646200455">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                966646200455+
+              </a>
+            </div>
+            <!-- فرع البغدادية -->
+            <div class="addr-box">
+              <h4>فرع البغدادية</h4>
+              <p>جدة — البغدادية الغربية، شارع حائل</p>
+              <a href="tel:+966589615696">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                966589615696+
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- خدمات منزلية -->
+        <div class="info-section">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            خدمات منزلية
+          </h3>
+          <div class="home-services">
+            <p>نوفر خدمة الحلاقة والعناية في منزلك لراحتك التامة (شعر، لحية، وماسكات طبيعية).</p>
+            <a href="tel:+966585555555">📞 966585555555+</a>
+          </div>
+        </div>
+
+        <!-- التواصل السريع عبر الواتساب -->
+        <a href="https://wa.me/966550046462" class="whatsapp-btn" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          التواصل السريع عبر الواتساب
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
+    <path d="M20 6L9 17l-5-5"/>
+  </svg>
+  <span>تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا.</span>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a class="logo" href="عناية-سامي-التصميم-الجديد.html"><span class="mark"><img src="logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span><span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span></a>
+        <p>مركز متخصص في العناية الرجالية المتكاملة بجدة، حيث تلتقي الفخامة بالاحترافية في كل تفصيلة.</p>
+        <div class="socials">
+          <a href="https://x.com/samicare_sa" aria-label="X"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.8L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z"/></svg></a>
+          <a href="https://www.instagram.com/samicare.sa/" aria-label="انستقرام"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/samicare.sa" aria-label="فيسبوك"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>روابط مهمة</h4>
+        <ul class="f-links">
+          <li><a href="عناية-سامي-التصميم-الجديد.html">الرئيسية</a></li>
+          <li><a href="عناية-سامي-صفحات-الحجز.html">حجز موعد</a></li>
+          <li><a href="عناية-سامي-التصميم-الجديد.html#services">خدماتنا</a></li>
+          <li><a href="عناية-سامي-صفحات-الباقات-والإهداء.html">الباقات</a></li>
+          <li><a href="عناية-سامي-صفحات-الهدايا.html">الهدايا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>استكشف</h4>
+        <ul class="f-links">
+          <li><a href="عناية-سامي-المتجر.html">المتجر</a></li>
+          <li><a href="عناية-سامي-فروعنا.html">فروعنا</a></li>
+          <li><a href="عناية-سامي-تواصل-معنا.html">تواصل معنا</a></li>
+          <li></li>
+          <li><a href="https://sami-care.sa/TermsAndConditions">الشروط والأحكام</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>عناوين الفروع</h4>
+        <div class="f-branch"><b>قريش</b><small>جدة البوادي شارع قريش</small><a href="tel:+966550046462">+966 55 004 6462</a></div>
+        <div class="f-branch"><b>البغدادية</b><small>جدة البغدادية الغربية شارع حائل</small><a href="tel:+966569610958">+966 56 961 0958</a></div>
+        <div class="f-branch"><b>خدمات منزلية</b><small>حلاقة شعر ولحية وماسكات طبيعية</small></div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <small>© 2026 عناية سامي — جميع الحقوق محفوظة</small>
+      <div class="pay"><span>VISA</span><span>Mastercard</span><span>mada</span><span>tabby</span><span>Pay</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+$('#sendBtn').addEventListener('click', ()=>{
+  const name = $('#cName').value.trim();
+  const phone = $('#cPhone').value.trim();
+  if(!name || !phone) {
+    alert('يرجى تعبئة الحقول المطلوبة (الاسم الكامل ورقم الهاتف) أولاً.');
+    return;
+  }
+  
+  // Show toast
+  const t = $('#toast');
+  t.classList.add('on');
+  
+  // Clear inputs
+  $('#cName').value = '';
+  $('#cPhone').value = '';
+  $('#cMail').value = '';
+  $('#cMsg').value = '';
+  
+  setTimeout(()=>{
+    t.classList.remove('on');
+  }, 3000);
+});
+</script>
+</body>
+</html>
