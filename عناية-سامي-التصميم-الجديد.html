@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عناية سامي | مظهرك عنوانك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0906;
+  --coal:#14110C;
+  --coal-2:#1C1811;
+  --gold:#CE9234;
+  --gold-bright:#E8BE6C;
+  --gold-deep:#9C6B1F;
+  --champagne:#F0E6CF;
+  --ivory:#F8F4EB;
+  --paper:#F3EDE0;
+  --smoke:#9A9080;
+  --line:rgba(198,161,91,.22);
+  --ease:cubic-bezier(.33,.9,.35,1);
+  --dur:.28s;
+  --radius:18px;
+  --font-d:'Noto Kufi Arabic',serif;
+  --font-b:'Readex Pro',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-b);
+  background:var(--ink);
+  color:var(--ivory);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:var(--ink)}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.wrap{width:min(1240px,92%);margin-inline:auto}
+
+/* ============ شريط تقدم التمرير ============ */
+#scrollbar{position:fixed;top:0;right:0;height:3px;width:0;z-index:1000;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright));
+  box-shadow:0 0 12px rgba(233,207,142,.6)}
+
+/* ============ الهيدر ============ */
+header{
+  position:fixed;inset-inline:0;top:0;z-index:900;
+  transition:background var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform .4s var(--ease);
+}
+header.scrolled{
+  background:rgba(10,9,6,.82);
+  backdrop-filter:blur(18px) saturate(1.4);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);
+  box-shadow:0 1px 0 var(--line),0 18px 40px -20px rgba(0,0,0,.8);
+}
+.nav{display:flex;align-items:center;gap:32px;padding:18px 0}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .mark{width:56px;height:56px;display:grid;place-items:center;border:1.5px solid var(--gold);
+  border-radius:14px;font-family:var(--font-d);font-weight:700;font-size:18px;color:var(--gold-bright);
+  background:radial-gradient(circle at 30% 20%,rgba(233,207,142,.18),transparent 70%);
+  overflow:hidden}
+.logo .mark img{width:100%;height:100%;object-fit:contain;transform:scale(1.6);border-radius:11px}
+.logo:hover .mark{transform:rotateY(180deg);box-shadow:0 0 24px rgba(198,161,91,.4)}
+.logo .name{line-height:1.1}
+.logo .name b{font-family:var(--font-d);font-size:19px;color:var(--champagne);display:block}
+.logo .name span{font-size:11px;color:var(--smoke);letter-spacing:.06em}
+nav.links{display:flex;gap:26px;margin-inline-start:auto}
+nav.links a{
+  font-size:14.5px;color:var(--champagne);position:relative;padding:6px 0;opacity:.85;
+  transition:opacity var(--dur),color var(--dur);
+}
+nav.links a::after{
+  content:"";position:absolute;bottom:0;right:50%;left:50%;height:1.5px;
+  background:var(--gold-bright);transition:right var(--dur) var(--ease),left var(--dur) var(--ease);
+}
+nav.links a:hover{opacity:1;color:var(--gold-bright)}
+nav.links a:hover::after{right:0;left:0}
+.nav-actions{display:flex;align-items:center;gap:14px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;justify-content:center;
+  padding:13px 30px;border-radius:999px;font-size:15px;font-weight:600;
+  position:relative;overflow:hidden;isolation:isolate;
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.btn-gold{
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--gold-bright) 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  box-shadow:0 8px 24px -8px rgba(198,161,91,.55),inset 0 1px 0 rgba(255,255,255,.45);
+}
+.btn-gold::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+  transform:translateX(160%);transition:transform .7s var(--ease);
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(233,207,142,.6)}
+.btn-gold:hover::before{transform:translateX(-160%)}
+.btn-ghost{
+  border:1px solid var(--line);color:var(--champagne);
+  background:rgba(255,255,255,.02);
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-bright);box-shadow:0 0 20px rgba(198,161,91,.2);transform:translateY(-2px)}
+.burger{display:none;flex-direction:column;gap:5px;padding:8px}
+.burger span{width:24px;height:2px;background:var(--gold-bright);border-radius:2px;transition:var(--dur)}
+
+/* ============ الهيرو ============ */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;
+  perspective:1200px;overflow:hidden;
+  background:
+    radial-gradient(1100px 600px at 85% 15%,rgba(198,161,91,.14),transparent 60%),
+    radial-gradient(900px 700px at 8% 90%,rgba(143,113,52,.1),transparent 55%),
+    var(--ink);
+}
+#particles{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hero-frame{
+  position:absolute;inset:26px;border:1px solid var(--line);border-radius:26px;z-index:2;pointer-events:none;
+  mask:linear-gradient(#000 0 0);
+}
+.hero-frame::before,.hero-frame::after{
+  content:"";position:absolute;width:56px;height:56px;border:1.5px solid var(--gold);
+}
+.hero-frame::before{top:-1px;right:-1px;border-left:0;border-bottom:0;border-radius:0 26px 0 0}
+.hero-frame::after{bottom:-1px;left:-1px;border-right:0;border-top:0;border-radius:0 0 0 26px}
+.hero-inner{
+  position:relative;z-index:5;display:grid;grid-template-columns:1.05fr .95fr;
+  gap:48px;align-items:center;padding:140px 0 90px;width:min(1240px,92%);margin-inline:auto;
+  transform-style:preserve-3d;
+}
+.hero-copy{transform-style:preserve-3d}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--gold-bright);
+  border:1px solid var(--line);padding:8px 18px;border-radius:999px;
+  background:rgba(198,161,91,.06);letter-spacing:.04em;margin-bottom:26px;
+}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--gold-bright);
+  box-shadow:0 0 10px var(--gold-bright);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+h1{
+  font-family:var(--font-d);font-weight:700;
+  font-size:clamp(42px,6.2vw,84px);line-height:1.12;color:var(--ivory);
+}
+h1 .g{
+  background:linear-gradient(100deg,var(--gold-deep) 0%,var(--gold-bright) 40%,#FFF3D6 50%,var(--gold-bright) 60%,var(--gold-deep) 100%);
+  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shine 5.5s linear infinite;
+}
+@keyframes shine{to{background-position:-220% 0}}
+.hero-sub{margin:24px 0 0;color:var(--smoke);font-size:17px;max-width:52ch;line-height:1.9;font-weight:300}
+.hero-tags{display:flex;gap:22px;margin:30px 0 38px;flex-wrap:wrap}
+.hero-tags span{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--champagne)}
+.hero-tags svg{color:var(--gold)}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:0;margin-top:52px;border-top:1px solid var(--line);padding-top:30px}
+.stat{padding-inline-end:36px;margin-inline-end:36px;border-inline-end:1px solid var(--line)}
+.stat:last-child{border:none;margin:0;padding:0}
+.stat b{font-family:var(--font-d);font-size:34px;color:var(--gold-bright);display:block;line-height:1}
+.stat small{color:var(--smoke);font-size:13px;display:block;margin-top:8px}
+
+/* بطاقة الهيرو ثلاثية الأبعاد */
+.hero-visual{position:relative;transform-style:preserve-3d;display:grid;place-items:center}
+.card3d{
+  position:relative;width:min(430px,100%);aspect-ratio:4/5;border-radius:28px;
+  transform-style:preserve-3d;transition:transform .18s ease-out;
+  will-change:transform;
+}
+.card3d .layer{position:absolute;inset:0;border-radius:28px}
+.card3d .photo{
+  overflow:hidden;
+  background:linear-gradient(160deg,#2a241a,#0f0d09);
+  border:1px solid var(--line);
+  box-shadow:0 50px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(233,207,142,.06),0 0 60px -20px rgba(198,161,91,.35);
+  transform:translateZ(0);
+}
+.card3d .photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.05)}
+.card3d .photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,9,6,.75) 0%,transparent 45%),
+             linear-gradient(115deg,transparent 40%,rgba(255,243,214,.13) 50%,transparent 60%);
+}
+.card3d .ring{
+  inset:-22px;border:1px solid rgba(198,161,91,.35);border-radius:38px;
+  transform:translateZ(-60px);
+  animation:ringspin 14s linear infinite;
+}
+@keyframes ringspin{0%,100%{transform:translateZ(-60px) rotate(0deg)}50%{transform:translateZ(-60px) rotate(2.5deg)}}
+.card3d .badge-float{
+  position:absolute;display:flex;align-items:center;gap:12px;
+  background:rgba(20,17,12,.85);backdrop-filter:blur(12px);
+  border:1px solid var(--line);border-radius:16px;padding:14px 18px;
+  box-shadow:0 20px 40px -14px rgba(0,0,0,.7);
+  animation:floaty 6s ease-in-out infinite;
+}
+.card3d .b1{top:8%;right:-12%;transform:translateZ(80px);animation-delay:0s}
+.card3d .b2{bottom:12%;left:-14%;transform:translateZ(100px);animation-delay:-3s}
+@keyframes floaty{0%,100%{margin-top:0}50%{margin-top:-14px}}
+.badge-float .ic{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--ink);
+}
+.badge-float b{font-size:15px;color:var(--champagne);display:block}
+.badge-float small{font-size:12px;color:var(--smoke)}
+.scroll-hint{
+  position:absolute;bottom:34px;right:50%;transform:translateX(50%);z-index:6;
+  display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--smoke);font-size:12px;
+}
+.scroll-hint .line{width:1px;height:44px;background:linear-gradient(var(--gold-bright),transparent);
+  animation:drop 2s var(--ease) infinite;transform-origin:top}
+@keyframes drop{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ============ الشريط المتحرك ============ */
+.marquee{
+  border-block:1px solid var(--line);
+  background:linear-gradient(90deg,rgba(198,161,91,.07),rgba(198,161,91,.02),rgba(198,161,91,.07));
+  overflow:hidden;padding:18px 0;position:relative;z-index:5;
+}
+.marquee-track{display:flex;gap:56px;width:max-content;animation:mq 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(50%)}}
+.marquee span{display:flex;align-items:center;gap:18px;font-family:var(--font-d);
+  font-size:17px;color:var(--champagne);white-space:nowrap}
+.marquee i{color:var(--gold);font-style:normal}
+
+/* ============ عناوين الأقسام ============ */
+section{position:relative}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 64px}
+.sec-eyebrow{
+  font-size:13px;letter-spacing:.14em;color:var(--gold);display:inline-flex;align-items:center;gap:14px;margin-bottom:18px;
+}
+.sec-eyebrow::before,.sec-eyebrow::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.sec-eyebrow::after{background:linear-gradient(-90deg,transparent,var(--gold))}
+h2{font-family:var(--font-d);font-size:clamp(30px,4vw,48px);font-weight:700;color:var(--ivory);line-height:1.25}
+.sec-head p{color:var(--smoke);margin-top:16px;font-size:16px;line-height:1.9;font-weight:300}
+.on-light h2{color:var(--ink)}
+.on-light .sec-head p{color:#6b6353}
+
+/* ============ من نحن ============ */
+.about{padding:120px 0;background:
+  radial-gradient(800px 500px at 12% 20%,rgba(198,161,91,.08),transparent 60%),var(--coal)}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
+.about-visual{position:relative;perspective:900px}
+.about-visual .frame{
+  border-radius:24px;overflow:hidden;border:1px solid var(--line);
+  transform:rotateY(-6deg) rotateX(2deg);transform-style:preserve-3d;
+  box-shadow:40px 50px 80px -40px rgba(0,0,0,.85);
+  transition:transform .6s var(--ease);
+}
+.about-visual:hover .frame{transform:rotateY(0) rotateX(0)}
+.about-visual img{aspect-ratio:4/4.6;object-fit:cover;width:100%;filter:saturate(.9)}
+.about-visual .glow{
+  position:absolute;inset:auto -30px -30px auto;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(233,207,142,.25),transparent 70%);filter:blur(30px);z-index:-1;
+}
+.about-copy h3{font-family:var(--font-d);font-size:21px;color:var(--gold-bright);margin:34px 0 12px}
+.about-copy h3:first-of-type{margin-top:30px}
+.about-copy p{color:var(--smoke);line-height:2;font-weight:300;font-size:15.5px}
+.about-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:40px}
+.feat{
+  display:flex;gap:14px;align-items:flex-start;padding:20px;border:1px solid var(--line);
+  border-radius:var(--radius);background:rgba(255,255,255,.02);
+  transition:transform var(--dur) var(--ease),border-color var(--dur),box-shadow var(--dur);
+}
+.feat:hover{transform:translateY(-4px);border-color:rgba(198,161,91,.5);box-shadow:0 18px 34px -18px rgba(198,161,91,.35)}
+.feat .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  color:var(--gold-bright);border:1px solid var(--line);background:rgba(198,161,91,.08)}
+.feat b{display:block;font-size:15px;color:var(--champagne);margin-bottom:5px}
+.feat small{color:var(--smoke);font-size:13px;line-height:1.7;font-weight:300}
+
+/* ============ الخدمات - بطاقات ثلاثية الأبعاد ============ */
+.services{padding:120px 0;background:var(--ink);overflow:hidden}
+.services::before{
+  content:"";position:absolute;top:0;right:10%;left:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--line),transparent);
+}
+.svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;perspective:1400px}
+.svc{
+  position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/4.4;cursor:pointer;
+  border:1px solid var(--line);transform-style:preserve-3d;
+  transition:transform .25s ease-out,box-shadow .35s var(--ease),border-color .35s;
+  will-change:transform;background:var(--coal-2);
+}
+.svc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:saturate(.85) brightness(.88);transition:transform .8s var(--ease),filter .5s}
+.svc::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,9,6,.92) 0%,rgba(10,9,6,.25) 45%,transparent 70%)}
+.svc:hover{border-color:rgba(233,207,142,.55);box-shadow:0 40px 70px -30px rgba(0,0,0,.9),0 0 44px -12px rgba(198,161,91,.4)}
+.svc:hover img{transform:scale(1.08);filter:saturate(1) brightness(.95)}
+.svc-body{position:absolute;inset-inline:0;bottom:0;padding:22px;z-index:2;transform:translateZ(40px)}
+.svc-body .ic{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:14px;
+  background:rgba(20,17,12,.65);backdrop-filter:blur(8px);border:1px solid var(--line);color:var(--gold-bright);
+  transition:transform var(--dur) var(--ease),background var(--dur);
+}
+.svc:hover .ic{transform:translateY(-4px);background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:var(--ink)}
+.svc-body b{font-family:var(--font-d);font-size:21px;color:var(--ivory);display:block}
+.svc-body small{color:var(--smoke);font-size:12.5px;display:block;margin-top:6px}
+.svc-body .go{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:13px;color:var(--gold-bright);
+  opacity:0;transform:translateY(8px);transition:opacity var(--dur),transform var(--dur) var(--ease);
+}
+.svc:hover .go{opacity:1;transform:translateY(0)}
+
+/* ============ رحلة الحجز - الخيط الذهبي ============ */
+.journey{padding:130px 0;background:var(--paper);color:var(--ink);position:relative;overflow:hidden}
+.journey::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background:radial-gradient(700px 400px at 90% 10%,rgba(198,161,91,.16),transparent 60%)}
+.j-steps{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:20px}
+.j-line{position:absolute;top:37px;right:6%;left:6%;height:2px;background:rgba(143,113,52,.18);z-index:0}
+.j-line i{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright));
+  transform:scaleX(0);transform-origin:right;transition:transform 1.6s var(--ease);display:block;
+  box-shadow:0 0 14px rgba(198,161,91,.7)}
+.journey.inview .j-line i{transform:scaleX(1)}
+.j-step{position:relative;z-index:1;text-align:center;padding:0 6px}
+.j-step .dot{
+  width:74px;height:74px;margin:0 auto 18px;border-radius:22px;display:grid;place-items:center;
+  background:#fff;border:1px solid rgba(143,113,52,.3);color:var(--gold-deep);
+  box-shadow:0 12px 26px -12px rgba(80,60,20,.35);
+  transition:transform .45s var(--ease),background .45s,color .45s,box-shadow .45s;
+  transform:translateY(14px) scale(.85);opacity:0;
+}
+.journey.inview .j-step .dot{transform:translateY(0) scale(1);opacity:1}
+.j-step:nth-child(2) .dot{transition-delay:.15s}.j-step:nth-child(3) .dot{transition-delay:.3s}
+.j-step:nth-child(4) .dot{transition-delay:.45s}.j-step:nth-child(5) .dot{transition-delay:.6s}
+.j-step:nth-child(6) .dot{transition-delay:.75s}.j-step:nth-child(7) .dot{transition-delay:.9s}
+.j-step:hover .dot{
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink);
+  transform:translateY(-6px) rotateY(14deg);box-shadow:0 22px 40px -14px rgba(143,113,52,.55);
+}
+.j-step b{font-family:var(--font-d);font-size:16.5px;display:block;color:var(--ink)}
+.j-step small{color:#7d745f;font-size:12.5px;display:block;margin-top:7px;line-height:1.7}
+.j-step .num{
+  position:absolute;top:-8px;right:calc(50% - 46px);width:24px;height:24px;border-radius:50%;
+  background:var(--ink);color:var(--gold-bright);font-size:11.5px;display:grid;place-items:center;
+  font-weight:700;border:1.5px solid var(--gold);z-index:2;
+}
+.j-note{
+  margin-top:56px;display:flex;gap:18px;align-items:center;justify-content:center;
+  background:#fff;border:1px solid rgba(143,113,52,.25);border-radius:var(--radius);
+  padding:22px 30px;max-width:760px;margin-inline:auto;
+  box-shadow:0 20px 40px -24px rgba(80,60,20,.3);
+}
+.j-note .ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink)}
+.j-note p{font-size:14.5px;color:#5c5442;line-height:1.9}
+.j-note p b{color:var(--ink)}
+
+/* ============ الهدية ============ */
+.gift{padding:0;background:var(--ink)}
+.gift-card{
+  position:relative;border-radius:30px;overflow:hidden;margin-block:110px;
+  background:linear-gradient(120deg,#1a150d 0%,#0d0b07 55%,#171208 100%);
+  border:1px solid var(--line);padding:70px 64px;
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;
+  box-shadow:0 60px 100px -50px rgba(0,0,0,.9),inset 0 0 80px rgba(198,161,91,.05);
+  perspective:900px;
+}
+.gift-card::before{
+  content:"";position:absolute;inset:-60%;
+  background:conic-gradient(from 0deg,transparent 70%,rgba(233,207,142,.12) 78%,transparent 86%);
+  animation:sweep 9s linear infinite;pointer-events:none;
+}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.gift-copy h2{margin-bottom:16px}
+.gift-copy h2 .g{background:linear-gradient(100deg,var(--gold-deep),var(--gold-bright),var(--gold-deep));
+  background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+.gift-copy p{color:var(--smoke);max-width:46ch;line-height:1.95;font-weight:300}
+.gift-copy .btn{margin-top:30px}
+.gift-box{
+  width:180px;height:180px;position:relative;transform-style:preserve-3d;
+  animation:giftspin 12s ease-in-out infinite;
+}
+@keyframes giftspin{0%,100%{transform:rotateY(-16deg) rotateX(8deg)}50%{transform:rotateY(16deg) rotateX(-4deg)}}
+.gift-box .face{
+  position:absolute;inset:0;border-radius:20px;border:1px solid rgba(233,207,142,.5);
+  background:linear-gradient(150deg,#241d10,#0f0c06);
+  display:grid;place-items:center;
+  box-shadow:inset 0 0 40px rgba(198,161,91,.18),0 34px 60px -20px rgba(0,0,0,.8);
+}
+.gift-box .face::before,.gift-box .face::after{
+  content:"";position:absolute;background:linear-gradient(180deg,var(--gold-bright),var(--gold-deep));
+}
+.gift-box .face::before{inset-block:0;right:calc(50% - 9px);width:18px}
+.gift-box .face::after{inset-inline:0;top:calc(50% - 9px);height:18px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--gold-deep))}
+.gift-box .bow{
+  position:absolute;top:-26px;right:calc(50% - 26px);width:52px;height:30px;z-index:2;
+  transform:translateZ(30px);color:var(--gold-bright);
+}
+
+/* ============ الباقات ============ */
+.packages{padding:120px 0;background:var(--coal)}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pkg{
+  position:relative;border-radius:24px;border:1px solid var(--line);overflow:hidden;
+  background:linear-gradient(170deg,var(--coal-2),#0e0c08);
+  padding:38px 32px;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s;
+}
+.pkg:hover{transform:translateY(-10px);border-color:rgba(233,207,142,.5);
+  box-shadow:0 44px 70px -34px rgba(0,0,0,.9),0 0 50px -20px rgba(198,161,91,.4)}
+.pkg.featured{
+  background:linear-gradient(165deg,#20190e,#0f0c07);
+  border-color:rgba(233,207,142,.55);
+}
+.pkg .flag{
+  position:absolute;top:22px;left:22px;font-size:11.5px;color:var(--ink);font-weight:700;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));padding:6px 14px;border-radius:999px;
+}
+.pkg .ph{
+  width:92px;height:92px;border-radius:50%;overflow:hidden;margin-bottom:24px;
+  border:2px solid var(--gold);padding:3px;background:var(--ink);
+}
+.pkg .ph img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.pkg h3{font-family:var(--font-d);font-size:23px;color:var(--ivory)}
+.pkg .desc{color:var(--smoke);font-size:14px;margin:10px 0 22px;font-weight:300;line-height:1.8}
+.pkg ul{list-style:none;display:grid;gap:12px;margin-bottom:28px}
+.pkg li{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--champagne)}
+.pkg li svg{color:var(--gold);flex:none}
+.pkg .price{display:flex;align-items:baseline;gap:8px;margin-bottom:24px}
+.pkg .price b{font-family:var(--font-d);font-size:38px;color:var(--gold-bright)}
+.pkg .price span{color:var(--smoke);font-size:14px}
+.pkg .btn{width:100%}
+
+/* ============ المنتجات ============ */
+.products{padding:120px 0;background:var(--paper);color:var(--ink)}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.prod{
+  background:#fff;border:1px solid rgba(143,113,52,.2);border-radius:20px;overflow:hidden;
+  transition:transform .3s var(--ease),box-shadow .3s;
+}
+.prod:hover{transform:translateY(-8px);box-shadow:0 30px 50px -26px rgba(80,60,20,.4)}
+.prod .img{aspect-ratio:1/.85;overflow:hidden;background:#efe9dc;position:relative}
+.prod .img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.prod:hover .img img{transform:scale(1.07)}
+.prod .body{padding:20px}
+.prod .tags{display:flex;gap:6px;margin-bottom:10px}
+.prod .tags span{font-size:10.5px;color:var(--gold-deep);background:rgba(198,161,91,.12);
+  padding:4px 10px;border-radius:999px}
+.prod b{font-size:15px;color:var(--ink);display:block;line-height:1.5}
+.prod .stars{color:var(--gold);font-size:12px;margin:8px 0}
+.prod .row{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.prod .price{font-family:var(--font-d);font-size:20px;color:var(--ink)}
+.prod .price small{font-size:12px;color:#8a8272}
+.prod .add{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  background:var(--ink);color:var(--gold-bright);transition:var(--dur) var(--ease);
+}
+.prod .add:hover{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink);transform:rotate(90deg)}
+
+/* ============ الفروع ============ */
+.branches{padding:120px 0;background:var(--ink);overflow:hidden}
+.br-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1200px}
+.br{
+  position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/4.8;cursor:pointer;
+  border:1px solid var(--line);transform-style:preserve-3d;will-change:transform;
+  transition:transform .25s ease-out,box-shadow .4s,border-color .4s;
+}
+.br img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:brightness(.8) saturate(.9);transition:transform .9s var(--ease)}
+.br::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,9,6,.95) 0%,rgba(10,9,6,.2) 55%,transparent 75%)}
+.br:hover{border-color:rgba(233,207,142,.5);box-shadow:0 44px 80px -34px rgba(0,0,0,.95),0 0 50px -16px rgba(198,161,91,.35)}
+.br:hover img{transform:scale(1.06)}
+.br-body{position:absolute;inset-inline:0;bottom:0;padding:26px;z-index:2;transform:translateZ(50px)}
+.br .chip{
+  display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#9be29b;
+  background:rgba(30,50,30,.55);backdrop-filter:blur(8px);border:1px solid rgba(155,226,155,.25);
+  padding:6px 14px;border-radius:999px;margin-bottom:14px;
+}
+.br .chip i{width:6px;height:6px;border-radius:50%;background:#9be29b;animation:pulse 2s infinite}
+.br .chip.home{color:var(--gold-bright);background:rgba(60,45,15,.55);border-color:var(--line)}
+.br .chip.home i{background:var(--gold-bright)}
+.br h3{font-family:var(--font-d);font-size:24px;color:var(--ivory)}
+.br p{color:var(--smoke);font-size:13.5px;margin:8px 0 16px}
+.br .meta{display:flex;gap:16px;font-size:12.5px;color:var(--champagne);margin-bottom:18px;flex-wrap:wrap}
+.br .meta span{display:flex;gap:6px;align-items:center}
+.br .meta svg{color:var(--gold)}
+.br .btn{padding:11px 24px;font-size:13.5px}
+
+/* ============ CTA النهائي ============ */
+.cta-final{
+  padding:130px 0;text-align:center;position:relative;overflow:hidden;
+  background:radial-gradient(900px 500px at 50% 120%,rgba(198,161,91,.2),transparent 60%),var(--coal);
+}
+.cta-final h2{font-size:clamp(34px,4.6vw,58px);max-width:20ch;margin-inline:auto}
+.cta-final p{color:var(--smoke);margin:20px auto 40px;max-width:52ch;line-height:1.9;font-weight:300}
+
+/* ============ الفوتر ============ */
+footer{background:#070604;border-top:1px solid var(--line);padding:70px 0 0}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:54px}
+.f-brand p{color:var(--smoke);font-size:14px;line-height:1.9;margin:18px 0 24px;font-weight:300;max-width:34ch}
+.socials{display:flex;gap:10px}
+.socials a{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--champagne);
+  transition:var(--dur) var(--ease);
+}
+.socials a:hover{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink);transform:translateY(-3px)}
+footer h4{font-family:var(--font-d);font-size:17px;color:var(--gold-bright);margin-bottom:22px}
+.f-links{list-style:none;display:grid;gap:13px}
+.f-links a{color:var(--smoke);font-size:14px;transition:color var(--dur),padding var(--dur)}
+.f-links a:hover{color:var(--gold-bright);padding-inline-start:6px}
+.f-branch{margin-bottom:20px}
+.f-branch b{color:var(--champagne);font-size:14px;display:block}
+.f-branch small{color:var(--smoke);font-size:12.5px;display:block;margin-top:4px;line-height:1.7}
+.f-branch a{color:var(--gold);font-size:13px;direction:ltr;display:inline-block;margin-top:4px}
+.f-bottom{
+  border-top:1px solid var(--line);padding:24px 0;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.f-bottom small{color:var(--smoke);font-size:13px}
+.pay{display:flex;gap:8px}
+.pay span{
+  font-size:11px;font-weight:700;color:var(--champagne);border:1px solid var(--line);
+  padding:7px 14px;border-radius:8px;background:rgba(255,255,255,.02);letter-spacing:.03em;
+}
+
+/* ============ الظهور عند التمرير ============ */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+.rv-d4{transition-delay:.4s}.rv-d5{transition-delay:.5s}
+
+/* ============ زر واتساب عائم ============ */
+.wa{
+  position:fixed;bottom:26px;left:26px;z-index:800;width:58px;height:58px;border-radius:50%;
+  display:grid;place-items:center;background:linear-gradient(135deg,#2ecc71,#1e9e52);color:#fff;
+  box-shadow:0 16px 34px -10px rgba(46,204,113,.6);
+  transition:transform var(--dur) var(--ease);
+}
+.wa:hover{transform:scale(1.1) rotate(6deg)}
+.wa::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px solid rgba(46,204,113,.5);animation:wave 2.2s var(--ease) infinite}
+@keyframes wave{to{transform:scale(1.35);opacity:0}}
+
+/* ============ استجابة ============ */
+@media(max-width:1100px){
+  .svc-grid{grid-template-columns:repeat(3,1fr)}
+  .svc:nth-child(4),.svc:nth-child(5){aspect-ratio:3/3.4}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .j-steps{grid-template-columns:repeat(3,1fr);gap:36px 16px}
+  .j-line{display:none}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:960px){
+  nav.links{display:none}
+  .burger{display:flex}
+  .hero-inner{grid-template-columns:1fr;padding-top:130px;gap:56px}
+  .hero-visual{order:-1}
+  .card3d{aspect-ratio:4/4.2;width:min(360px,88%)}
+  .about-grid{grid-template-columns:1fr}
+  .gift-card{grid-template-columns:1fr;text-align:center;padding:56px 30px}
+  .gift-box{margin-inline:auto}
+  .gift-copy p{margin-inline:auto}
+  .pkg-grid,.br-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
+}
+@media(max-width:640px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .svc,.svc:nth-child(4),.svc:nth-child(5){aspect-ratio:3/3.8}
+  .svc:nth-child(5){grid-column:span 2;aspect-ratio:16/9}
+  .prod-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .j-steps{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{flex-wrap:wrap;gap:22px}
+  .stat{border:none;padding:0;margin:0}
+  .about-feats{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .hero-frame{inset:14px}
+  .card3d .b1{right:-4%}.card3d .b2{left:-4%}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* ===== تحسين الهيدر الموحد ===== */
+body{padding-top:82px}
+html{scroll-padding-top:96px}
+header{position:fixed!important;inset-inline:0;top:0;z-index:1200;background:var(--ink,#0A0906);border-bottom:1px solid var(--line-dark,var(--line,rgba(198,161,91,.22)));box-shadow:0 12px 30px rgba(0,0,0,.22);transform:translateY(0)!important}
+.nav{gap:22px;min-height:82px}
+nav.links{gap:18px;align-items:center;white-space:nowrap}
+nav.links a{font-weight:500}
+.logo{flex-shrink:0}.nav-actions{flex-shrink:0}
+@media(max-width:1180px){nav.links{gap:12px}.loyal{padding-inline:13px}.nav{gap:14px}}
+/* ===== فوتر موحد ===== */
+footer{background:#070604;color:#f5efe4;padding:56px 24px 20px;border-top:1px solid rgba(198,161,91,.28)}
+.f-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.25fr .85fr 1fr 1.1fr;gap:28px;align-items:start}
+.f-brand img{width:64px;height:64px;object-fit:cover;border-radius:18px;border:1px solid rgba(198,161,91,.5);margin-bottom:14px}
+.f-brand h3,.f-links h4,.f-branch h4{font-family:var(--font-d,var(--fd));color:#e7c46f;margin:0 0 12px;font-size:22px}
+.f-brand p,.f-branch p,.f-links a{color:#cfc5b3;line-height:1.9;font-size:14px}
+.f-brand p{max-width:330px}.socials{display:flex;gap:10px;margin-top:18px}.socials a,.pay{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(198,161,91,.34);color:#e7c46f;background:rgba(255,255,255,.03)}
+.f-links{display:grid;gap:8px}.f-links a:hover{color:#e7c46f}.f-branch strong{color:#fff}.f-bottom{max-width:1200px;margin:34px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#b8ad9d;font-size:13px}.pay-row{display:flex;gap:8px}.pay{width:auto;min-width:48px;border-radius:999px;padding:0 12px;font-size:12px}
+@media(max-width:900px){.f-grid{grid-template-columns:1fr 1fr}.nav{overflow-x:auto;justify-content:flex-start}.nav::-webkit-scrollbar{height:0}}
+@media(max-width:640px){footer{padding-top:44px}.f-grid{grid-template-columns:1fr}.f-bottom{justify-content:center;text-align:center}.f-brand p{max-width:none}}
+
+</style>
+</head>
+<body>
+<div id="scrollbar"></div>
+
+<!-- ============ الهيدر ============ -->
+<header id="header">
+  <div class="wrap nav">
+    <a class="logo" href="#">
+      <span class="mark"><img src="logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span>
+      <span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span>
+    </a>
+    <nav class="links"><a href="عناية-سامي-التصميم-الجديد.html" class="on">الرئيسية</a><a href="عناية-سامي-صفحات-الحجز.html">حجز موعد</a><a href="عناية-سامي-التصميم-الجديد.html#services">خدماتنا</a><a id="navPk" href="عناية-سامي-صفحات-الباقات-والإهداء.html">الباقات</a><a id="navGift" href="عناية-سامي-صفحات-الهدايا.html">الهدايا</a><a href="عناية-سامي-المتجر.html">المتجر</a><a href="عناية-سامي-فروعنا.html">فروعنا</a><a href="عناية-سامي-تواصل-معنا.html">تواصل معنا</a></nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="#" style="padding:11px 22px;font-size:13.5px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7s-2-5-5-5-3 5 0 5h5zM12 7s2-5 5-5 3 5 0 5h-5z"/></svg>
+        نقاط الولاء
+      </a>
+      <a class="btn btn-gold" href="عناية-سامي-صفحات-الحجز.html">
+        احجز الآن
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      </a>
+      <button class="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ الهيرو ============ -->
+<section class="hero" id="hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-frame"></div>
+  <div class="hero-inner" id="heroInner">
+    <div class="hero-copy" data-depth="14">
+      <span class="eyebrow"><i></i> تجربة عناية رجالية فاخرة في جدة</span>
+      <h1>مظهرك عنوانك<br>أناقتك <span class="g">تبدأ من هنا</span></h1>
+      <p class="hero-sub">نؤمن أن العناية الشخصية ليست رفاهية، بل أسلوب حياة. حلاقة رجالية، تنظيف بشرة، مساج، حمام مغربي وخدمات سبا متكاملة — في بيئة راقية صُممت خصيصًا لراحتك.</p>
+      <div class="hero-tags">
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> قصات عصرية</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> خبرة احترافية</span>
+        <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> عناية متكاملة</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="عناية-سامي-صفحات-الحجز.html" style="padding:16px 38px;font-size:16px">
+          احجز جلستك الآن
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#services" style="padding:16px 34px;font-size:16px">استكشف خدماتنا</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b data-count="3">0</b><small>فروع في جدة</small></div>
+        <div class="stat"><b data-count="2000">0</b><small>+ عميل سعيد</small></div>
+        <div class="stat"><b data-count="25">0</b><small>+ خدمة متخصصة</small></div>
+        <div class="stat"><b>4.8<span style="font-size:18px">★</span></b><small>تقييم عملائنا</small></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="card3d" id="card3d">
+        <div class="layer ring"></div>
+        <div class="layer photo">
+          <img src="https://sami-care.sa/images/pages/person.png" alt="عناية سامي" loading="eager"
+               onerror="this.style.display='none'">
+        </div>
+        <div class="badge-float b1">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.2 1.3-6.6L2.5 9l6.6-.8z"/></svg></span>
+          <span><b>جودة مضمونة</b><small>رضاك هدفنا</small></span>
+        </div>
+        <div class="badge-float b2">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <span><b>حجز خلال دقيقة</b><small>تجربة سريعة وسلسة</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>اكتشف المزيد</span><span class="line"></span></div>
+</section>
+
+<!-- ============ الشريط المتحرك ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mqTrack">
+    <span>حلاقة رجالية <i>✦</i></span><span>تنظيف بشرة <i>✦</i></span>
+    <span>حمام مغربي <i>✦</i></span><span>مساج استرخائي <i>✦</i></span>
+    <span>بديكير <i>✦</i></span><span>خدمات منزلية VIP <i>✦</i></span>
+    <span>بطاقات هدايا <i>✦</i></span><span>نقاط ولاء <i>✦</i></span>
+  </div>
+</div>
+
+<!-- ============ من نحن ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual rv">
+      <div class="frame">
+        <img src="https://sami-care.sa/images/pages/about-imge.png" alt="عن عناية سامي"
+             onerror="this.src='https://sami-care.sa//storage/uploads/398/xgvAyUvnVwdSsMwEoGTex3evVjSnz5IwB2RXBpl7.jpg'">
+      </div>
+      <div class="glow"></div>
+    </div>
+    <div class="about-copy rv rv-d1">
+      <span class="sec-eyebrow" style="margin-bottom:14px">من نحن</span>
+      <h2>تجربة عناية متكاملة<br>تليق بك</h2>
+      <h3>في عناية سامي للاسترخاء</h3>
+      <p>نؤمن بأن العناية الشخصية ليست رفاهية، بل أسلوب حياة. نحن مركز متخصص يقدّم مجموعة متكاملة من خدمات العناية بالرجل: الحلاقة الرجالية، تنظيف البشرة، البديكير، الحمام المغربي، جلسات المساج وخدمات السبا — في بيئة مريحة وراقية مصممة خصيصًا للاسترخاء والتجديد.</p>
+      <h3>أحدث الأجهزة والتقنيات</h3>
+      <p>نحرص على تطبيق أعلى معايير النظافة والسلامة، ويضم فريقنا محترفين مدرّبين بعناية يمتلكون خبرة واسعة في تقديم خدمات عالية الجودة تلبي احتياجات كل عميل.</p>
+      <div class="about-feats">
+        <div class="feat"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span><span><b>فريق متخصص</b><small>خبراء في خدمتكم</small></span></div>
+        <div class="feat"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7"/></svg></span><span><b>منتجات فاخرة</b><small>الأفضل دائمًا</small></span></div>
+        <div class="feat"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><span><b>أعلى معايير النظافة</b><small>سلامتك أولويتنا</small></span></div>
+        <div class="feat"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg></span><span><b>جودة مضمونة</b><small>رضاك هدفنا</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ الخدمات ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-eyebrow">خدماتنا</span>
+      <h2>خدمات صُممت لراحتك</h2>
+      <p>اختر ما يناسبك من خدمات العناية المتكاملة، وسنجهّز لك أفضل تجربة</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc tilt rv" data-max="10">
+        <img src="https://sami-care.sa//storage/uploads/398/xgvAyUvnVwdSsMwEoGTex3evVjSnz5IwB2RXBpl7.jpg" alt="حلاقة">
+        <div class="svc-body">
+          <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg></span>
+          <b>حلاقة</b><small>قصات عصرية وتحديد لحية باحترافية</small>
+          <span class="go">التفاصيل <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="svc tilt rv rv-d1" data-max="10">
+        <img src="https://sami-care.sa//storage/uploads/378/pX2gGtf2r59vqjIFAhR2PR29POK9sOEcytVbrIEN.jpg" alt="تنظيف البشرة">
+        <div class="svc-body">
+          <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.7s6 6.3 6 11a6 6 0 01-12 0c0-4.7 6-11 6-11z"/></svg></span>
+          <b>تنظيف البشرة</b><small>نضارة وإشراقة تدوم</small>
+          <span class="go">التفاصيل <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="svc tilt rv rv-d2" data-max="10">
+        <img src="https://sami-care.sa//storage/uploads/381/3YjNTIQ7mTPqwi9WREG93V6sLUuvLQepWGGWfUvI.jpg" alt="بديكير">
+        <div class="svc-body">
+          <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.2 1.3-6.6L2.5 9l6.6-.8z"/></svg></span>
+          <b>بديكير</b><small>عناية أساسية للأقدام والأظافر</small>
+          <span class="go">التفاصيل <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="svc tilt rv rv-d3" data-max="10">
+        <img src="https://sami-care.sa//storage/uploads/379/HS14DaOajHELhTAB5YvPkl6qBHb25TR3kiIhY4H5.jpg" alt="مساج">
+        <div class="svc-body">
+          <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c-1.2 3-4 4.5-4 8a4 4 0 008 0c0-3.5-2.8-5-4-8z"/><path d="M5 21h14"/></svg></span>
+          <b>مساج</b><small>استرخاء عميق يجدّد طاقتك</small>
+          <span class="go">التفاصيل <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+      <article class="svc tilt rv rv-d4" data-max="10">
+        <img src="https://sami-care.sa//storage/uploads/380/Wzxh32gyqATWBwtff9D3SLAa9REq6lTgawDRiP0g.jpg" alt="حمام مغربي">
+        <div class="svc-body">
+          <span class="ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16v3a5 5 0 01-5 5H9a5 5 0 01-5-5v-3zM6 12V5a2 2 0 012-2h1"/><path d="M12 8c0 .8.7 1.5 1.5 1.5S15 8.8 15 8"/></svg></span>
+          <b>حمام مغربي</b><small>تقشير وتنقية بطقوس أصيلة</small>
+          <span class="go">التفاصيل <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ رحلة الحجز ============ -->
+<section class="journey on-light" id="journey">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-eyebrow">رحلة الحجز</span>
+      <h2>تجربة حجز سريعة وسلسة</h2>
+      <p>ست خطوات هادئة من اختيار الفرع حتى تأكيد جلستك — بذكاء ينسّق كل شيء عنك</p>
+    </div>
+    <div class="j-steps">
+      <div class="j-line"><i></i></div>
+      <div class="j-step rv"><span class="num">1</span>
+        <span class="dot"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1zM9 21V12h6v9"/></svg></span>
+        <b>اختيار الفرع</b><small>أو اطلب خدمة منزلية تصلك أينما كنت</small>
+      </div>
+      <div class="j-step rv rv-d1"><span class="num">2</span>
+        <span class="dot"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg></span>
+        <b>اختيار الخدمات</b><small>خدمة أو أكثر من أي قسم مع سلة لحظية</small>
+      </div>
+      <div class="j-step rv rv-d2"><span class="num">3</span>
+        <span class="dot"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <b>اختيار الموظف</b><small>يدويًا لكل خدمة، أو تلقائيًا بذكاء النظام</small>
+      </div>
+      <div class="j-step rv rv-d3"><span class="num">4</span>
+        <span class="dot"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+        <b>اختيار الوقت</b><small>أوقات جلسة كاملة قابلة للتنفيذ فعلًا</small>
+      </div>
+      <div class="j-step rv rv-d4"><span class="num">5</span>
+        <span class="dot"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
+        <b>تأكيد الحجز</b><small>مراجعة الجلسة كاملة قبل الدفع</small>
+      </div>
+      <div class="j-step rv rv-d5"><span class="num">6</span>
+        <span class="dot"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+        <b>الدفع الآمن</b><small>مدى، Apple Pay، تابي، المحفظة أو عند الوصول</small>
+      </div>
+    </div>
+    <div class="j-note rv">
+      <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></span>
+      <p><b>الاختيار التلقائي الذكي:</b> عند اختيار "أي موظف" يكفي تحديد وقت البداية، وسيبني النظام جلستك كاملة — توزيع الخدمات، اختيار الفريق الأنسب، تنسيق الأوقات بالتوازي وتقليل وقت الانتظار.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ الهدية ============ -->
+<section class="gift">
+  <div class="wrap">
+    <div class="gift-card rv">
+      <div class="gift-copy">
+        <span class="sec-eyebrow" style="margin-bottom:14px">بطاقات الهدايا</span>
+        <h2>هل تبحث عن هدية <span class="g">مُميزة؟</span></h2>
+        <p>قدّم تجربة عناية فاخرة لمن تحب مع بطاقات الهدايا من عناية سامي — لمناسباتهم السعيدة ولحظاتهم الخاصة.</p>
+        <a class="btn btn-gold" href="عناية-سامي-صفحات-الهدايا.html">
+          احصل على الهدية
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        </a>
+      </div>
+      <div class="gift-box">
+        <div class="face"></div>
+        <svg class="bow" viewBox="0 0 52 30" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M26 26C14 26 6 20 8 12s14-4 18 6c4-10 16-14 18-6s-6 14-18 14z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ الباقات ============ -->
+<section class="packages" id="packages">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-eyebrow">باقاتنا المميزة</span>
+      <h2>باقات متكاملة بقيمة أعلى</h2>
+      <p>جلسات مصمّمة بعناية تجمع أكثر من خدمة بسعر مدروس</p>
+    </div>
+    <div class="pkg-grid">
+      <article class="pkg rv">
+        <div class="ph"><img src="https://sami-care.sa//storage/uploads/421/MLJpXNWasEY0idtGh7smYfLmu5iEMY9VYNdxGg09.jpg" alt="باقة الشعر"></div>
+        <h3>باقة الشعر</h3>
+        <p class="desc">عناية متكاملة للشعر الصحي من القص حتى الترطيب</p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> حلاقة شعر عصرية</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> غسيل وتنظيف عميق</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> تصفيف بمنتجات فاخرة</li>
+        </ul>
+        <div class="price"><b>120</b><span>ر.س / الجلسة</span></div>
+        <a class="btn btn-ghost" href="عناية-سامي-صفحات-الباقات-والإهداء.html">اعرف المزيد</a>
+      </article>
+      <article class="pkg featured rv rv-d1">
+        <span class="flag">الأكثر طلبًا</span>
+        <div class="ph"><img src="https://sami-care.sa//storage/uploads/422/zpncY6t7PeEmjKRKJnYepOUwN7nDJAVpsmNh6hut.png" alt="باقة العناية الشاملة"></div>
+        <h3>باقة العناية الشاملة</h3>
+        <p class="desc">شعر + بشرة + مساج — تجربة متكاملة من الرأس حتى القدم</p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> حلاقة وتحديد لحية</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> تنظيف بشرة عميق</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> مساج استرخائي 60 دقيقة</li>
+        </ul>
+        <div class="price"><b>650</b><span>ر.س / الجلسة</span></div>
+        <a class="btn btn-gold" href="عناية-سامي-صفحات-الباقات-والإهداء.html">احجز الباقة</a>
+      </article>
+      <article class="pkg rv rv-d2">
+        <div class="ph"><img src="https://sami-care.sa//storage/uploads/378/pX2gGtf2r59vqjIFAhR2PR29POK9sOEcytVbrIEN.jpg" alt="باقة اللحية"></div>
+        <h3>باقة اللحية</h3>
+        <p class="desc">عناية متكاملة للحية أنيقة وصحية على مدار الشهر</p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> تنسيق وتحديد اللحية</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> ترطيب بزيوت طبيعية</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> بخار وتنعيم</li>
+        </ul>
+        <div class="price"><b>90</b><span>ر.س / الجلسة</span></div>
+        <a class="btn btn-ghost" href="عناية-سامي-صفحات-الباقات-والإهداء.html">اعرف المزيد</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ المنتجات ============ -->
+<section class="products on-light" id="products">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-eyebrow">متجر العناية</span>
+      <h2>منتجات مختارة بعناية</h2>
+      <p>كمّل روتينك المنزلي بنفس جودة الصالون</p>
+    </div>
+    <div class="prod-grid">
+      <article class="prod rv">
+        <div class="img"><img src="https://sami-care.sa//storage/uploads/404/IO26IC8Qd0LCbCeHNjYPUhOmSWeZi3FkEPYFpsuB.jpg" alt="كريم ترطيب الشعر"></div>
+        <div class="body">
+          <div class="tags"><span>الشعر الجاف</span><span>الشعر الدهني</span></div>
+          <b>كريم ترطيب الشعر</b>
+          <div class="stars">★★★★★</div>
+          <div class="row"><span class="price">60 <small>ر.س</small></span>
+            <button class="add" aria-label="إضافة للسلة"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </article>
+      <article class="prod rv rv-d1">
+        <div class="img"><img src="https://sami-care.sa//storage/uploads/406/uGGoLhrbcMofuyS2kedJ44ejvBqYnz1M0mA0zTMP.jpg" alt="زيت اللحية الذهبي"></div>
+        <div class="body">
+          <div class="tags"><span>اللحية</span><span>ترطيب عميق</span></div>
+          <b>زيت اللحية الذهبي</b>
+          <div class="stars">★★★★★</div>
+          <div class="row"><span class="price">120 <small>ر.س</small></span>
+            <button class="add" aria-label="إضافة للسلة"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </article>
+      <article class="prod rv rv-d2">
+        <div class="img"><img src="https://sami-care.sa//storage/uploads/405/L2sxjQjZgTztP0swgRTlXV0jVjCLuS5GJyypCJmT.jpg" alt="غسول تنظيف البشرة"></div>
+        <div class="body">
+          <div class="tags"><span>البشرة المختلطة</span></div>
+          <b>غسول تنظيف البشرة</b>
+          <div class="stars">★★★★★</div>
+          <div class="row"><span class="price">95 <small>ر.س</small></span>
+            <button class="add" aria-label="إضافة للسلة"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </article>
+      <article class="prod rv rv-d3">
+        <div class="img"><img src="https://sami-care.sa//storage/uploads/403/HyxbPuOgHBgbg0pgpMZr9bcFv2OryQtxjRMLnhxb.jpg" alt="كريم ترطيب متوازن"></div>
+        <div class="body">
+          <div class="tags"><span>يومي</span><span>جميع الأنواع</span></div>
+          <b>كريم ترطيب متوازن</b>
+          <div class="stars">★★★★★</div>
+          <div class="row"><span class="price">110 <small>ر.س</small></span>
+            <button class="add" aria-label="إضافة للسلة"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button></div>
+        </div>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:44px" class="rv">
+      <a class="btn btn-gold" href="عناية-سامي-المتجر.html" style="background:linear-gradient(135deg,#2a2416,var(--ink));color:var(--gold-bright);border:1px solid var(--gold)">
+        عرض جميع المنتجات
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ الفروع ============ -->
+<section class="branches" id="branches">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-eyebrow">فروعنا</span>
+      <h2>اختر المكان المناسب لك</h2>
+      <p>فرعان في جدة وخدمة منزلية تصل إليك أينما كنت</p>
+    </div>
+    <div class="br-grid">
+      <article class="br tilt rv" data-max="7">
+        <img src="https://sami-care.sa//storage/uploads/389/4fKSZ0AIoLjJT4JuFKO81qWrxGQ6ymQ6zLbi1L3b.jpg" alt="فرع قريش">
+        <div class="br-body">
+          <span class="chip"><i></i> متاح الآن</span>
+          <h3>فرع قريش</h3>
+          <p>جدة، البوادي — شارع قريش</p>
+          <div class="meta">
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.2 1.3-6.6L2.5 9l6.6-.8z"/></svg> 4.7</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 12:00 ص – 10:00 م</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg> +980 زائر شهريًا</span>
+          </div>
+          <a class="btn btn-gold" href="عناية-سامي-صفحات-الحجز.html?branch=qr">احجز الآن</a>
+        </div>
+      </article>
+      <article class="br tilt rv rv-d1" data-max="7">
+        <img src="https://sami-care.sa//storage/uploads/391/sSX2TVdlk84EEewXCDhT0w24X5WAJnPOA0GE6VHD.jpg" alt="فرع البغدادية">
+        <div class="br-body">
+          <span class="chip"><i></i> متاح الآن</span>
+          <h3>فرع البغدادية</h3>
+          <p>جدة، البغدادية الغربية — شارع حائل</p>
+          <div class="meta">
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.2 1.3-6.6L2.5 9l6.6-.8z"/></svg> 4.8</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 12:00 ص – 10:00 م</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg> +1.2K زائر شهريًا</span>
+          </div>
+          <a class="btn btn-gold" href="عناية-سامي-صفحات-الحجز.html?branch=bg">احجز الآن</a>
+        </div>
+      </article>
+      <article class="br tilt rv rv-d2" data-max="7">
+        <img src="https://sami-care.sa//storage/uploads/407/7gF352Ispha9FbN9jPxmjnpOQDg5vFY41n5ZTdqK.png" alt="خدمات منزلية">
+        <div class="br-body">
+          <span class="chip home"><i></i> خدمة تصل إليك</span>
+          <h3>خدمات منزلية</h3>
+          <p>حلاقة شعر ولحية وماسكات طبيعية — في منزلك</p>
+          <div class="meta">
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.2 1.3-6.6L2.5 9l6.6-.8z"/></svg> 4.9</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg> +2K عميل سعيد</span>
+            <span>خدمة VIP</span>
+          </div>
+          <a class="btn btn-gold" href="عناية-سامي-صفحات-الحجز.html?branch=hm">ابدأ الحجز المنزلي</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA النهائي ============ -->
+<section class="cta-final">
+  <div class="wrap rv">
+    <span class="sec-eyebrow">جودة تستحقها.. تجربة لا تنساها</span>
+    <h2>جاهز لتجربة <span class="g" style="background:linear-gradient(100deg,var(--gold-deep),var(--gold-bright),var(--gold-deep));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite">تليق بك؟</span></h2>
+    <p>احجز جلستك خلال دقيقة واحدة. اختر فرعك، حدد خدماتك، ودع نظامنا الذكي ينسّق لك جلسة مثالية.</p>
+    <a class="btn btn-gold" href="عناية-سامي-صفحات-الحجز.html" style="padding:18px 46px;font-size:17px">
+      احجز جلستك الآن
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============ الفوتر ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a class="logo" href="عناية-سامي-التصميم-الجديد.html"><span class="mark"><img src="logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span><span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span></a>
+        <p>مركز متخصص في العناية الرجالية المتكاملة بجدة، حيث تلتقي الفخامة بالاحترافية في كل تفصيلة.</p>
+        <div class="socials">
+          <a href="https://x.com/samicare_sa" aria-label="X"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.8L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z"/></svg></a>
+          <a href="https://www.instagram.com/samicare.sa/" aria-label="انستقرام"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/samicare.sa" aria-label="فيسبوك"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>روابط مهمة</h4>
+        <ul class="f-links">
+          <li><a href="عناية-سامي-التصميم-الجديد.html">الرئيسية</a></li>
+          <li><a href="عناية-سامي-صفحات-الحجز.html">حجز موعد</a></li>
+          <li><a href="عناية-سامي-التصميم-الجديد.html#services">خدماتنا</a></li>
+          <li><a href="عناية-سامي-صفحات-الباقات-والإهداء.html">الباقات</a></li>
+          <li><a href="عناية-سامي-صفحات-الهدايا.html">الهدايا</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>استكشف</h4>
+        <ul class="f-links">
+          <li><a href="عناية-سامي-المتجر.html">المتجر</a></li>
+          <li><a href="عناية-سامي-فروعنا.html">فروعنا</a></li>
+          <li><a href="عناية-سامي-تواصل-معنا.html">تواصل معنا</a></li>
+          <li></li>
+          <li><a href="https://sami-care.sa/TermsAndConditions">الشروط والأحكام</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>عناوين الفروع</h4>
+        <div class="f-branch"><b>قريش</b><small>جدة البوادي شارع قريش</small><a href="tel:+966550046462">+966 55 004 6462</a></div>
+        <div class="f-branch"><b>البغدادية</b><small>جدة البغدادية الغربية شارع حائل</small><a href="tel:+966569610958">+966 56 961 0958</a></div>
+        <div class="f-branch"><b>خدمات منزلية</b><small>حلاقة شعر ولحية وماسكات طبيعية</small></div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <small>© 2026 عناية سامي — جميع الحقوق محفوظة</small>
+      <div class="pay"><span>VISA</span><span>Mastercard</span><span>mada</span><span>tabby</span><span>Pay</span></div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/966550046462" aria-label="تواصل واتساب">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.5 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-2.9-1.3-4.8-4.2-5-4.4-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5-.4.8-.9 1-.7 1.4.8 1.3 1.7 2.1 2.9 2.7.3.2.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1s1.8.8 2.1 1c.3.2.5.2.6.4 0 .1 0 .8-.4 1.3z"/></svg>
+</a>
+
+<script>
+(function(){
+"use strict";
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* شريط تقدم التمرير + الهيدر */
+const bar = document.getElementById('scrollbar');
+const header = document.getElementById('header');
+addEventListener('scroll', () => {
+  const y = scrollY;
+  const h = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (y / h * 100) + '%';
+  header.classList.toggle('scrolled', y > 40);
+  header.style.transform = 'translateY(0)';
+}, {passive:true});
+
+/* الظهور عند التمرير */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:.14});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+/* رحلة الحجز - الخيط الذهبي */
+const journey = document.getElementById('journey');
+if (journey) {
+  new IntersectionObserver((es, o) => {
+    es.forEach(e => { if (e.isIntersecting) { journey.classList.add('inview'); o.disconnect(); } });
+  }, {threshold:.3}).observe(journey);
+}
+
+/* عدّادات الإحصائيات */
+const counters = document.querySelectorAll('[data-count]');
+const cio = new IntersectionObserver((es, o) => {
+  es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.count, dur = 1600, t0 = performance.now();
+    const fmt = n => n.toLocaleString('en');
+    (function tick(t){
+      const p = Math.min((t - t0) / dur, 1);
+      el.textContent = fmt(Math.round(target * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+    o.unobserve(el);
+  });
+}, {threshold:.6});
+counters.forEach(el => cio.observe(el));
+
+/* جسيمات ذهبية في الهيرو */
+const cv = document.getElementById('particles');
+if (cv && !reduced) {
+  const ctx = cv.getContext('2d');
+  let W, H, parts = [];
+  const resize = () => {
+    W = cv.width = cv.offsetWidth * devicePixelRatio;
+    H = cv.height = cv.offsetHeight * devicePixelRatio;
+  };
+  resize(); addEventListener('resize', resize);
+  const N = innerWidth < 700 ? 34 : 70;
+  for (let i = 0; i < N; i++) parts.push({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.8 + .5,
+    vy: -(Math.random() * .00035 + .0001),
+    vx: (Math.random() - .5) * .0002,
+    a: Math.random() * .5 + .15,
+    tw: Math.random() * Math.PI * 2
+  });
+  (function draw(t){
+    ctx.clearRect(0, 0, W, H);
+    parts.forEach(p => {
+      p.y += p.vy; p.x += p.vx; p.tw += .02;
+      if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
+      const alpha = p.a * (0.6 + 0.4 * Math.sin(p.tw));
+      ctx.beginPath();
+      ctx.arc(p.x * W, p.y * H, p.r * devicePixelRatio, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(233,207,142,${alpha})`;
+      ctx.shadowColor = 'rgba(233,207,142,.8)';
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+    requestAnimationFrame(draw);
+  })();
+}
+
+/* الهيرو - Parallax ثلاثي الأبعاد بحركة الماوس */
+const card = document.getElementById('card3d');
+const heroInner = document.getElementById('heroInner');
+const hero = document.getElementById('hero');
+if (hero && !reduced && matchMedia('(pointer:fine)').matches) {
+  hero.addEventListener('mousemove', e => {
+    const r = hero.getBoundingClientRect();
+    const nx = (e.clientX - r.left) / r.width - .5;
+    const ny = (e.clientY - r.top) / r.height - .5;
+    if (card) card.style.transform =
+      `rotateY(${nx * -14}deg) rotateX(${ny * 10}deg) translateZ(10px)`;
+    const copy = heroInner.querySelector('.hero-copy');
+    if (copy) copy.style.transform = `translate3d(${nx * -10}px, ${ny * -8}px, 0)`;
+  });
+  hero.addEventListener('mouseleave', () => {
+    if (card) card.style.transform = '';
+    const copy = heroInner.querySelector('.hero-copy');
+    if (copy) copy.style.transform = '';
+  });
+}
+
+/* ميلان ثلاثي الأبعاد للبطاقات (خدمات + فروع) */
+if (!reduced && matchMedia('(pointer:fine)').matches) {
+  document.querySelectorAll('.tilt').forEach(el => {
+    const max = +el.dataset.max || 8;
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - .5;
+      const ny = (e.clientY - r.top) / r.height - .5;
+      el.style.transform = `rotateY(${nx * max}deg) rotateX(${ny * -max}deg) translateY(-6px) scale(1.015)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+}
+
+/* مضاعفة شريط الماركي */
+const mq = document.getElementById('mqTrack');
+if (mq) mq.innerHTML += mq.innerHTML;
+
+/* قائمة الجوال البسيطة */
+const burger = document.querySelector('.burger');
+if (burger) burger.addEventListener('click', () => {
+  const nav = document.querySelector('nav.links');
+  const open = nav.style.display === 'flex';
+  Object.assign(nav.style, open ? {display:'none'} : {
+    display:'flex', position:'fixed', inset:'76px 4% auto 4%',
+    flexDirection:'column', background:'rgba(10,9,6,.96)',
+    border:'1px solid var(--line)', borderRadius:'18px', padding:'26px',
+    backdropFilter:'blur(16px)', zIndex:950, gap:'18px'
+  });
+});
+document.querySelectorAll('nav.links a').forEach(a => a.addEventListener('click', () => {
+  if (innerWidth < 960) document.querySelector('nav.links').style.display = 'none';
+}));
+
+/* نبضة السلة عند إضافة منتج */
+document.querySelectorAll('.prod .add').forEach(b => b.addEventListener('click', () => {
+  b.style.transition = 'none';
+  b.style.transform = 'scale(.82)';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    b.style.transition = 'transform .3s cubic-bezier(.33,.9,.35,1), background .3s';
+    b.style.transform = '';
+  }));
+}));
+})();
+</script>
+</body>
+</html>
