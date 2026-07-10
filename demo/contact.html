@@ -158,6 +158,35 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 @media(max-width:900px){.f-grid{grid-template-columns:1fr 1fr}.nav{overflow-x:auto;justify-content:flex-start}.nav::-webkit-scrollbar{height:0}.f-brand{grid-column:1/-1}.f-bottom{grid-template-columns:1fr}.pay{justify-self:stretch;width:100%}}
 @media(max-width:640px){footer{padding:42px 16px calc(22px + env(safe-area-inset-bottom))}.f-grid{grid-template-columns:1fr 1fr;gap:22px 14px}.f-brand,.f-grid>div:last-child{grid-column:1/-1}.f-brand{text-align:center}.f-brand .logo{justify-content:center}.f-brand p{max-width:none;margin-inline:auto;font-size:13px}.socials{justify-content:center}.f-grid h4,footer h4{font-size:15px;margin-bottom:10px}.f-links a{font-size:12.5px}.f-branch{background:rgba(255,255,255,.035);border:1px solid rgba(198,161,91,.18);border-radius:14px;padding:12px}.f-bottom{margin-top:24px;text-align:center}.pay{grid-template-columns:repeat(3,1fr);gap:8px}.pay span{min-height:44px;border-radius:12px}.pay span:nth-child(5){grid-column:2/3}}
 
+
+
+/* ===== إصلاح هيدر الموقع على الجوال ===== */
+@media(max-width:640px){
+  body{padding-top:76px}
+  header{overflow:hidden}
+  .nav{min-height:76px;padding:10px 12px;gap:8px;overflow:visible!important;justify-content:space-between;direction:rtl}
+  nav.links{display:none!important}
+  .logo{min-width:0;gap:8px;flex:0 1 auto}
+  .logo .mark{width:50px;height:50px;border-radius:15px;flex:none}
+  .logo .mark img{width:28px!important;height:28px!important;margin:0!important}
+  .logo .name b{font-size:18px;white-space:nowrap}
+  .logo .name span{font-size:10px;letter-spacing:.18em}
+  .nav-actions{margin-inline-start:auto;gap:8px;display:flex;align-items:center;flex:0 0 auto;min-width:0}
+  .nav-actions .btn-ghost{width:48px;min-width:48px;height:48px;padding:0!important;border-radius:50%;font-size:0!important;gap:0}
+  .nav-actions .btn-ghost svg{width:18px;height:18px;margin:0}
+  .nav-actions .btn-gold{min-width:112px;height:48px;padding:0 14px!important;border-radius:999px;font-size:13px!important;white-space:nowrap;gap:6px;flex:none}
+  .nav-actions .btn-gold svg{width:14px;height:14px;flex:none}
+  .nav-actions .burger{display:none}
+}
+@media(max-width:380px){
+  .logo .name b{font-size:16px}
+  .logo .name span{font-size:9px;letter-spacing:.14em}
+  .logo .mark{width:46px;height:46px}
+  .nav-actions{gap:6px}
+  .nav-actions .btn-ghost{width:44px;min-width:44px;height:44px}
+  .nav-actions .btn-gold{min-width:100px;height:44px;padding-inline:11px!important;font-size:12px!important}
+}
+
 </style>
 </head>
 <body>
