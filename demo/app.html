@@ -46,9 +46,9 @@ a{color:inherit;text-decoration:none}
 /* ===== شريط التنقل السفلي ===== */
 .tabbar{position:fixed;bottom:0;right:50%;transform:translateX(50%);width:100%;max-width:430px;z-index:320;
   background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);
-  display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px calc(10px + env(safe-area-inset-bottom))}
+  display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px calc(10px + env(safe-area-inset-bottom));direction:ltr}
 .tab{display:flex;flex-direction:column;align-items:center;gap:4px;padding:7px 4px;font-size:10.5px;color:var(--soft);
-  min-height:44px;border-radius:12px;transition:color var(--dur)}
+  min-height:44px;border-radius:12px;transition:color var(--dur);direction:rtl}
 .tab svg{transition:transform .25s var(--ease)}
 .tab.on{color:var(--org);font-weight:700}
 .tab.on svg{transform:translateY(-2px)}
@@ -803,6 +803,7 @@ function toast(msg,ic){
  t.innerHTML=`<span class="ti">${svg(ic||'<path d="M20 6L9 17l-5-5"/>',11)}</span>${msg}`;
  t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2300);
 }
+function scrollAppTop(){requestAnimationFrame(()=>scrollTo({top:0,behavior:'auto'}))}
 function cartQty(){let n=0;S.cart.forEach(q=>n+=q);return n}
 function cartTotal(){let t=0;S.cart.forEach((q,id)=>t+=PRODUCTS.find(p=>p.id===id).pr*q);return t}
 function refreshBadge(pop){
@@ -1947,7 +1948,7 @@ function bind(){
    if(doneHome)doneHome.addEventListener('click',()=>{S.bookWizard=false;S.bookDone=false;S.bookStep=1;S.tab='home';render();scrollTo({top:0,behavior:'smooth'})});
    
    const prev = $('#wizPrevBtn');
-   if (prev) prev.addEventListener('click', () => { S.bookStep--; render(); });
+   if (prev) prev.addEventListener('click', () => { S.bookStep--; render(); scrollAppTop(); });
    
    const next = $('#wizNextBtn');
    if (next) next.addEventListener('click', () => {
@@ -1968,10 +1969,12 @@ function bind(){
        });
        S.bookDone = true;
        render();
+       scrollAppTop();
        toast('تم تأكيد حجزك وتثبيته بنجاح');
      } else {
        S.bookStep++;
        render();
+       scrollAppTop();
      }
    });
 
