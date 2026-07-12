@@ -757,7 +757,7 @@ const BK_STEPS=[
 const AR_DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const AR_MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 const TODAY=new Date(2026,6,7);
-const recipientURL=()=>new URL('gift-recipient.html',location.href).href+'?ref='+encodeURIComponent(S.ref||'');
+const recipientURL=()=>new URL('gift-recipient/',location.href).href+'?ref='+encodeURIComponent(S.ref||'');
 function bkDays(){
  return Array.from({length:12},(_,i)=>{const d=new Date(TODAY);d.setDate(d.getDate()+i);return d});
 }

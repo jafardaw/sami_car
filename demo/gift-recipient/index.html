@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عناية سامي | الهدايا</title>
+<title>عناية سامي | هديتك بانتظارك</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -321,6 +321,13 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .gcard .tg{font-size:12px;opacity:.85;letter-spacing:.02em}
 .gcard .hr{width:120px;height:1px;background:currentColor;opacity:.4;margin:16px auto 0;position:relative}
 .gcard .hr::after{content:"♡";position:absolute;top:-9px;right:calc(50% - 8px);font-size:13px;background:inherit;padding-inline:6px}
+.gcard.royal{isolation:isolate;border:1px solid rgba(255,255,255,.18);box-shadow:0 46px 82px -30px rgba(0,0,0,.82),inset 0 0 46px rgba(255,255,255,.08)}
+.gcard.royal::before{content:"";position:absolute;inset:-55%;background:conic-gradient(from 0deg,transparent 72%,rgba(255,255,255,.18),transparent 86%);animation:sweep 11s linear infinite;z-index:0}
+.gcard.royal>*{position:relative;z-index:1}
+.royal-frame{position:absolute;inset:14px!important;border:1px solid currentColor;border-radius:14px;opacity:.34;z-index:1}
+.royal-glow{position:absolute;inset:auto 12% -30% 12%!important;height:60%;background:radial-gradient(ellipse at center,currentColor,transparent 68%);opacity:.14;filter:blur(20px);z-index:0}
+.royal-seal{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin:0 auto 8px;border:1px solid currentColor;background:rgba(255,255,255,.08);box-shadow:inset 0 0 18px rgba(255,255,255,.08);font-size:21px}
+.gcard.royal h3{font-size:clamp(22px,2.7vw,31px);letter-spacing:0}
 .gcard-msg{margin-top:14px;background:#FDF9EE;border:1px solid var(--line);border-radius:14px;padding:16px 18px;position:relative}
 .gcard-msg .q{position:absolute;top:8px;font-size:26px;color:var(--gold);font-family:serif;line-height:1}
 .gcard-msg .q1{right:12px}.gcard-msg .q2{left:12px;bottom:4px;top:auto}
@@ -729,626 +736,615 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
   .modal .designs{grid-template-columns:1fr 1fr}
 }
 </style>
-</head>
 
+<style>
+/* ===== صفحات مستلم الهدية ===== */
+/* الهبوط الاحتفالي */
+.rc-hero{position:relative;background:
+  radial-gradient(700px 380px at 50% 0%,rgba(198,161,91,.22),transparent 65%),
+  linear-gradient(180deg,#0C0A06 0%,#14100A 70%,#1A140C 100%);
+  padding:54px 0 0;text-align:center;overflow:hidden;color:var(--champagne)}
+.rc-hero .confetti-layer{position:absolute;inset:0;pointer-events:none}
+.rc-hero .cf{position:absolute;color:var(--gold-bright);opacity:.5;animation:cfFloat 5s ease-in-out infinite;font-size:12px}
+@keyframes cfFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(30deg)}}
+.rc-hero .gift-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:16px;border:1.5px solid var(--gold);
+  display:grid;place-items:center;color:var(--gold-bright);background:rgba(198,161,91,.1)}
+.rc-hero h1{font-family:var(--font-d);font-size:clamp(28px,4vw,44px);color:var(--ivory)}
+.rc-hero .from{font-family:var(--font-d);font-size:clamp(17px,2vw,22px);color:var(--gold-bright);margin-top:10px}
+.rc-card-stage{position:relative;max-width:460px;margin:30px auto 0}
+.rc-card-stage .gcard{box-shadow:0 46px 80px -30px rgba(0,0,0,.85),0 0 60px -18px rgba(198,161,91,.4)}
+.rc-card-stage .pedestal{height:34px;margin:-6px auto 0;width:70%;border-radius:50%/100% 100% 0 0;
+  background:linear-gradient(180deg,#9C6B1F,#4a3a17);filter:blur(1px);opacity:.85}
+.rc-card-stage .gcard h3{font-size:clamp(19px,2.2vw,24px)}
+.rc-msg-panel{background:var(--paper);border-radius:26px 26px 0 0;margin-top:44px;position:relative;z-index:2}
+.rc-msg{max-width:760px;margin:-56px auto 0;position:relative;z-index:3;background:#fff;border:1px solid var(--line);
+  border-radius:20px;padding:26px 30px;text-align:center;box-shadow:0 30px 54px -28px rgba(80,60,20,.4)}
+.rc-msg .ttl{font-family:var(--font-d);color:var(--gold-deep);font-size:17px;display:flex;gap:8px;align-items:center;justify-content:center}
+.rc-msg blockquote{font-family:var(--font-d);font-size:clamp(16px,2vw,21px);color:var(--ink);margin:14px 0 10px;line-height:1.8;position:relative;padding-inline:26px}
+.rc-msg blockquote::before,.rc-msg blockquote::after{font-size:30px;color:var(--gold);position:absolute;font-family:serif;line-height:1}
+.rc-msg blockquote::before{content:"\201C";right:0;top:-6px}
+.rc-msg blockquote::after{content:"\201D";left:0;bottom:-10px}
+.rc-msg .snd{font-size:12.5px;color:var(--mute);display:flex;gap:7px;align-items:center;justify-content:center}
+.paid-banner{max-width:420px;margin:22px auto 0;display:flex;gap:13px;align-items:center;justify-content:center;
+  background:var(--green-bg);border:1px solid rgba(46,139,87,.25);border-radius:16px;padding:15px 22px}
+.paid-banner .gi{width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;flex:none}
+.paid-banner b{color:#1E6B41;font-size:15px;display:block}
+.paid-banner small{color:#4a7d5f;font-size:12px}
+.rc-details-title{text-align:center;font-family:var(--font-d);font-size:20px;color:var(--ink);margin:34px 0 18px}
+.rc-cells{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:960px;margin-inline:auto}
+.rc-cell{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 12px;text-align:center;
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur);animation:pkgIn .4s var(--ease) both}
+.rc-cell:hover{transform:translateY(-4px);box-shadow:0 16px 30px -18px rgba(80,60,20,.35)}
+.rc-cell .ci{width:40px;height:40px;margin:0 auto 10px;border-radius:12px;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--gold-deep);background:#FDFBF5}
+.rc-cell small{font-size:11px;color:var(--mute);display:block}
+.rc-cell b{font-size:13.5px;color:var(--ink);display:block;margin-top:4px;font-family:var(--font-d)}
+.rc-cell .vip{display:inline-block;font-size:9.5px;font-weight:800;border:1px solid var(--gold);color:var(--gold-deep);
+  padding:2px 10px;border-radius:999px;margin-top:6px}
+.rc-cell .sub{font-size:10px;color:var(--mute);margin-top:3px;display:block}
+.status-line{max-width:960px;margin:16px auto 0;display:flex;gap:12px;align-items:center;justify-content:center;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 20px;font-size:13px;color:var(--ink)}
+.status-chip{font-size:11.5px;font-weight:700;padding:6px 15px;border-radius:999px;border:1px solid var(--gold);
+  color:var(--gold-deep);display:inline-flex;gap:6px;align-items:center}
+.status-chip.used{border-color:rgba(46,139,87,.4);color:var(--green);background:var(--green-bg)}
+.rc-cta{max-width:560px;margin:26px auto 0;text-align:center}
+.rc-cta .big{width:100%;padding:20px;border-radius:18px;font-size:17px;flex-direction:column;gap:4px}
+.rc-cta .big small{font-size:11.5px;font-weight:400;opacity:.85}
+.rc-cta .note{margin-top:12px;font-size:11.5px;color:var(--mute);display:flex;gap:7px;align-items:center;justify-content:center}
+.rc-bottom{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;max-width:960px;margin:34px auto 0}
+.faq{padding:20px}
+.faq h4{font-family:var(--font-d);font-size:16px;color:var(--ink);margin-bottom:12px}
+.faq-item{border:1px solid var(--line);border-radius:12px;margin-bottom:9px;overflow:hidden;background:#FDFBF5}
+.faq-item .q{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;cursor:pointer;
+  font-size:13px;color:var(--ink);font-weight:600}
+.faq-item .q svg{transition:transform .3s var(--ease);color:var(--gold-deep)}
+.faq-item.open .q svg{transform:rotate(180deg)}
+.faq-item .a{max-height:0;opacity:0;overflow:hidden;transition:max-height .35s var(--ease),opacity .3s}
+.faq-item.open .a{max-height:140px;opacity:1}
+.faq-item .a p{padding:0 16px 14px;font-size:12.5px;color:var(--mute);line-height:1.9}
+.thank-card{padding:22px;text-align:center;background:linear-gradient(160deg,#FFF9EC,#fff)}
+.thank-card h4{font-family:var(--font-d);font-size:16px;color:var(--ink)}
+.thank-card p{font-size:12.5px;color:var(--mute);margin:8px 0 14px}
+.thank-card a{display:inline-flex;gap:9px;align-items:center;border:1.5px solid #2ecc71;color:#1E6B41;
+  border-radius:12px;padding:11px 24px;font-size:13px;font-weight:700;transition:var(--dur)}
+.thank-card a:hover{background:var(--green-bg)}
+/* التحقق و OTP */
+.verify-grid{display:grid;grid-template-columns:1fr 1.2fr;align-items:stretch;overflow:hidden;border-radius:20px}
+.verify-visual{position:relative;background:linear-gradient(150deg,#F6EFDF,#EFE5CC);min-height:340px;display:grid;place-items:center;overflow:hidden}
+.verify-visual .vbox{width:130px;height:110px;position:relative;animation:giftFloat 6s ease-in-out infinite}
+.verify-visual .vbox .bx{position:absolute;inset:14px 8px 0;border-radius:14px;background:linear-gradient(150deg,#241d10,#0f0c06);
+  border:1px solid rgba(143,113,52,.55);box-shadow:0 24px 40px -16px rgba(80,60,20,.5)}
+.verify-visual .vbox .bx::before{content:"";position:absolute;inset-block:0;right:calc(50% - 8px);width:16px;
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold-deep))}
+.verify-visual .vbox svg{position:absolute;top:-14px;right:calc(50% - 28px);width:56px;color:var(--gold);z-index:2}
+.verify-visual .cf{position:absolute;color:var(--gold);opacity:.55;animation:cfFloat 4.5s ease-in-out infinite;font-size:11px}
+.verify-body{padding:34px 30px;text-align:center;background:#fff}
+.verify-body .vi{width:58px;height:58px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(198,161,91,.12);color:var(--gold-deep)}
+.verify-body h2{font-family:var(--font-d);font-size:clamp(21px,2.6vw,27px);color:var(--ink)}
+.verify-body .vp{color:var(--mute);font-size:13.5px;margin:10px auto 22px;max-width:38ch;line-height:1.9}
+.phone-row{display:flex;gap:10px;max-width:380px;margin-inline:auto;direction:ltr}
+.phone-row .cc{flex:none;border:1.5px solid var(--line);border-radius:13px;padding:13px 16px;font-size:14px;
+  background:#FDFBF5;color:var(--ink);display:flex;align-items:center;gap:6px}
+.phone-row input{flex:1;border:1.5px solid var(--line);border-radius:13px;padding:13px 16px;font-size:15px;
+  background:#FDFBF5;color:var(--ink);outline:none;text-align:left;letter-spacing:.06em;transition:border-color var(--dur),box-shadow var(--dur)}
+.phone-row input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,161,91,.14)}
+.v-secure{display:flex;gap:7px;align-items:center;justify-content:center;font-size:11.5px;color:var(--mute);margin:14px 0 18px}
+.verify-body .btn{width:min(380px,100%)}
+.otp-row{display:flex;gap:12px;justify-content:center;direction:ltr;margin:6px 0 16px}
+.otp-row input{width:62px;height:66px;border:1.5px solid var(--line);border-radius:14px;text-align:center;
+  font-size:26px;font-family:var(--font-d);color:var(--ink);background:#FDFBF5;outline:none;
+  transition:border-color var(--dur),box-shadow var(--dur),transform .15s}
+.otp-row input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,161,91,.16)}
+.otp-row.err input{border-color:#C0503A;animation:shake .35s}
+@keyframes shake{25%{transform:translateX(4px)}50%{transform:translateX(-4px)}75%{transform:translateX(3px)}}
+.otp-meta{display:flex;gap:8px;align-items:center;justify-content:center;font-size:12.5px;color:var(--mute);margin-bottom:16px}
+.otp-meta button{color:var(--gold-deep);font-weight:700;display:flex;gap:6px;align-items:center}
+.otp-meta button:disabled{color:var(--mute);font-weight:400;cursor:default}
+.edit-num{color:var(--gold-deep);font-weight:700;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
+.demo-hint{position:absolute;bottom:20px;right:20px;background:#fff;border:1px solid var(--line);border-radius:13px;
+  padding:12px 16px;font-size:11px;color:var(--mute);box-shadow:0 14px 26px -14px rgba(80,60,20,.4);text-align:center}
+.demo-hint b{display:block;font-family:var(--font-d);font-size:20px;color:var(--ink);letter-spacing:.2em;margin-top:3px}
+/* الموعد */
+.rc-time-note{display:flex;gap:10px;align-items:center;background:rgba(198,161,91,.08);border:1px solid var(--line);
+  border-radius:13px;padding:13px 17px;font-size:12.5px;color:var(--gold-deep);margin-top:16px}
+.slot-group{margin-top:14px}
+.slot-group>b{font-size:13px;color:var(--ink);display:flex;gap:7px;align-items:center;margin-bottom:10px}
+.slot-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+/* ماذا بعد */
+.after-card{padding:20px}
+.after-card h4{font-family:var(--font-d);font-size:17px;color:var(--ink);margin-bottom:14px;display:flex;gap:8px;align-items:center}
+.after-card .wg{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(143,113,52,.1)}
+.after-card .wg:last-of-type{border:none}
+.after-card .wi{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold-deep);background:#FDFBF5}
+.after-card b{font-size:13px;color:var(--ink);display:block}
+.after-card small{font-size:11.5px;color:var(--mute);line-height:1.7}
+.after-thanks{margin-top:14px;background:linear-gradient(160deg,#FFF6E2,#FFFDF6);border:1px solid var(--line);
+  border-radius:13px;padding:14px 16px;font-size:12.5px;color:var(--gold-deep);display:flex;gap:10px;align-items:center}
+.support-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid var(--line);
+  border-radius:16px;padding:16px 8px;margin-top:18px}
+.support-strip .sp{display:flex;gap:12px;align-items:center;justify-content:center;padding:6px 14px;border-inline-start:1px solid var(--line)}
+.support-strip .sp:first-child{border:none}
+.support-strip .si{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(198,161,91,.1);color:var(--gold-deep);flex:none}
+.support-strip b{font-size:13px;color:var(--ink);display:block}
+.support-strip small{font-size:11px;color:var(--mute)}
+@media(max-width:900px){
+  .rc-cells{grid-template-columns:repeat(2,1fr)}
+  .rc-bottom{grid-template-columns:1fr}
+  .verify-grid{grid-template-columns:1fr}
+  .verify-visual{min-height:220px}
+  .support-strip{grid-template-columns:1fr;gap:10px}
+  .support-strip .sp{border:none;justify-content:flex-start}
+}
+@media(max-width:640px){
+  .otp-row input{width:52px;height:58px;font-size:22px}
+  .rc-cells{grid-template-columns:1fr 1fr}
+  .slot-row{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="index.html"><span class="mark"><img src="logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span><span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span></a>
-        <nav class="links"><a href="index.html">الرئيسية</a><a href="booking.html">حجز موعد</a><a href="index.html#services">خدماتنا</a><a id="navPk" href="packages-gifts.html">الباقات</a><a id="navGift" href="gifts.html" class="on">الهدايا</a><a href="store.html">المتجر</a><a href="branches.html">فروعنا</a><a href="contact.html">تواصل معنا</a></nav>
+    <a class="logo" href="../index.html"><span class="mark"><img src="../logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span><span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span></a>
+        <nav class="links"><a href="../index.html">الرئيسية</a><a href="../booking.html">حجز موعد</a><a href="../index.html#services">خدماتنا</a><a id="navPk" href="../packages-gifts.html">الباقات</a><a id="navGift" href="../gifts.html" class="on">الهدايا</a><a href="../store.html">المتجر</a><a href="../branches.html">فروعنا</a><a href="../contact.html">تواصل معنا</a></nav>
     <div class="nav-actions">
+      <button class="icon-btn" aria-label="حسابي"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
       <button class="icon-btn" aria-label="السلة">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/></svg>
         <span class="count">2</span>
       </button>
-      <button class="icon-btn" aria-label="حسابي"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
       <span class="loyal"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> احجز الآن</span>
     </div>
   </div>
 </header>
 
-<div class="shell">
-  <div class="wrap" id="app"></div>
-</div>
-
+<div id="app"></div>
 
 <div class="pay-loading" id="payLoading">
-  <div class="pl-box"><div class="pl-ring"></div><b>جارٍ إتمام الإهداء بأمان…</b><small>سيتم إرسال الهدية مباشرة بعد إتمام الدفع</small></div>
+  <div class="pl-box"><div class="pl-ring"></div><b>جارٍ تأكيد حجز هديتك…</b><small>لحظات ويصبح موعدك جاهزًا</small></div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
 (function(){
 "use strict";
-const LOGO_G='logo.png';
-/* ================= البيانات ================= */
-const BRANCHES=[
- {id:'qr',name:'فرع قريش',addr:'جدة، قريش — شارع قريش',rate:4.7,vis:'+980 زائر شهريًا',hours:'12:00 ص – 10:00 م',home:false,fee:0,
-  img:'https://sami-care.sa//storage/uploads/389/4fKSZ0AIoLjJT4JuFKO81qWrxGQ6ymQ6zLbi1L3b.jpg'},
- {id:'bg',name:'فرع البغدادية',addr:'جدة، البغدادية الغربية — شارع حائل',rate:4.8,vis:'+1.2K زائر شهريًا',hours:'12:00 ص – 10:00 م',home:false,fee:0,
-  img:'https://sami-care.sa//storage/uploads/391/sSX2TVdlk84EEewXCDhT0w24X5WAJnPOA0GE6VHD.jpg'},
- {id:'hm',name:'خدمة منزلية',addr:'الهدية تُنفَّذ في منزل المستلم — جدة',rate:4.9,vis:'+2K عميل سعيد',hours:'خدمة VIP',home:true,fee:100,
-  img:'https://sami-care.sa//storage/uploads/407/7gF352Ispha9FbN9jPxmjnpOQDg5vFY41n5ZTdqK.png'},
-];
-const PKGS=[
- {id:'fast',name:'باقة سريعة',dur:60,price:550,hex:'#D98A3B',hot:true,
-  desc:'جلسة فعّالة وسريعة لتجديد نشاطك',
-  inc:['تنظيف بشرة سريعة','مساج للظهر والرقبة','ترطيب الوجه'],
-  img:'https://sami-care.sa//storage/uploads/378/pX2gGtf2r59vqjIFAhR2PR29POK9sOEcytVbrIEN.jpg'},
- {id:'full',name:'باقة العناية الكاملة',dur:120,price:1150,hex:'#B8912F',
-  desc:'عناية متكاملة من الرأس إلى القدم',
-  inc:['مساج استرخائي للجسم','تنظيف بشرة عميق','ترطيب الوجه','جلسة بخار'],
-  img:'https://sami-care.sa//storage/uploads/398/xgvAyUvnVwdSsMwEoGTex3evVjSnz5IwB2RXBpl7.jpg'},
- {id:'groom',name:'باقة العريس',dur:150,price:950,hex:'#8B6FC0',
-  desc:'تجهيز متكامل لأجمل إطلالة في يومك',
-  inc:['عناية بشرة متقدمة','مساج استرخائي للجسم','تنظيف بشرة عميق','مشروب ترحيبي'],
-  img:'https://sami-care.sa//storage/uploads/421/MLJpXNWasEY0idtGh7smYfLmu5iEMY9VYNdxGg09.jpg'},
- {id:'home',name:'باقة منزلية',dur:90,price:450,hex:'#3E8E9E',
-  desc:'تجربة متكاملة في منزلك بأعلى معايير العناية',
-  inc:['منتجات عناية مختارة','زيوت طبيعية','شموع عطرية','توصيل مجاني'],
-  img:'https://sami-care.sa//storage/uploads/407/7gF352Ispha9FbN9jPxmjnpOQDg5vFY41n5ZTdqK.png'},
- {id:'relax',name:'باقة الاسترخاء',dur:90,price:650,hex:'#4E9E6F',
-  desc:'استرخاء عميق وتجديد للطاقة للجسم والعقل',
-  inc:['مساج استرخائي للجسم','تنظيف بشرة عميق','جلسة بخار','مشروب صحي'],
-  img:'https://sami-care.sa//storage/uploads/379/HS14DaOajHELhTAB5YvPkl6qBHb25TR3kiIhY4H5.jpg'},
- {id:'royal',name:'باقة العناية الملكية',dur:180,price:1150,hex:'#B0642A',
-  desc:'التجربة الأفخم — غرفة VIP وضيافة ملكية',
-  inc:['غرفة VIP خاصة','حمام مغربي ملكي','مساج كامل','ضيافة فاخرة'],
-  img:'https://sami-care.sa//storage/uploads/391/sSX2TVdlk84EEewXCDhT0w24X5WAJnPOA0GE6VHD.jpg'},
-];
-const SVCS=[
- {id:'v1',name:'حلاقة VIP',desc:'حلاقة فاخرة مع خدمة VIP',dur:50,price:80,emoji:'✂️'},
- {id:'v2',name:'تنظيف بشرة عميق',desc:'تنظيف عميق ينعش البشرة',dur:50,price:150,emoji:'💧'},
- {id:'v3',name:'مساج استرخاء للجسم',desc:'استرخاء عميق يجدد طاقتك',dur:60,price:180,emoji:'🌿'},
- {id:'v4',name:'حمام مغربي كلاسيكي',desc:'تقشير وتنقية بطقوس أصيلة',dur:60,price:200,emoji:'🫧'},
- {id:'v5',name:'بديكير فاخر',desc:'عناية متكاملة مع تقشير وترطيب',dur:60,price:100,emoji:'🦶'},
- {id:'v6',name:'ماسك الذهب',desc:'ماسك فاخر لنضارة استثنائية',dur:25,price:90,emoji:'✨'},
-];
-const DESIGNS=[
- {id:'lux-dark',n:'ملكي أسود مذهب',bg:'radial-gradient(circle at 20% 12%,rgba(232,190,108,.24),transparent 30%),linear-gradient(150deg,#1D1810,#070604 72%)',fg:'#E8BE6C',icon:'◆'},
- {id:'gold-leaf',n:'ختم الذهب الفاخر',bg:'linear-gradient(150deg,#FFF4D8,#D4AF5E 54%,#7C5519)',fg:'#1B140D',icon:'✦'},
- {id:'emerald',n:'زمرد النخبة',bg:'radial-gradient(circle at 80% 8%,rgba(255,255,255,.18),transparent 28%),linear-gradient(150deg,#082118,#176A50 58%,#05110D)',fg:'#DDF7E8',icon:'◇'},
- {id:'birthday',n:'هدية عيد ميلاد',bg:'radial-gradient(circle at 20% 18%,rgba(255,255,255,.28),transparent 30%),linear-gradient(150deg,#4B102E,#B94069 56%,#F2B8CF)',fg:'#FFFFFF',icon:'★'},
- {id:'eid-adha',n:'هدية عيد الأضحى',bg:'radial-gradient(circle at 85% 12%,rgba(255,255,255,.22),transparent 28%),linear-gradient(150deg,#092B25,#0F6B58 52%,#D8B45B)',fg:'#FFF7DA',icon:'☾'},
- {id:'christmas',n:'هدية الكريسماس',bg:'linear-gradient(150deg,#0D2B1F,#146B3A 52%,#B41F2A)',fg:'#FFFFFF',icon:'✶'},
- {id:'ramadan',n:'هدية رمضان والعيد',bg:'radial-gradient(circle at 20% 10%,rgba(232,190,108,.26),transparent 32%),linear-gradient(150deg,#11132C,#26316B 55%,#C99B3B)',fg:'#F8E7B0',icon:'☾'},
-];
-const SENDS=[
- {id:'wa',n:'واتساب',ic:'<path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/><path d="M8.5 9.5c.5 2.5 3 5 5.5 5.5l1.5-1.5 2 1c-.5 1.5-2 2-3.5 1.5-3-.9-5.6-3.5-6.5-6.5-.5-1.5 0-3 1.5-3.5l1 2z"/>'},
- {id:'sms',n:'رسالة نصية',ic:'<path d="M21 11.5a8.4 8.4 0 01-9 8.4 8.5 8.5 0 01-3.8-.9L3 21l2-5.2a8.4 8.4 0 011.5-9.8 8.5 8.5 0 0114.5 5.5z"/>'},
- {id:'link',n:'رابط إلكتروني',ic:'<path d="M10 13a5 5 0 007.5.5l3-3a5 5 0 00-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 00-7.5-.5l-3 3a5 5 0 007 7l1.7-1.7"/>'},
- {id:'print',n:'طباعة البطاقة',ic:'<path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/>'},
-];
-const GSTEPS=[
- {t:'نوع الهدية',s:'إهداء خدمة / باقة'},
- {t:'اختيار الفرع',s:'اختر الفرع'},
- {t:'اختيار الباقة أو الخدمة',s:'اختر ما يناسبه'},
- {t:'تخصيص الهدية',s:'خصص رسالتك'},
- {t:'الدفع',s:'إتمام عملية الدفع'},
- {t:'نجاح الإهداء',s:'تم إرسال الهدية بنجاح'},
-];
-const VAT=.15,COUPON_CODE='SAMI25',COUPON_VAL=25;
-
-/* ================= الحالة ================= */
-const S={
- step:0, gtype:null, branch:null,
- pkg:null, svcs:new Set(), sort:'pop', favs:new Set(),
- sender:'', name:'', phone:'', msg:'',
- design:'lux-dark', method:'wa', when:'now', schedDate:'',
- pay:null, extraCollapsed:false, terms:false,
- couponIn:'', coupon:0, couponCode:'',
- done:false, ref:null,
+const LOGO_G='../logo.png';
+/* ================= بيانات الهدية ================= */
+const GIFT={
+ pkg:'باقة عناية ملكية',vip:true,value:682,dur:90,
+ branch:'فرع قريش',branchSub:'جدة — شارع قريش',
+ giver:'فايز أحمد',giverShort:'فايز',
+ msg:'من القلب... لأنك تستحق لحظة راحة واهتمام',
+ delivery:'إرسال فوري',
+ inc:['غرفة VIP خاصة','حمام مغربي ملكي','مساج كامل','ضيافة فاخرة'],
 };
-const rs=n=>n.toLocaleString('ar-EG-u-nu-latn');
+const REC={name:'منى أحمد',mail:'mona.ahmed@example.com'};
+const OTP_CODE='2478';
+const AR_DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const AR_MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const TODAY=new Date(2026,6,7);
+const VALID_UNTIL=new Date(2026,7,6); /* 30 يومًا من تاريخ الإهداء */
+const STEPS=[
+ {t:'الدفع',s:'تم الدفع بواسطة المهدي'},
+ {t:'التحقق',s:'تحقق من هويتك'},
+ {t:'اختيار الموعد',s:'اختر الوقت المناسب لك'},
+ {t:'مراجعة الحجز',s:'راجع تفاصيل الحجز'},
+ {t:'تأكيد الحجز',s:'تأكيد وحجز موعدك'},
+];
+const S={
+ view:'landing', /* landing | flow */
+ step:1, /* 1..4 (الدفع=0 منجز مسبقًا) */
+ sub:'phone', /* phone | otp */
+ phone:'', otp:['','','',''], timer:45, timerH:null, otpErr:false,
+ calY:TODAY.getFullYear(), calM:TODAY.getMonth(),
+ date:null, time:null,
+ done:false, used:false, ref:'#SA-260707-0830',
+};
 const $=s=>document.querySelector(s);
-const pkgOf=id=>PKGS.find(p=>p.id===id);
-const dsgOf=id=>DESIGNS.find(d=>d.id===id);
-const brOf=id=>BRANCHES.find(b=>b.id===id);
-const recipientURL=()=>new URL('gift-recipient/',location.href).href+'?ref='+encodeURIComponent(S.ref||'');
+const rs=n=>n.toLocaleString('ar-EG-u-nu-latn');
 function svg(p,w){return`<svg width="${w||17}" height="${w||17}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${p}</svg>`}
-function toast(msg){
- const t=$('#toast');
- t.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>'+msg;
- t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2200);
-}
-function giftValue(){
- if(S.gtype==='svc')return[...S.svcs].reduce((a,id)=>a+SVCS.find(x=>x.id===id).price,0);
- return S.pkg?pkgOf(S.pkg).price:0;
-}
-function giftLabel(){
- if(S.gtype==='svc'){const n=S.svcs.size;return n?[...S.svcs].map(id=>SVCS.find(x=>x.id===id).name).join(' + '):null}
- return S.pkg?pkgOf(S.pkg).name:null;
-}
-function priceParts(){
- const val=giftValue();
- const fee=S.branch?brOf(S.branch).fee:0;
- const vat=Math.round((val+fee)*VAT);
- const disc=Math.min(S.coupon,val);
- return{val,fee,vat,disc,total:val+fee+vat-disc};
-}
+function toast(m){const t=$('#toast');
+ t.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>'+m;
+ t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2200)}
+function fmtDate(d){return `${AR_DAYS[d.getDay()]} ${d.getDate()} ${AR_MONTHS[d.getMonth()]} ${d.getFullYear()}`}
+function maskPhone(){return '05'+'*'.repeat(7)}
 
-/* ================= الستيبر ================= */
-function stepper(){
- return`<div class="g-stepper"><div class="g-steps">${GSTEPS.map((st,i)=>`
-  <div class="g-step ${i===S.step&&!S.done?'active':''} ${i<S.step||S.done?'done':''}" data-i="${i}">
-   <div class="bar"><i></i></div>
-   <span class="bubble">${i<S.step||S.done?svg('<path d="M20 6L9 17l-5-5"/>',16):(i+1)}</span>
-   <b>${st.t}</b><small>${st.s}</small>
-  </div>`).join('')}</div>
- <div class="step-count">الخطوة ${Math.min(S.step+1,6)} من 6</div></div>`;
-}
-
-/* ================= الخطوة 1: نوع الهدية ================= */
-function view0(){
- return`<div class="g-head"><h1>ماذا ترغب بإهدائه؟</h1><p>اختر ما يناسبك لإهداء تجربة مميزة لمن تحب</p></div>
- <div class="gtype-grid">
-  <div class="gtype ${S.gtype==='pkg'?'sel':''}" data-gt="pkg">
-   <div class="im"><img src="https://sami-care.sa//storage/uploads/422/zpncY6t7PeEmjKRKJnYepOUwN7nDJAVpsmNh6hut.png" alt="">
-    <span class="ic">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7s-2-5-5-5-3 5 0 5h5zM12 7s2-5 5-5 3 5 0 5h-5z"/>',22)}</span></div>
-   <div class="bd"><h3>إهداء باقة</h3><p>اختر باقة جاهزة مصممة لتمنح تجربة متكاملة</p>
-    <span class="go">اختر باقة لإهدائها ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',14)}</span></div>
-  </div>
-  <div class="gtype ${S.gtype==='svc'?'sel':''}" data-gt="svc">
-   <div class="im"><img src="https://sami-care.sa//storage/uploads/404/IO26IC8Qd0LCbCeHNjYPUhOmSWeZi3FkEPYFpsuB.jpg" alt="">
-    <span class="ic">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',22)}</span></div>
-   <div class="bd"><h3>إهداء خدمة</h3><p>اختر خدمة واحدة أو أكثر من خدماتنا المتنوعة</p>
-    <span class="go">اختر خدمة لإهدائها ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',14)}</span></div>
-  </div>
- </div>`;
-}
-
-/* ================= الخطوة 2: اختيار الفرع ================= */
-function view1(){
- return`<div class="g-head"><h1>اختر الفرع المناسب</h1><p>الأسعار والخدمات قد تختلف من فرع لآخر — المستلم يحضر جلسته في الفرع المختار</p></div>
- <div class="bk-branches">${BRANCHES.map((b,i)=>`
-  <div class="bkbr ${S.branch===b.id?'sel':''}" data-br="${b.id}" style="animation-delay:${i*.07}s">
-   <div class="ph"><img src="${b.img}" alt="${b.name}">
-    <span class="chk">${svg('<path d="M20 6L9 17l-5-5"/>',13)}</span>
-    ${b.home?'<span class="homeflag">🏠 خدمة تصل إليه</span>':''}
-   </div>
-   <div class="bd">
-    <h4>${b.name}</h4><div class="addr">📍 ${b.addr}</div>
-    <div class="meta"><span>⭐ <b style="color:var(--gold-deep)">${b.rate}</b></span><span class="live"><i></i> متاح الآن</span><span>👥 ${b.vis}</span></div>
-    <div class="meta" style="border:none;padding-top:8px"><span>🕐 ${b.hours}${b.fee?` — رسوم خدمة منزلية ${b.fee} ر.س`:''}</span></div>
-   </div>
-  </div>`).join('')}</div>`;
-}
-
-/* ================= الخطوة 3: الباقة أو الخدمة ================= */
-function view2(){
- if(S.gtype==='svc'){
-  return`<div class="g-head"><h1>اختر الخدمة التي ترغب بإهدائها</h1><p>يمكنك اختيار خدمة واحدة أو أكثر</p></div>
-  <div class="gsvcs">${SVCS.map((v,i)=>`
-   <div class="gsvc ${S.svcs.has(v.id)?'sel':''}" data-sv="${v.id}" style="animation-delay:${i*.05}s">
-    <span class="chk">${svg('<path d="M20 6L9 17l-5-5"/>',12)}</span>
-    <span class="si">${v.emoji}</span>
-    <b>${v.name}</b><small>${v.desc}</small>
-    <div class="ft"><span>🕐 ${v.dur} دقيقة</span><span class="p">${rs(v.price)} <small style="font-size:10px">ر.س</small></span></div>
-   </div>`).join('')}</div>
-  <div class="inline-actions">
-   <button class="btn btn-prev" data-nav="back">${svg('<path d="M5 12h14M13 6l6 6-6 6"/>',15)} رجوع</button>
-   <button class="btn btn-gold" data-nav="next" ${S.svcs.size?'':'disabled'}>التالي: تخصيص الهدية ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',15)}</button>
-  </div>`;
- }
- const list=PKGS.slice().sort((a,b)=>S.sort==='low'?a.price-b.price:S.sort==='high'?b.price-a.price:(b.hot?1:0)-(a.hot?1:0));
- return`<div class="g-head"><h1>اختر الباقة التي ترغب بإهدائها</h1><p>باقات مميزة تمنح تجربة متكاملة من الاسترخاء والعناية</p></div>
- <div class="gp-sort">
-  <select id="gpSort"><option value="pop" ${S.sort==='pop'?'selected':''}>الأكثر طلبًا</option><option value="low" ${S.sort==='low'?'selected':''}>السعر: الأقل أولًا</option><option value="high" ${S.sort==='high'?'selected':''}>السعر: الأعلى أولًا</option></select>
-  <small>${Math.min(4,PKGS.length)} باقات متاحة — مرّر لاستعراض المزيد</small>
- </div>
- <div class="caro-wrap">
-  <button class="caro-btn r" data-caro="1">${svg('<path d="M9 6l6 6-6 6"/>',15)}</button>
-  <button class="caro-btn l" data-caro="-1">${svg('<path d="M15 6l-6 6 6 6"/>',15)}</button>
-  <div class="caro" id="caro">${list.map((p,i)=>`
-   <div class="gpkg ${S.pkg===p.id?'sel':''}" data-gp="${p.id}" style="--pc:${p.hex};animation-delay:${i*.05}s">
-    <div class="ph"><img src="${p.img}" alt="${p.name}">
-     ${p.hot?'<span style="position:absolute;top:10px;left:44px;background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink);font-size:10px;font-weight:700;padding:5px 11px;border-radius:999px;z-index:2">الأكثر طلبًا</span>':''}
-     <button class="fav ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
-     <span class="chk">${svg('<path d="M20 6L9 17l-5-5"/>',13)}</span></div>
-    <div class="bd">
-     <h4>${p.name}</h4>
-     <div class="dur">🕐 ${p.dur} دقيقة</div>
-     <div class="desc">${p.desc}</div>
-     <div style="text-align:right;font-size:11px;color:var(--mute);margin:8px 0;border-top:1px dashed var(--line);padding-top:9px">
-      <b style="display:block;color:var(--ink);font-size:11.5px;margin-bottom:6px">تشمل الباقة</b>
-      ${p.inc.map(x=>`<div style="padding:2px 0">✓ ${x}</div>`).join('')}</div>
-     <div class="prc">${rs(p.price)} <small>ر.س</small></div>
-     <button class="pick">${svg('<path d="M20 12v10H4V12M2 7h20v5H2z"/>',14)} ${S.pkg===p.id?'تم الاختيار ✓':'استعرض الباقة'}</button>
-    </div>
-   </div>`).join('')}</div>
- </div>
- <div class="inline-actions">
-  <button class="btn btn-prev" data-nav="back">${svg('<path d="M5 12h14M13 6l6 6-6 6"/>',15)} رجوع</button>
-  <button class="btn btn-gold" data-nav="next" ${S.pkg?'':'disabled'}>التالي: تخصيص الهدية ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',15)}</button>
- </div>`;
-}
-
-/* ================= الخطوة 4: التخصيص ================= */
-function giftCardHTML(){
- const d=dsgOf(S.design)||DESIGNS[0];
- return`<div class="gcard royal" style="background:${d.bg};color:${d.fg}">
+/* ================= بطاقة الهدية ================= */
+function giftCard(){
+ return`<div class="gcard royal" style="background:radial-gradient(circle at 20% 12%,rgba(255,255,255,.16),transparent 28%),radial-gradient(circle at 82% 18%,rgba(232,190,108,.26),transparent 30%),linear-gradient(150deg,#1D1810,#0B0906 58%,#37230C);color:#E8BE6C">
   <div class="royal-frame"></div>
   <div class="royal-glow"></div>
   <svg class="bow" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 30C18 30 10 24 12 15s16-5 20 8c4-13 18-17 20-8s-6 15-20 15z"/><path d="M28 30h8v8h-8z"/></svg>
   <div class="leaves">
-   <svg style="bottom:8px;right:10px" width="78" height="78" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".85"><path d="M4 20C6 12 12 6 20 4c-2 8-8 14-16 16zM4 20c4-2 8-6 10-10"/></svg>
-   <svg style="top:14px;left:10px;transform:rotate(180deg)" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".85"><path d="M4 20C6 12 12 6 20 4c-2 8-8 14-16 16z"/></svg>
+   <svg style="bottom:8px;right:10px" width="66" height="66" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".9"><path d="M4 20C6 12 12 6 20 4c-2 8-8 14-16 16zM4 20c4-2 8-6 10-10"/></svg>
   </div>
-  <div class="royal-seal">${d.icon||'✦'}</div>
+  <div class="royal-seal">◆</div>
   <div class="lg">${('<img src="'+LOGO_G+'" style="height:24px;vertical-align:middle" alt="">')} SAMI <small>عناية سامي</small></div>
-  <h3>${d.n}</h3>
+  <h3>${GIFT.pkg}</h3>
   <div class="tg">هدية فاخرة بتجربة عناية ملكية</div>
-  <div class="hr" style="background:${d.fg}"></div>
+  <div class="hr" style="background:#E8BE6C"></div>
  </div>`;
 }
-function view3(){
- const remain=200-S.msg.length,d=dsgOf(S.design);
- return`<div class="g-head"><h1>خصص هديتك لتكون أجمل 🤍</h1><p>أضف لمستك الخاصة مع رسالة وتصميم بطاقة الإهداء</p></div>
- <div class="custom-grid">
-  <div class="preview-col">
-   <h4>${svg('<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',16)} معاينة بطاقة الإهداء</h4>
-   <div id="cardPrev">${giftCardHTML()}</div>
-   <div class="gcard-msg"><span class="q q1">"</span><span class="q q2">"</span>
-    <b>إلى: <span id="pvName">${S.name||'—'}</span></b>
-    <p id="pvMsg">${S.msg||'اكتب رسالتك الخاصة لتظهر هنا'}</p>
-    <small style="display:block;margin-top:8px;font-size:11px;color:var(--mute)">من: <span id="pvSender">${S.sender||'مجهول جميل'}</span></small>
-   </div>
+
+/* ================= صفحة الهبوط ================= */
+function viewLanding(){
+ const cf=Array.from({length:10},(_,i)=>`<span class="cf" style="top:${8+((i*17)%70)}%;${i%2?'right':'left'}:${3+((i*11)%40)}%;animation-delay:-${i*.6}s">${i%3?'✦':'❖'}</span>`).join('');
+ return`
+ <section class="rc-hero">
+  <div class="confetti-layer">${cf}</div>
+  <div class="wrap">
+   <span class="gift-ic">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7s-2-5-5-5-3 5 0 5h5zM12 7s2-5 5-5 3 5 0 5h-5z"/>',24)}</span>
+   <h1>أُهديت لك تجربة عناية خاصة</h1>
+   <div class="from">من ${GIFT.giverShort} 🤍</div>
+   <div class="rc-card-stage">${giftCard()}<div class="pedestal"></div></div>
   </div>
-  <div class="form-col">
-   <div class="card" style="margin-bottom:14px">
-    <h4>${svg('<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>',16)} بيانات الإهداء</h4>
-    <div class="two">
-     <div class="fld"><label>اسم المُهدي (أنت)</label><input id="gSender" placeholder="اسمك" value="${S.sender}"></div>
-     <div class="fld"><label>اسم المهدى إليه</label><input id="gName" placeholder="أدخل الاسم" value="${S.name}"></div>
+ </section>
+ <div class="rc-msg-panel">
+  <div class="wrap" style="padding-bottom:60px">
+   <div class="rc-msg">
+    <div class="ttl">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',16)} رسالة المهدي</div>
+    <blockquote>${GIFT.msg}</blockquote>
+    <div class="snd">${svg('<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>',13)} من: ${GIFT.giverShort}</div>
+   </div>
+   <div class="paid-banner">
+    <span class="gi">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7"/>',18)}</span>
+    <span><b>✓ الهدية مدفوعة بالكامل</b><small>تم الدفع بواسطة المهدي</small></span>
+   </div>
+   <h3 class="rc-details-title">تفاصيل الهدية</h3>
+   <div class="rc-cells">
+    <div class="rc-cell"><span class="ci">${svg('<path d="M12 2l2.2 4.9 5.3.6-4 3.7 1.1 5.3L12 13.9 7.4 16.5l1.1-5.3-4-3.7 5.3-.6z"/>',17)}</span>
+     <small>نوع الباقة</small><b>${GIFT.pkg}</b>${GIFT.vip?'<span class="vip">VIP</span>':''}</div>
+    <div class="rc-cell" style="animation-delay:.06s"><span class="ci">${svg('<path d="M20 12v10H4V12M2 7h20v5H2z"/>',17)}</span>
+     <small>قيمة الهدية</small><b>${rs(GIFT.value)} ر.س</b><span class="sub">( شامل الضريبة )</span></div>
+    <div class="rc-cell" style="animation-delay:.12s"><span class="ci">${svg('<path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',17)}</span>
+     <small>الفرع</small><b>${GIFT.branch}</b><span class="sub">${GIFT.branchSub}</span></div>
+    <div class="rc-cell" style="animation-delay:.18s"><span class="ci">${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',17)}</span>
+     <small>مدة الجلسة</small><b>${GIFT.dur} دقيقة</b></div>
+    <div class="rc-cell" style="animation-delay:.24s"><span class="ci">${svg('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',17)}</span>
+     <small>صالحة حتى</small><b>${VALID_UNTIL.getDate()} ${AR_MONTHS[VALID_UNTIL.getMonth()]} ${VALID_UNTIL.getFullYear()}</b><span class="sub">( 30 يومًا من تاريخ الإهداء )</span></div>
+   </div>
+   <div class="status-line">حالة الهدية:
+    <span class="status-chip ${S.used?'used':''}">${S.used?'✓ تم استخدام الهدية':svg('<path d="M20 12v10H4V12M2 7h20v5H2z"/>',13)+' لم تُستخدم بعد'}</span></div>
+   <div class="rc-cta">
+    ${S.used
+     ?`<div class="paid-banner" style="max-width:100%"><span class="gi">${svg('<path d="M20 6L9 17l-5-5"/>',18)}</span><span><b>تم حجز موعد هديتك</b><small>${S.date?fmtDate(S.date)+' — '+S.time:''} • رقم الحجز ${S.ref}</small></span></div>`
+     :`<button class="btn btn-gold big" id="startBook">احجز موعدك الآن <small>ابدأ رحلتك واستمتع بهديتك</small></button>`}
+    <div class="note">${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',13)} هدية خاصة بك، لا يمكن استبدالها نقدًا</div>
+   </div>
+   <div class="rc-bottom">
+    <div class="card faq">
+     <h4>أسئلة شائعة</h4>
+     ${[['كيف يمكنني استخدام الهدية؟','تحقق من رقم جوالك، اختر الموعد المناسب لك من المواعيد المتاحة، ثم أكّد الحجز — وستصلك رسالة تأكيد مع رمز QR لإبرازه عند الوصول.'],
+        ['هل الهدية تشمل جميع الخدمات؟','تشمل الهدية كل ما ورد في الباقة: '+GIFT.inc.join('، ')+' — دون أي رسوم إضافية.'],
+        ['هل يمكن تمديد صلاحية الهدية؟','الهدية صالحة 30 يومًا من تاريخ الإهداء. للحالات الخاصة يمكنك التواصل مع فريق الدعم وسنسعد بمساعدتك.']]
+      .map((f,i)=>`<div class="faq-item ${i===0?'':''}" data-faq="${i}">
+       <div class="q">${f[0]} ${svg('<path d="M6 9l6 6 6-6"/>',14)}</div>
+       <div class="a"><p>${f[1]}</p></div>
+      </div>`).join('')}
     </div>
-    <div class="two">
-     <div class="fld" style="margin-bottom:4px"><label>رقم جوال المستلم</label><input id="gPhone" dir="ltr" placeholder="05xxxxxxxx" value="${S.phone}"></div>
-    </div>
-    <div class="fld" style="margin-bottom:4px"><label>الرسالة الشخصية</label>
-     <textarea id="gMsg" maxlength="200" placeholder="اكتب رسالتك الخاصة هنا...">${S.msg}</textarea>
-     <span class="cnt ${remain<20?'max':''}" id="gCnt">${S.msg.length}/200</span>
+    <div class="card thank-card">
+     <h4>أرسل رسالة شكر</h4>
+     <p>أخبر المهدي بمدى سعادتك بهذه الهدية</p>
+     <a href="https://wa.me/?text=${encodeURIComponent('شكرًا لك '+GIFT.giverShort+' على هديتك الجميلة من عناية سامي 🤍')}" target="_blank" rel="noopener">
+      ${svg('<path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/>',16)} إرسال شكر عبر واتساب</a>
     </div>
    </div>
-   <div class="card" style="margin-bottom:14px">
-    <h4>${svg('<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/>',16)} تصميم بطاقة الإهداء</h4>
-    <div class="designs">${DESIGNS.map(x=>`
-     <div class="design ${S.design===x.id?'sel':''}" data-d="${x.id}">
-      <div class="sw" style="background:${x.bg};color:${x.fg}"><span class="dchk">${svg('<path d="M20 6L9 17l-5-5"/>',10)}</span>SAMI</div>
-      <small>${x.n}</small>
-     </div>`).join('')}</div>
-   </div>
-   <div class="card">
-    <h4>${svg('<path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>',16)} طريقة وتوقيت الإرسال</h4>
-    <div class="methods">${SENDS.map(m=>`
-     <div class="mth ${S.method===m.id?'sel':''}" data-m="${m.id}"><span class="mi">${svg(m.ic,17)}</span>${m.n}</div>`).join('')}
-    </div>
-    <div class="send-opts" style="margin-top:16px;margin-bottom:0">
-     <span class="ro ${S.when==='now'?'on':''}" data-w="now"><i></i> 🚀 إرسال الآن — سيتم إرسال الهدية فورًا</span>
-     <span class="ro ${S.when==='later'?'on':''}" data-w="later"><i></i> 📅 جدولة لاحقًا</span>
-    </div>
-    <div class="sched-box ${S.when==='later'?'open':''}">
-     <div class="fld" style="margin:0"><label>اختر التاريخ والوقت المناسب</label><input type="datetime-local" id="gSched" value="${S.schedDate}"></div>
-    </div>
-   </div>
-   <div class="inline-actions">
-    <button class="btn btn-prev" data-nav="back">${svg('<path d="M5 12h14M13 6l6 6-6 6"/>',15)} رجوع</button>
-    <button class="btn btn-gold" data-nav="next" ${canNext()?'':'disabled'}>متابعة إلى الدفع ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',15)}</button>
+   <div class="perks" style="grid-template-columns:repeat(4,1fr);margin-top:22px">
+    ${[['دعم العملاء 24/7','نحن هنا لخدمتك دائمًا','<path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>'],
+       ['عملية آمنة','جميع البيانات مشفرة وآمنة','<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>'],
+       ['جودة مضمونة','نضمن لك أفضل تجربة','<path d="M12 2l2.2 4.9 5.3.6-4 3.7 1.1 5.3L12 13.9 7.4 16.5l1.1-5.3-4-3.7 5.3-.6z"/>'],
+       ['تجربة فاخرة','أفضل الخدمات بانتظارك','<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>']]
+     .map(p=>`<div class="perk"><span class="pi">${svg(p[2],17)}</span><b>${p[0]}</b><small>${p[1]}</small></div>`).join('')}
    </div>
   </div>
  </div>`;
 }
 
-/* ================= الخطوة 5: الدفع ================= */
-const PAY_MAIN=[
- {id:'apple',n:'Apple Pay',d:'ادفع بسهولة وأمان عبر أجهزتك',logo:' Pay',form:false},
- {id:'mada',n:'مدى',d:'ادفع باستخدام بطاقات مدى',logo:'مدى mada',form:true},
- {id:'card',n:'فيزا / ماستركارد',d:'بطاقات ائتمانية أو مدى مسبقة الدفع',logo:'VISA ●●',form:true},
- {id:'cash',n:'الدفع عند الوصول',d:'متاح عند توفر خدمة الدفع عند الاستلام',logo:'💵',form:false},
-];
-const PAY_FLEX=[
- {id:'tabby',n:'تابي',d:'ادفع الآن أو قسّمها مع تابي على 4 دفعات',logo:'tabby'},
- {id:'tamara',n:'تمارا',d:'ادفع الآن أو قسّمها مع تمارا على 4 دفعات',logo:'تمارا'},
-];
-const PAY_BAL=[
- {id:'wallet',n:'المحفظة',d:'الرصيد الحالي 1,150 ر.س',logo:'👛'},
- {id:'points',n:'نقاط الولاء',d:'النقاط المتاحة 2,450 نقطة',logo:'✨'},
-];
-function accPm(m,hasForm){
- return`<div class="acc-pm ${S.pay===m.id?'sel':''}" data-pay="${m.id}">
-  <div class="head">
-   <span class="lg">${m.logo}</span>
-   <span class="tt"><b>${m.n}</b><small>${m.d}</small></span>
-   <span class="rad"><i></i></span>
-  </div>
-  ${hasForm?`<div class="body has"><div class="in">
-   <div class="two">
-    <div class="fld" style="margin-bottom:10px"><label>رقم البطاقة</label><input dir="ltr" inputmode="numeric" placeholder="•••• •••• •••• ••••"></div>
-    <div class="fld" style="margin-bottom:10px"><label>الاسم على البطاقة</label><input placeholder="الاسم كما هو على البطاقة"></div>
-   </div>
-   <div class="two">
-    <div class="fld" style="margin:0"><label>تاريخ الانتهاء</label><input dir="ltr" placeholder="MM / YY"></div>
-    <div class="fld" style="margin:0"><label>رمز الأمان (CVV)</label><input dir="ltr" inputmode="numeric" placeholder="•••"></div>
-   </div>
-  </div></div>`:''}
- </div>`;
+/* ================= الستيبر والملخص ================= */
+function stepper(){
+ return`<div class="g-stepper"><div class="g-steps">${STEPS.map((st,i)=>{
+  const done=i<S.step||S.done;
+  const active=i===S.step&&!S.done;
+  return`<div class="g-step ${active?'active':''} ${done?'done':''}" data-i="${i}">
+   <div class="bar"><i style="${done?'background:linear-gradient(90deg,#3fa46b,#6cc490)':''}"></i></div>
+   <span class="bubble" style="${done?'border-color:#3fa46b;color:#2E8B57':''}">${done?svg('<path d="M20 6L9 17l-5-5"/>',16):(i+1)}</span>
+   <b>${st.t}</b><small>${st.s}</small>
+  </div>`}).join('')}</div>
+ <div class="step-count">الخطوة ${Math.min(S.step+1,5)} من 5</div></div>`;
 }
-function view4(){
- const collapsed=S.pay==='apple'&&S.extraCollapsed;
- return`<div class="g-head"><h1>الدفع</h1><p>اختر طريقة الدفع المناسبة وأكمل إهداءك</p></div>
- <div class="card" style="padding:22px">
-  <div class="pay-group">
-   <b><span class="gi">${svg('<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',14)}</span> وسائل الدفع الأساسية</b>
-   ${PAY_MAIN.map(m=>accPm(m,m.form)).join('')}
-  </div>
-  <div class="collapse-hint ${collapsed?'on':''}" id="expandPays">${svg('<path d="M6 9l6 6 6-6"/>',14)} عرض خيارات الدفع الإضافية (الدفع المرن، المحفظة والولاء)</div>
-  <div class="pay-collapse ${collapsed?'hid':''}" id="extraPays">
-   <div class="pay-group">
-    <b><span class="gi">${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',14)}</span> الدفع المرن</b>
-    ${PAY_FLEX.map(m=>accPm(m,false)).join('')}
-   </div>
-   <div class="pay-group" style="margin-bottom:4px">
-    <b><span class="gi">${svg('<path d="M21 12V7H5a2 2 0 010-4h14v4M3 5v14a2 2 0 002 2h16v-5M18 12a2 2 0 000 4h4v-4z"/>',14)}</span> المحفظة والولاء</b>
-    ${PAY_BAL.map(m=>accPm(m,false)).join('')}
-   </div>
-  </div>
-  <div class="coupon" style="border:none;padding:16px 0 0;margin-top:6px;border-top:1px dashed var(--line);border-radius:0">
-   <span class="ci">%</span>
-   <input id="cpnInput" placeholder="أدخل كود الخصم" value="${S.couponIn}">
-   <button id="cpnBtn">تطبيق</button>
-  </div>
-  <div class="coupon-msg ${S.couponCode?'ok':''}" id="cpnMsg">${S.couponCode?'✓ تم تطبيق كود الخصم بنجاح — خصم '+COUPON_VAL+' ر.س':''}</div>
-  <span class="terms-chk ${S.terms?'on':''}" id="termsChk"><i>${svg('<path d="M20 6L9 17l-5-5"/>',11)}</i>
-   أوافق على <a href="https://sami-care.sa/TermsAndConditions">الشروط والأحكام وسياسة الخصوصية</a></span>
-  <div class="inline-actions">
-   <button class="btn btn-prev" data-nav="back">${svg('<path d="M5 12h14M13 6l6 6-6 6"/>',15)} الرجوع</button>
-   <button class="btn btn-gold" id="doPay" ${canNext()?'':'disabled'}>${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',15)} إتمام الإهداء</button>
-  </div>
-  <div class="after-pay">سيتم إرسال الهدية مباشرة بعد إتمام الدفع</div>
- </div>`;
-}
-
-/* ================= الخطوة 6: النجاح ================= */
-function view5(){
- const d=dsgOf(S.design);
- const now=new Date(2026,6,7);
- const AR_M=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
- return`<div class="gsuccess" style="padding-top:4px">
-  <div class="gs-hero">
-   <span class="spark" style="top:0;right:8px">✦</span><span class="spark" style="bottom:14px;left:2px;animation-delay:-1.2s">✧</span>
-   <span class="circ"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></span>
-   <span class="gbox"></span>
-  </div>
-  <h1>تم إرسال الهدية بنجاح</h1>
-  <p class="sub">تم تجهيز هديتك وإرسالها للمستلم بنجاح، وسيتم إشعاره فور استلامها ✨</p>
-  <div class="gsuc-box">
-   <div class="mini-card" style="background:${d.bg};color:${d.fg}">
-    <span class="lg">${('<img src="'+LOGO_G+'" style="height:24px;vertical-align:middle" alt="">')}<br>SAMI<small>عناية سامي</small></span>
-   </div>
-   <div>
-    <h3>إهداء ${giftLabel()}</h3>
-    <div class="gs-row"><span class="k">${svg('<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>',14)} إلى</span><span class="v">${S.name}</span></div>
-    <div class="gs-row"><span class="k">${svg('<path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>',14)} طريقة الإرسال</span><span class="v">${SENDS.find(m=>m.id===S.method).n}</span></div>
-    <div class="gs-row"><span class="k">${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',14)} وقت الإرسال</span><span class="v">${S.when==='now'?`اليوم ${now.getDate()} ${AR_M[now.getMonth()]} ${now.getFullYear()}`:'مجدولة — '+(S.schedDate||'')}</span></div>
-    <div class="gs-row"><span class="k">${svg('<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>',14)} رقم الطلب</span>
-     <span class="v copy-ref" id="copyRef" dir="ltr">${S.ref} ⧉</span></div>
-   </div>
-  </div>
-  <div class="gsuc-actions">
-   <button class="btn btn-gold" id="openRecipient">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7"/>',15)} فتح صفحة المستلم</button>
-   <button class="btn btn-line" id="trackGift">${svg('<path d="M15 12H3M12 5l7 7-7 7"/>',15)} تتبع الهدية</button>
-   <button class="btn btn-line" id="newGift">${svg('<path d="M12 5v14M5 12h14"/>',15)} إهداء جديد</button>
-   <button class="btn btn-line" id="shareGift">${svg('<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',15)} مشاركة الهدية</button>
-   <button class="btn btn-line" id="goHome">${svg('<path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/>',15)} العودة للرئيسية</button>
-  </div>
-  <div class="thanks"><i>❦</i> شكرًا لاختيارك عناية سامي لتقديم تجربة مميزة لمن تحب <i>❦</i></div>
- </div>`;
-}
-
-/* ================= الملخص الجانبي ================= */
 function summary(){
- const p=priceParts();
- const label=giftLabel();
- const br=S.branch?brOf(S.branch):null;
- const d=dsgOf(S.design);
- const img=S.gtype==='svc'
-   ?'https://sami-care.sa//storage/uploads/404/IO26IC8Qd0LCbCeHNjYPUhOmSWeZi3FkEPYFpsuB.jpg'
-   :(S.pkg?pkgOf(S.pkg).img:null);
- if(S.step===0&&!S.gtype){
-  return`<div class="gsum"><div class="card">
-   <h3>لماذا الإهداء من سامي؟</h3>
-   <div class="why-gift">
-    ${[['هدية رقمية فورية','تصلك أو تصل للمستلم فور إتمام الدفع','<path d="M13 2L3 14h9l-1 8 10-12h-9z"/>'],
-       ['صالحة لمدة 6 أشهر','من تاريخ الشراء','<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'],
-       ['المستلم يختار موعده','يختار الوقت والفرع المناسب له','<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>'],
-       ['آمنة وموثوقة','نضمن لك تجربة إهداء مميزة','<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>']]
-     .map(w=>`<div class="wg"><span class="wi">${svg(w[2],17)}</span><span><b>${w[0]}</b><small>${w[1]}</small></span></div>`).join('')}
-   </div>
-  </div>
-  <div class="card help-card">
-   <span class="hi">${svg('<path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>',18)}</span>
-   <b>تحتاج مساعدة؟</b><small>فريقنا جاهز لمساعدتك</small>
-   <a href="https://wa.me/963959415545">تواصل معنا</a>
-  </div></div>`;
- }
  return`<div class="gsum"><div class="card">
   <h3>ملخص الهدية</h3>
-  ${label&&img?`<div class="pkline"><img src="${img}" alt=""><span><b>${label}</b>
-    ${S.gtype==='pkg'&&S.pkg?`<small>🕐 ${pkgOf(S.pkg).dur} دقيقة</small><small>${pkgOf(S.pkg).desc}</small>`:`<small>${S.svcs.size} ${S.svcs.size>2?'خدمات':'خدمة'} مختارة</small>`}
-    <span class="pr">${rs(p.val)} ر.س</span></span></div>`
-   :`<div style="text-align:center;margin-bottom:14px">
-     <div class="mini-card" style="background:linear-gradient(150deg,#1D1810,#0B0906);color:#E8BE6C;max-width:190px;margin:0 auto 12px;aspect-ratio:16/10;border-radius:14px;display:grid;place-items:center;box-shadow:0 16px 30px -16px rgba(20,15,5,.5);position:relative">
-      <svg style="position:absolute;top:-5px;right:14px;width:46px;opacity:.9" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M32 30C18 30 10 24 12 15s16-5 20 8c4-13 18-17 20-8s-6 15-20 15z"/></svg>
-      <span style="font-family:var(--font-d);font-size:14px;letter-spacing:.1em;text-align:center">${('<img src="'+LOGO_G+'" style="height:24px;vertical-align:middle" alt="">')}<br>SAMI<small style="display:block;font-size:8.5px;letter-spacing:.04em;opacity:.8;margin-top:2px">عناية سامي</small></span>
-     </div>
-     <b style="display:block;font-family:var(--font-d);color:var(--ink);font-size:14.5px">${S.gtype==='svc'?'إهداء خدمة':'إهداء باقة'}</b>
-     <small style="display:block;color:var(--ink);font-size:12px;font-weight:700;margin-top:8px">${S.gtype==='svc'?'لم يتم اختيار خدمة بعد':'لم يتم اختيار باقة بعد'}</small>
-     <small style="display:block;color:var(--mute);font-size:11.5px;margin-top:4px;line-height:1.7">${S.step<2&&!br?'اختر الفرع أولًا لعرض '+(S.gtype==='svc'?'الخدمات':'الباقات')+' والأسعار':'اختر '+(S.gtype==='svc'?'الخدمة':'الباقة')+' المناسبة لإهدائها لمن تحب'}</small>
-    </div>`}
-  ${br?`<div class="gs-row"><span class="k">📍 الفرع المختار</span><span class="v">${br.name}</span></div>`:''}
-  ${S.step>=3?`
-  <div class="gs-row"><span class="k">🎨 تصميم البطاقة</span><span class="v">${d.n}</span></div>
-  <div class="gs-row"><span class="k">💬 الرسالة</span><span class="v">${S.msg?'مخصصة':'—'}</span></div>
-  <div class="gs-row"><span class="k">📤 طريقة الإرسال</span><span class="v">${SENDS.find(m=>m.id===S.method).n}</span></div>
-  <div class="gs-row"><span class="k">👤 المهدى إليه</span><span class="v">${S.name||'—'}</span></div>
-  <div class="gs-row"><span class="k">🕐 وقت الإرسال</span><span class="v"><span class="chip">${S.when==='now'?'إرسال الآن':'مجدول'}</span></span></div>`:''}
-  ${S.done?`
-  <div class="gs-row"><span class="k">💳 طريقة الدفع</span><span class="v">${[...PAY_MAIN,...PAY_FLEX,...PAY_BAL].find(m=>m.id===S.pay).n}</span></div>
-  <div class="gs-row"><span class="k">✅ حالة الدفع</span><span class="v"><span class="chip">مكتمل</span></span></div>`:''}
-  ${p.val?`
-  <div class="sum-like" style="margin-top:10px;padding-top:12px;border-top:1px dashed var(--line)">
-   <div class="gs-row" style="border:none;padding:4px 0"><span class="k">قيمة الهدية</span><span class="v">${rs(p.val)} ر.س</span></div>
-   ${p.fee?`<div class="gs-row" style="border:none;padding:4px 0"><span class="k">رسوم الخدمة المنزلية</span><span class="v">+${rs(p.fee)} ر.س</span></div>`:''}
-   <div class="gs-row" style="border:none;padding:4px 0"><span class="k">ضريبة القيمة المضافة (15%)</span><span class="v">+${rs(p.vat)} ر.س</span></div>
-   ${p.disc?`<div class="gs-row" style="border:none;padding:4px 0"><span class="k" style="color:var(--green)">خصم</span><span class="v" style="color:var(--green)">-${rs(p.disc)} ر.س</span></div>`:''}
+  <div style="max-width:230px;margin:0 auto 12px">${giftCard().replace('class="gcard royal"','class="gcard royal" data-mini')}</div>
+  <div style="text-align:center;margin-bottom:12px">
+   <b style="font-family:var(--font-d);font-size:16px;color:var(--ink);display:block">${GIFT.pkg}</b>
+   ${GIFT.vip?'<span class="vip" style="display:inline-block;font-size:10px;font-weight:800;border:1px solid var(--gold);color:var(--gold-deep);padding:3px 14px;border-radius:999px;margin-top:7px">VIP</span>':''}
   </div>
-  <div class="gs-total"><span class="k">الإجمالي</span><span class="v">${rs(p.total)} <small style="font-size:13px">ر.س</small></span></div>`:''}
-  <div class="gs-note">${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',14)} الدفع آمن ومشفّر — نستخدم أحدث تقنيات التشفير لحماية بياناتك</div>
- </div>
- ${S.step<=2&&!S.done?`<div class="card help-card"><span class="hi">${svg('<path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>',18)}</span><b>تحتاج مساعدة؟</b><small>فريقنا جاهز لمساعدتك في الاختيار</small><a href="https://wa.me/963959415545">تواصل معنا</a></div>`:''}
+  <div style="background:linear-gradient(160deg,#FFF6E2,#FFFDF6);border:1px solid var(--line);border-radius:12px;padding:13px;text-align:center;font-size:12.5px;color:var(--gold-deep);margin-bottom:10px">
+   هدية مقدمة لك بكل حب<br>استمتع بتجربة استثنائية 🤍</div>
+  <div class="gs-row"><span class="k">📍 الفرع</span><span class="v">${GIFT.branch}</span></div>
+  <div class="gs-row"><span class="k">📤 طريقة الوصول</span><span class="v">${GIFT.delivery}</span></div>
+  ${S.step>=2&&!S.done?`<div class="gs-row"><span class="k">👤 المهدي</span><span class="v">${GIFT.giver}</span></div>
+  <div class="gs-row"><span class="k">👤 المستلم</span><span class="v">${REC.name}</span></div>`:''}
+  ${S.date&&S.time?`<div class="gs-row"><span class="k">📅 الموعد</span><span class="v">${fmtDate(S.date)}<br>${S.time}</span></div>`
+   :`<div class="gs-row"><span class="k">📅 صالحة حتى</span><span class="v">${VALID_UNTIL.getDate()} ${AR_MONTHS[VALID_UNTIL.getMonth()]} ${VALID_UNTIL.getFullYear()}</span></div>`}
+  <div class="gs-row"><span class="k">🎁 تشمل</span><span class="v">باقة VIP وما يشملها</span></div>
+  ${S.done?`<div class="gs-row"><span class="k">✅ حالة الهدية</span><span class="v"><span class="chip">تم الاستخدام</span></span></div>`:''}
+ </div></div>`;
+}
+
+/* ================= الخطوة 2: التحقق ================= */
+function viewVerify(){
+ const cf=Array.from({length:6},(_,i)=>`<span class="cf" style="top:${12+i*13}%;${i%2?'right':'left'}:${8+i*9}%;animation-delay:-${i*.7}s">✦</span>`).join('');
+ const visual=`<div class="verify-visual">${cf}
+   <div class="vbox"><svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M32 30C18 30 10 24 12 15s16-5 20 8c4-13 18-17 20-8s-6 15-20 15z"/></svg><div class="bx"></div></div>
+   ${S.sub==='otp'?`<div class="demo-hint">رمز التحقق الخاص بك هو:<b>${OTP_CODE}</b></div>`:''}
+  </div>`;
+ const phoneBody=`
+  <span class="vi">${svg('<rect x="5" y="2" width="14" height="20" rx="2.4"/><path d="M12 18h.01"/>',22)}</span>
+  <h2>تحقق من رقم جوالك</h2>
+  <p class="vp">لإكمال استلام هديتك وحجز موعدك، أدخل رقم جوالك وسنرسل لك رمز تحقق.</p>
+  <div class="phone-row">
+   <span class="cc">+966 ${svg('<path d="M6 9l6 6 6-6"/>',12)}</span>
+   <input id="phoneIn" inputmode="numeric" maxlength="10" placeholder="5X XXX XXXX" value="${S.phone}">
+  </div>
+  <div class="v-secure">${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',13)} بياناتك محمية وآمنة لدينا</div>
+  <button class="btn btn-gold" id="sendCode" ${S.phone.replace(/\D/g,'').length>=9?'':'disabled'}>إرسال رمز التحقق ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',15)}</button>`;
+ const otpBody=`
+  <span class="vi">${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',22)}</span>
+  <h2>أدخل رمز التحقق</h2>
+  <p class="vp">أرسلنا رمز تحقق إلى الرقم <b dir="ltr">${maskPhone()}</b>
+   <span class="edit-num" id="editNum">${svg('<path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/>',12)} تعديل</span></p>
+  <div class="otp-row ${S.otpErr?'err':''}" id="otpRow">
+   ${[0,1,2,3].map(i=>`<input inputmode="numeric" maxlength="1" data-otp="${i}" value="${S.otp[i]}" aria-label="خانة ${i+1}">`).join('')}
+  </div>
+  <div class="otp-meta">لم يصلك الرمز؟
+   <button id="resend" ${S.timer>0?'disabled':''}>${svg('<path d="M21 12a9 9 0 11-2.6-6.4M21 3v6h-6"/>',13)}
+    إعادة إرسال الرمز ${S.timer>0?`خلال 00:${String(S.timer).padStart(2,'0')}`:''}</button></div>
+  <button class="btn btn-gold" id="verifyGo" ${S.otp.join('').length===4?'':'disabled'}>متابعة استلام الهدية ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',15)}</button>
+  <div class="v-secure" style="margin-top:14px">${svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',13)} بياناتك محمية وآمنة لدينا</div>`;
+ return`<div class="card verify-grid">
+   <div class="verify-body">${S.sub==='otp'?otpBody:phoneBody}</div>
+   ${visual}
+  </div>
+  <div style="text-align:center;margin-top:16px;font-size:12.5px;color:var(--mute)">هل تحتاج مساعدة؟ <a href="https://wa.me/963959415545" style="color:var(--gold-deep);font-weight:700">تواصل معنا</a></div>`;
+}
+
+/* ================= الخطوة 3: الموعد ================= */
+const TIMES={am:['09:00 ص','10:30 ص','12:00 م'],pm:['04:00 م','06:00 م','08:30 م']};
+function viewDate(){
+ const first=new Date(S.calY,S.calM,1);
+ const startIdx=first.getDay();
+ const dim=new Date(S.calY,S.calM+1,0).getDate();
+ let cells='';
+ for(let i=0;i<startIdx;i++){const d=new Date(S.calY,S.calM,i-startIdx+1);cells+=`<button class="other" disabled>${d.getDate()}</button>`}
+ for(let d=1;d<=dim;d++){
+  const dt=new Date(S.calY,S.calM,d);
+  const off=dt<TODAY||dt>VALID_UNTIL;
+  const sel=S.date&&dt.getTime()===S.date.getTime();
+  cells+=`<button data-d="${d}" ${off?'disabled':''} class="${sel?'sel':''} ${!off?'avail':''}">${d}</button>`;
+ }
+ return`<div class="g-head" style="margin-bottom:18px"><h1>اختر الموعد المناسب 🗓️</h1><p>حدد لك أفضل المواعيد المتاحة لتجربة استثنائية لا تُنسى — ضمن صلاحية الهدية</p></div>
+ <div class="time-grid" style="display:grid;grid-template-columns:340px 1fr;gap:18px">
+  <div class="card cal" style="padding:20px">
+   <div class="cal-head" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+    <button class="cal-nav" data-nav="-1" style="width:32px;height:32px;border-radius:9px;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold-deep)">${svg('<path d="M9 6l6 6-6 6"/>',15)}</button>
+    <b style="font-family:var(--font-d);font-size:17px;color:var(--ink)">${AR_MONTHS[S.calM]} ${S.calY}</b>
+    <button class="cal-nav" data-nav="1" style="width:32px;height:32px;border-radius:9px;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold-deep)">${svg('<path d="M15 6l-6 6 6 6"/>',15)}</button>
+   </div>
+   <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;font-size:11px;color:var(--mute);margin-bottom:4px">${AR_DAYS.map(d=>`<span style="padding:6px 0">${d.slice(0,5)}</span>`).join('')}</div>
+   <div class="cal-cells" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center">${cells}</div>
+   <div style="display:flex;gap:8px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:11px;color:var(--mute)">${svg('<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>',12)} المواعيد المعروضة حسب وقت الفرع المحلي</div>
+  </div>
+  <div class="card times-panel" style="padding:22px">
+   ${S.date?`
+   <div style="display:flex;gap:10px;align-items:center;font-family:var(--font-d);font-size:18px;color:var(--ink);margin-bottom:6px">📅 ${fmtDate(S.date)}</div>
+   <small style="color:var(--mute);font-size:12px">جميع الأوقات حسب وقت الفرع (${GIFT.branch})</small>
+   <div class="slot-group"><b>☀️ صباحًا</b>
+    <div class="slot-row">${TIMES.am.map(t=>`<button class="slot ${S.time===t?'sel':''}" data-t="${t}">${t}</button>`).join('')}</div></div>
+   <div class="slot-group"><b>🌙 مساءً</b>
+    <div class="slot-row">${TIMES.pm.map(t=>`<button class="slot ${S.time===t?'sel':''}" data-t="${t}">${t}</button>`).join('')}</div></div>
+   <div class="rc-time-note">${svg('<path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/>',15)}
+    سيتم إرسال تذكير بالموعد قبل 24 ساعة — يمكنك تعديل الموعد أو إلغاؤه حتى 6 ساعات قبل الموعد المحدد</div>`
+   :`<div style="text-align:center;padding:60px 20px;color:var(--mute);font-size:13.5px"><b style="display:block;font-family:var(--font-d);font-size:16px;color:var(--ink);margin-bottom:6px">ابدأ باختيار اليوم</b>اختر يومًا من التقويم لعرض الأوقات المتاحة</div>`}
+   <div class="inline-actions">
+    <button class="btn btn-prev" data-back="1">${svg('<path d="M5 12h14M13 6l6 6-6 6"/>',15)} رجوع</button>
+    <button class="btn btn-gold" id="confirmTime" ${S.date&&S.time?'':'disabled'}>تأكيد موعدك ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',15)}</button>
+   </div>
+  </div>
  </div>`;
 }
-function refreshSum(){const el=$('#gsumWrap');if(el)el.innerHTML=summary()}
 
-/* ================= الشروط والتنقل ================= */
-function canNext(){
- switch(S.step){
-  case 0:return!!S.gtype;
-  case 1:return!!S.branch;
-  case 2:return S.gtype==='svc'?S.svcs.size>0:!!S.pkg;
-  case 3:return S.name.trim().length>1&&S.phone.trim().length>=9&&(S.when==='now'||S.schedDate);
-  case 4:return!!S.pay&&S.terms;
+/* ================= الخطوة 4: مراجعة الحجز ================= */
+function viewReview(){
+ return`<div class="g-head" style="margin-bottom:18px"><h1>هديتك جاهزة 🎁</h1><p>يرجى مراجعة تفاصيل الحجز قبل تأكيده</p></div>
+ <div class="card" style="padding:24px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+   <div>
+    <h4 style="font-family:var(--font-d);font-size:16px;color:var(--ink);margin-bottom:8px;display:flex;gap:8px;align-items:center">${svg('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',16)} تفاصيل الحجز</h4>
+    <div class="gs-row"><span class="k">📍 الفرع</span><span class="v">${GIFT.branch} — جدة</span></div>
+    <div class="gs-row"><span class="k">📅 التاريخ</span><span class="v">${fmtDate(S.date)}</span></div>
+    <div class="gs-row"><span class="k">🕐 الوقت</span><span class="v">${S.time}</span></div>
+    <div class="gs-row"><span class="k">${S.time.includes('ص')?'☀️':'🌙'} الفترة</span><span class="v">${S.time.includes('ص')?'صباحًا':'مساءً'}</span></div>
+    <div class="gs-row"><span class="k">📤 طريقة الإرسال</span><span class="v">${GIFT.delivery}</span></div>
+    <div class="gs-row"><span class="k">🎫 رقم الحجز</span><span class="v" dir="ltr">${S.ref}</span></div>
+   </div>
+   <div style="border-inline-start:1px solid var(--line);padding-inline-start:26px">
+    <h4 style="font-family:var(--font-d);font-size:16px;color:var(--ink);margin-bottom:8px;display:flex;gap:8px;align-items:center">${svg('<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>',16)} بيانات المستلم</h4>
+    <div class="gs-row"><span class="k">الاسم</span><span class="v">${REC.name}</span></div>
+    <div class="gs-row"><span class="k">رقم الجوال</span><span class="v" dir="ltr">+966 ${S.phone.replace(/^0/,'')}</span></div>
+    <div class="gs-row"><span class="k">البريد الإلكتروني</span><span class="v" dir="ltr">${REC.mail}</span></div>
+   </div>
+  </div>
+  <div class="rc-time-note" style="margin-top:20px;justify-content:center">${svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',15)}
+   يمكنك تعديل أو إلغاء الموعد قبل 6 ساعات على الأقل من الوقت المحدد</div>
+  <div class="inline-actions">
+   <button class="btn btn-prev" data-back="1">${svg('<path d="M5 12h14M13 6l6 6-6 6"/>',15)} رجوع</button>
+   <button class="btn btn-gold" id="confirmBook">${svg('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/>',15)} تأكيد الحجز الآن</button>
+  </div>
+ </div>`;
+}
+
+/* ================= الخطوة 5: تأكيد الحجز ================= */
+function drawQR(cv,seed){
+ if(!cv)return;const n=25,ctx=cv.getContext('2d');if(!ctx)return;cv.width=n;cv.height=n;
+ ctx.fillStyle='#fff';ctx.fillRect(0,0,n,n);ctx.fillStyle='#14110C';
+ let s=seed;const rnd=()=>{s=(s*9301+49297)%233280;return s/233280};
+ const finder=(x,y)=>{ctx.fillRect(x,y,7,7);ctx.fillStyle='#fff';ctx.fillRect(x+1,y+1,5,5);ctx.fillStyle='#14110C';ctx.fillRect(x+2,y+2,3,3)};
+ for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+  const inF=(x<8&&y<8)||(x>n-9&&y<8)||(x<8&&y>n-9);
+  if(!inF&&rnd()>.52)ctx.fillRect(x,y,1,1);
  }
- return false;
+ finder(0,0);finder(n-7,0);finder(0,n-7);
 }
-function go(dir){
- if(dir>0&&!canNext())return;
- S.step+=dir;
- if(S.step<0)S.step=0;
- render();scrollTo({top:0,behavior:'smooth'});
+function viewConfirmed(){
+ return`<div class="gsuccess" style="padding-top:0;text-align:center;max-width:100%">
+  <div class="gsuc-head" style="margin-top:6px">
+   <h1>تم تأكيد حجز هديتك ✨</h1>
+   <span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></span>
+  </div>
+  <p class="sub">تم تجهيز تجربتك بعناية، نتطلع لخدمتك.</p>
+  <div class="card" style="margin-top:22px;padding:24px;display:grid;grid-template-columns:1fr 230px;gap:26px;align-items:center;text-align:right">
+   <div>
+    <div class="gs-row"><span class="k">${svg('<path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',14)} الفرع</span><span class="v">${GIFT.branch} — جدة</span></div>
+    <div class="gs-row"><span class="k">${svg('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',14)} التاريخ</span><span class="v">${fmtDate(S.date)}</span></div>
+    <div class="gs-row"><span class="k">${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',14)} الوقت</span><span class="v">${S.time}</span></div>
+    <div class="gs-row"><span class="k">${svg('<path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>',14)} طريقة الإرسال</span><span class="v">${GIFT.delivery}</span></div>
+    <div class="gs-row"><span class="k">${svg('<path d="M4 4h16v16H4z"/><path d="M9 9h2v2H9zM13 13h2v2h-2z"/>',14)} رقم الحجز</span><span class="v" dir="ltr">${S.ref}</span></div>
+    <div class="gs-row"><span class="k" style="color:var(--green)">${svg('<path d="M20 6L9 17l-5-5"/>',14)} حالة الهدية</span><span class="v"><span class="chip">تم استخدام الهدية</span></span></div>
+   </div>
+   <div style="text-align:center">
+    <b style="font-family:var(--font-d);font-size:15px;color:var(--ink);display:block;margin-bottom:10px">QR الحجز</b>
+    <div class="qr-box" style="width:170px;height:170px;margin:0 auto;border:1.5px solid var(--gold);border-radius:16px;padding:10px;background:#fff"><canvas id="rcQr" style="width:100%;height:100%;image-rendering:pixelated"></canvas></div>
+    <small style="display:block;margin-top:10px;font-size:11px;color:var(--mute);line-height:1.7">امسح الرمز عند الوصول<br>للاستلام أو التحقق من الحجز</small>
+   </div>
+  </div>
+  <div class="gsuc-actions" style="margin-top:20px">
+   <button class="btn btn-gold" id="goLanding">${svg('<path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/>',15)} العودة للرئيسية</button>
+   <button class="btn btn-line" id="addCal">${svg('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/>',15)} إضافة إلى التقويم</button>
+  </div>
+  <div class="support-strip">
+   <div class="sp"><span class="si">${svg('<path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2z"/>',17)}</span><span><b>واتساب</b><small>تواصل سريع</small></span></div>
+   <div class="sp"><span class="si">${svg('<path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7l.6 3a2 2 0 01-.5 1.9L7.9 9.9a16 16 0 006 6l1.3-1.3a2 2 0 011.9-.5l3 .6a2 2 0 011.7 2z"/>',17)}</span><span><b dir="ltr">9200 188 44</b><small>اتصل بنا</small></span></div>
+   <div class="sp"><span class="si">${svg('<path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>',17)}</span><span><b>نحن هنا لخدمتك دائمًا</b><small>لأي استفسار يمكنك التواصل معنا على مدار الساعة</small></span></div>
+  </div>
+ </div>`;
 }
-function updateNextBtn(){
- const b=document.querySelector('[data-nav="next"]')||$('#doPay');
- if(b)b.disabled=!canNext();
+function afterSidebar(){
+ return`<div class="gsum"><div class="card after-card">
+  <h4>✨ ماذا بعد؟</h4>
+  ${[['سيصلك تذكير قبل الموعد','سنرسل لك تذكيرًا خلال 24 ساعة','<path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/>'],
+     ['الوصول قبل الموعد بـ 10 دقائق','لضمان تجربة مريحة بدون انتظار','<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>'],
+     ['سيتم تجهيز أفضل مختص لك','لنوفر لك تجربة استثنائية تستحقها','<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M19 8l.9 1.9L22 11l-2.1 1.1L19 14l-.9-1.9L16 11l2.1-1.1z"/>']]
+    .map(w=>`<div class="wg"><span class="wi">${svg(w[2],17)}</span><span><b>${w[0]}</b><small>${w[1]}</small></span></div>`).join('')}
+  <div class="after-thanks">🌿 <span><b style="color:var(--gold-deep)">شكرًا لاختيارك عناية سامي</b><br><small style="color:var(--mute)">نعدك بتجربة استثنائية تليق بك ✨</small></span></div>
+ </div></div>`;
 }
 
-/* ================= الربط ================= */
+/* ================= الربط والعرض ================= */
+function startTimer(){
+ clearInterval(S.timerH);S.timer=45;
+ S.timerH=setInterval(()=>{
+  S.timer--;
+  const b=$('#resend');
+  if(b){
+   if(S.timer<=0){clearInterval(S.timerH);b.disabled=false;b.innerHTML=svg('<path d="M21 12a9 9 0 11-2.6-6.4M21 3v6h-6"/>',13)+' إعادة إرسال الرمز'}
+   else b.innerHTML=svg('<path d="M21 12a9 9 0 11-2.6-6.4M21 3v6h-6"/>',13)+` إعادة إرسال الرمز خلال 00:${String(S.timer).padStart(2,'0')}`;
+  }else if(S.timer<=0)clearInterval(S.timerH);
+ },1000);
+}
 function bind(){
- document.querySelectorAll('.g-step.done').forEach(el=>el.addEventListener('click',()=>{
-  if(!S.done){S.step=+el.dataset.i;render()}
- }));
- document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.nav==='next'?1:-1)));
- if(S.step===0)document.querySelectorAll('[data-gt]').forEach(el=>el.addEventListener('click',()=>{
-  S.gtype=el.dataset.gt;S.pkg=null;S.svcs.clear();
-  S.step=1;render();scrollTo({top:0,behavior:'smooth'}); /* انتقال مباشر */
- }));
- if(S.step===1)document.querySelectorAll('[data-br]').forEach(el=>el.addEventListener('click',()=>{
-  S.branch=el.dataset.br;
-  S.step=2;render();scrollTo({top:0,behavior:'smooth'}); /* انتقال مباشر */
- }));
- if(S.step===2){
-  const srt=$('#gpSort');if(srt)srt.addEventListener('change',()=>{S.sort=srt.value;render()});
-  document.querySelectorAll('[data-fav]').forEach(el=>el.addEventListener('click',e=>{
-   e.stopPropagation();
-   const id=el.dataset.fav;
-   S.favs.has(id)?S.favs.delete(id):S.favs.add(id);
-   el.classList.toggle('on',S.favs.has(id));
+ if(S.view==='landing'){
+  const st=$('#startBook');
+  if(st)st.addEventListener('click',()=>{S.view='flow';S.step=1;S.sub='phone';render();scrollTo({top:0,behavior:'smooth'})});
+  document.querySelectorAll('.faq-item').forEach(el=>el.querySelector('.q').addEventListener('click',()=>{
+   el.classList.toggle('open');
   }));
-  document.querySelectorAll('[data-gp]').forEach(el=>el.addEventListener('click',()=>{S.pkg=el.dataset.gp;render()}));
-  document.querySelectorAll('[data-sv]').forEach(el=>el.addEventListener('click',()=>{
-   const id=el.dataset.sv;
-   S.svcs.has(id)?S.svcs.delete(id):S.svcs.add(id);
+  return;
+ }
+ document.querySelectorAll('.g-step.done').forEach(el=>{
+  const i=+el.dataset.i;
+  if(i>0&&!S.done)el.style.cursor='pointer',el.addEventListener('click',()=>{S.step=i;if(i===1)S.sub='otp';render()});
+ });
+ document.querySelectorAll('[data-back]').forEach(b=>b.addEventListener('click',()=>{
+  if(S.step>1){S.step--;if(S.step===1)S.sub='otp';render();scrollTo({top:0,behavior:'smooth'})}
+ }));
+ if(S.step===1){
+  if(S.sub==='phone'){
+   const p=$('#phoneIn'),sc=$('#sendCode');
+   p.addEventListener('input',()=>{S.phone=p.value.replace(/\D/g,'');sc.disabled=S.phone.length<9});
+   sc.addEventListener('click',()=>{
+    if(sc.disabled)return;
+    S.sub='otp';S.otp=['','','',''];render();startTimer();
+    toast('تم إرسال رمز التحقق إلى جوالك');
+   });
+  }else{
+   const boxes=[...document.querySelectorAll('[data-otp]')];
+   boxes[0].focus();
+   boxes.forEach((b,i)=>{
+    b.addEventListener('input',()=>{
+     b.value=b.value.replace(/\D/g,'').slice(0,1);
+     S.otp[i]=b.value;S.otpErr=false;$('#otpRow').classList.remove('err');
+     if(b.value&&i<3)boxes[i+1].focus();
+     $('#verifyGo').disabled=S.otp.join('').length!==4;
+    });
+    b.addEventListener('keydown',e=>{
+     if(e.key==='Backspace'&&!b.value&&i>0)boxes[i-1].focus();
+    });
+   });
+   $('#editNum').addEventListener('click',()=>{S.sub='phone';clearInterval(S.timerH);render()});
+   const rs2=$('#resend');
+   rs2.addEventListener('click',()=>{if(!rs2.disabled){startTimer();rs2.disabled=true;toast('تمت إعادة إرسال الرمز')}});
+   $('#verifyGo').addEventListener('click',()=>{
+     // Allow any 4-digit OTP code to succeed
+     clearInterval(S.timerH);
+    S.step=2;render();scrollTo({top:0,behavior:'smooth'});
+    toast('تم التحقق بنجاح — أهلًا '+REC.name.split(' ')[0]);
+   });
+  }
+ }
+ if(S.step===2){
+  document.querySelectorAll('.cal-nav').forEach(b=>b.addEventListener('click',()=>{
+   S.calM+=+b.dataset.nav;
+   if(S.calM<0){S.calM=11;S.calY--}if(S.calM>11){S.calM=0;S.calY++}
    render();
   }));
-  document.querySelectorAll('[data-caro]').forEach(b=>b.addEventListener('click',()=>{
-   const c=$('#caro');if(c)c.scrollBy({left:+b.dataset.caro*-260,behavior:'smooth'});
+  document.querySelectorAll('.cal-cells button[data-d]').forEach(b=>b.addEventListener('click',()=>{
+   S.date=new Date(S.calY,S.calM,+b.dataset.d);S.time=null;render();
   }));
+  document.querySelectorAll('.slot[data-t]').forEach(b=>b.addEventListener('click',()=>{S.time=b.dataset.t;render()}));
+  const ct=$('#confirmTime');
+  if(ct)ct.addEventListener('click',()=>{if(!ct.disabled){S.step=3;render();scrollTo({top:0,behavior:'smooth'})}});
  }
  if(S.step===3){
-  const bindInput=(sel,key,pv)=>{const el=$(sel);if(!el)return;
-   el.addEventListener('input',()=>{S[key]=el.value;
-    if(pv)$(pv).textContent=el.value||($(pv).dataset.def||'—');
-    updateNextBtn();refreshSum()})};
-  bindInput('#gSender','sender','#pvSender');
-  bindInput('#gName','name','#pvName');
-  bindInput('#gPhone','phone');
-  const ms=$('#gMsg');
-  ms.addEventListener('input',()=>{S.msg=ms.value;
-   $('#pvMsg').textContent=S.msg||'اكتب رسالتك الخاصة لتظهر هنا';
-   const c=$('#gCnt');c.textContent=S.msg.length+'/200';c.classList.toggle('max',200-S.msg.length<20);refreshSum()});
-  document.querySelectorAll('.design[data-d]').forEach(el=>el.addEventListener('click',()=>{
-   S.design=el.dataset.d;
-   document.querySelectorAll('.design[data-d]').forEach(x=>x.classList.toggle('sel',x===el));
-   $('#cardPrev').innerHTML=giftCardHTML();refreshSum();
-  }));
-  document.querySelectorAll('.send-opts .ro').forEach(el=>el.addEventListener('click',()=>{
-   S.when=el.dataset.w;
-   document.querySelectorAll('.send-opts .ro').forEach(x=>x.classList.toggle('on',x===el));
-   document.querySelector('.sched-box').classList.toggle('open',S.when==='later');
-   updateNextBtn();refreshSum();
-  }));
-  const sc=$('#gSched');if(sc)sc.addEventListener('input',()=>{S.schedDate=sc.value;updateNextBtn()});
-  document.querySelectorAll('.mth').forEach(el=>el.addEventListener('click',()=>{
-   S.method=el.dataset.m;
-   document.querySelectorAll('.mth').forEach(x=>x.classList.toggle('sel',x===el));refreshSum();
-  }));
- }
- if(S.step===4){
-  document.querySelectorAll('[data-pay]').forEach(el=>el.querySelector('.head').addEventListener('click',()=>{
-   S.pay=el.dataset.pay;
-   S.extraCollapsed=S.pay==='apple'; /* طي الخيارات الإضافية عند Apple Pay */
-   render();
-  }));
-  const ex=$('#expandPays');if(ex)ex.addEventListener('click',()=>{S.extraCollapsed=false;render()});
-  const tc=$('#termsChk');tc.addEventListener('click',()=>{S.terms=!S.terms;tc.classList.toggle('on',S.terms);updateNextBtn()});
-  const btn=$('#cpnBtn'),inp=$('#cpnInput'),msg=$('#cpnMsg');
-  btn.addEventListener('click',()=>{
-   S.couponIn=inp.value;
-   const v=inp.value.trim().toUpperCase();
-   if(v===COUPON_CODE){S.coupon=COUPON_VAL;S.couponCode=v;msg.className='coupon-msg ok';msg.innerHTML='✓ تم تطبيق كود الخصم بنجاح — خصم '+COUPON_VAL+' ر.س';refreshSum()}
-   else if(!v){S.coupon=0;S.couponCode='';msg.className='coupon-msg';refreshSum()}
-   else{msg.className='coupon-msg bad';msg.innerHTML='✕ الكود غير صالح — جرّب SAMI25'}
-  });
-  const dp=$('#doPay');
-  dp.addEventListener('click',()=>{
-   if(!canNext())return;
+  $('#confirmBook').addEventListener('click',()=>{
    const pl=$('#payLoading');pl.classList.add('on');
    setTimeout(()=>{
     pl.classList.remove('on');
-    S.done=true;S.step=5;
-    S.ref='#SAMI-2026-'+String(Math.floor(10000+Math.random()*89999));
+    S.done=true;S.used=true;S.step=4;
     render();scrollTo({top:0,behavior:'smooth'});
-   },2100);
+   },1800);
   });
  }
  if(S.done){
-  $('#trackGift').addEventListener('click',()=>toast('حالة الهدية: تم الإرسال — بانتظار فتح المستلم'));
-  $('#openRecipient').addEventListener('click',()=>{location.href=recipientURL()});
-  $('#newGift').addEventListener('click',()=>{
-   Object.assign(S,{step:0,gtype:null,branch:null,pkg:null,sender:'',name:'',phone:'',msg:'',
-    design:'lux-dark',method:'wa',when:'now',schedDate:'',pay:null,extraCollapsed:false,terms:false,
-    couponIn:'',coupon:0,couponCode:'',done:false,ref:null});
-   S.svcs.clear();render();scrollTo({top:0});
-  });
-  $('#shareGift').addEventListener('click',()=>{
-   const txt='هدية من عناية سامي — '+recipientURL();
-   if(navigator.share)navigator.share({title:'عناية سامي',text:txt}).catch(()=>{});
-   else{navigator.clipboard&&navigator.clipboard.writeText(txt);toast('تم نسخ رابط الهدية')}
-  });
-  $('#goHome').addEventListener('click',()=>toast('سيتم ربط هذا الزر بالصفحة الرئيسية'));
-  $('#copyRef').addEventListener('click',()=>{
-   navigator.clipboard&&navigator.clipboard.writeText(S.ref);toast('تم نسخ رقم الطلب');
-  });
+  drawQR($('#rcQr'),260707);
+  $('#goLanding').addEventListener('click',()=>{S.view='landing';render();scrollTo({top:0})});
+  $('#addCal').addEventListener('click',()=>toast('تمت إضافة الموعد إلى تقويمك'));
  }
 }
-
-/* ================= العرض ================= */
 function render(){
  const app=$('#app');
- const body=S.done?view5():[view0,view1,view2,view3,view4][S.step]();
- app.innerHTML=stepper()+(S.done
-  ?`<div class="g-stage"><main class="view on">${body}</main><aside id="gsumWrap">${summary()}</aside></div>`
-  :`<div class="g-stage"><main class="view on">${body}</main><aside id="gsumWrap">${summary()}</aside></div>`);
+ if(S.view==='landing'){
+  app.innerHTML=viewLanding();
+ }else{
+  const body=S.done?viewConfirmed():[null,viewVerify,viewDate,viewReview][S.step]();
+  const aside=S.done?afterSidebar():summary();
+  app.innerHTML=`<div class="shell"><div class="wrap">${stepper()}
+   <div class="g-stage">${S.done?`<main class="view on">${body}</main><aside>${aside}</aside>`:`<main class="view on">${body}</main><aside>${aside}</aside>`}
+  </div></div></div>`;
+ }
  bind();
 }
 render();
@@ -1358,7 +1354,7 @@ render();
   <div class="wrap">
     <div class="f-grid">
       <div class="f-brand">
-        <a class="logo" href="index.html"><span class="mark"><img src="logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span><span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span></a>
+        <a class="logo" href="../index.html"><span class="mark"><img src="../logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span><span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span></a>
         <p>مركز متخصص في العناية الرجالية المتكاملة بجدة، حيث تلتقي الفخامة بالاحترافية في كل تفصيلة.</p>
         <div class="socials">
           <a href="https://x.com/samicare_sa" aria-label="X"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.8L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z"/></svg></a>
@@ -1369,19 +1365,19 @@ render();
       <div>
         <h4>روابط مهمة</h4>
         <ul class="f-links">
-          <li><a href="index.html">الرئيسية</a></li>
-          <li><a href="booking.html">حجز موعد</a></li>
-          <li><a href="index.html#services">خدماتنا</a></li>
-          <li><a href="packages-gifts.html">الباقات</a></li>
-          <li><a href="gifts.html">الهدايا</a></li>
+          <li><a href="../index.html">الرئيسية</a></li>
+          <li><a href="../booking.html">حجز موعد</a></li>
+          <li><a href="../index.html#services">خدماتنا</a></li>
+          <li><a href="../packages-gifts.html">الباقات</a></li>
+          <li><a href="../gifts.html">الهدايا</a></li>
         </ul>
       </div>
       <div>
         <h4>استكشف</h4>
         <ul class="f-links">
-          <li><a href="store.html">المتجر</a></li>
-          <li><a href="branches.html">فروعنا</a></li>
-          <li><a href="contact.html">تواصل معنا</a></li>
+          <li><a href="../store.html">المتجر</a></li>
+          <li><a href="../branches.html">فروعنا</a></li>
+          <li><a href="../contact.html">تواصل معنا</a></li>
           <li></li>
           <li><a href="https://sami-care.sa/TermsAndConditions">الشروط والأحكام</a></li>
         </ul>

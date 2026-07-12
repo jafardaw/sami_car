@@ -846,7 +846,7 @@ const $=q=>document.querySelector(q);
 const $$=q=>[...document.querySelectorAll(q)];
 const rs=n=>n.toLocaleString('ar-EG-u-nu-latn');
 const svg=(p,w)=>`<svg width="${w||16}" height="${w||16}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${p}</svg>`;
-const recipientURL=()=>new URL('gift-recipient.html',location.href).href+'?ref='+encodeURIComponent(S.giftRef||'');
+const recipientURL=()=>new URL('gift-recipient/',location.href).href+'?ref='+encodeURIComponent(S.giftRef||'');
 function initials(n){const p=String(n||'').trim().split(/\s+/);return (p[0]?.[0]||'')+(p[1]?.[0]||'')}
 function toast(msg,ic){
  const t=$('#toast');
