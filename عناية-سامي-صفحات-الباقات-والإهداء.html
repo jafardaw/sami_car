@@ -1178,7 +1178,7 @@ function bkView1(){
  ${B.dayIdx!=null?`<div class="card" style="padding:20px">
   <h4 style="font-family:var(--font-d);font-size:15px;color:var(--ink);margin-bottom:4px">🕐 ${fmtDate(days[B.dayIdx])}</h4>
   <div class="periods">
-   ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],['eve','مساء متأخر','🌙']].map(x=>`
+   ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],].map(x=>`
     <button class="period ${B.period===x[0]?'sel':''}" data-bp="${x[0]}">${x[2]} ${x[1]}</button>`).join('')}
   </div>
   <div class="slots">${slots}</div>

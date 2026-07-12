@@ -11,7 +11,7 @@
 :root{
   --ink:#0A0906; --coal:#14110C; --coal-2:#1C1811;
   --gold:#CE9234; --gold-bright:#E8BE6C; --gold-deep:#9C6B1F;
-  --champagne:#F0E6CF; --ivory:#F8F4EB; --paper:#F5F1E7; --card:#FFFFFF;
+  --champagne:#F0E6CF; --ivory:#F8F4EB; --paper:#FBFAF6; --card:#FFFFFF;
   --smoke:#9A9080; --mute:#7d745f; --text:#2A2519;
   --line:rgba(143,113,52,.22); --line-dark:rgba(198,161,91,.22);
   --green:#2E8B57; --green-bg:#EAF5EC;
@@ -1147,7 +1147,7 @@ function view4(){
    <div class="date-line">📅 ${dateTitle}</div>
    ${S.date?`
    <div class="periods">
-    ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],['eve','مساء متأخر','🌙']].map(p=>`
+    ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],].map(p=>`
      <button class="period ${S.period===p[0]?'sel':''}" data-p="${p[0]}">${p[2]} ${p[1]}</button>`).join('')}
    </div>
    <div style="font-size:13px;color:var(--mute);margin-bottom:10px">الأوقات المتاحة</div>

@@ -1503,7 +1503,7 @@ function wizDateTimeHTML(){
  return`<div class="m-panel-title"><h1>اختر الوقت المناسب لك</h1><p>كل وقت ظاهر يمكن تنفيذ جلستك فيه بالكامل حسب مدة الخدمات وتوفر الموظفين</p></div>
  ${bMiniSummary()}
  <div class="m-cal"><div class="m-cal-head"><b>يوليو 2026</b><span>اختر اليوم</span></div><div class="m-days">${W_DAYS.map(d=>`<span>${d.slice(0,3)}</span>`).join('')}</div><div class="m-cells">${cells}</div></div>
- ${S.bookDate?`<div class="m-periods">${[['all','كل اليوم'],['am','صباحًا'],['pm','مساءً'],['eve','مساء متأخر']].map(p=>`<button class="m-period ${S.bookPeriod===p[0]?'sel':''}" data-w-period="${p[0]}">${p[1]}</button>`).join('')}</div><div class="m-slots">${slots}</div>${S.bookTime==null?`<div class="m-summary-mini"><b>أفضل موعد متاح اليوم: 05:30 م</b><button class="m-pick" data-w-quick="1050">حجز سريع</button></div>`:''}${plan}`:`<div class="m-summary-mini" style="text-align:center"><b>ابدأ باختيار التاريخ</b><span>اختر يومًا من التقويم لعرض الأوقات المتاحة</span></div>`}`;
+ ${S.bookDate?`<div class="m-periods">${[['all','كل اليوم'],['am','صباحًا'],['pm','مساءً'],].map(p=>`<button class="m-period ${S.bookPeriod===p[0]?'sel':''}" data-w-period="${p[0]}">${p[1]}</button>`).join('')}</div><div class="m-slots">${slots}</div>${S.bookTime==null?`<div class="m-summary-mini"><b>أفضل موعد متاح اليوم: 05:30 م</b><button class="m-pick" data-w-quick="1050">حجز سريع</button></div>`:''}${plan}`:`<div class="m-summary-mini" style="text-align:center"><b>ابدأ باختيار التاريخ</b><span>اختر يومًا من التقويم لعرض الأوقات المتاحة</span></div>`}`;
 }
 function wizSummaryHTML(){
  const br=bBranch(),ses=bBuildSession(S.bookTime),p=bPriceParts();

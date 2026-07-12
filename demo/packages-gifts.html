@@ -11,7 +11,7 @@
 :root{
   --ink:#0A0906; --coal:#14110C;
   --gold:#CE9234; --gold-bright:#E8BE6C; --gold-deep:#9C6B1F;
-  --champagne:#F0E6CF; --ivory:#F8F4EB; --paper:#F5F1E7; --card:#FFFFFF;
+  --champagne:#F0E6CF; --ivory:#F8F4EB; --paper:#FBFAF6; --card:#FFFFFF;
   --smoke:#9A9080; --mute:#7d745f; --text:#2A2519;
   --line:rgba(143,113,52,.22); --line-dark:rgba(198,161,91,.22);
   --green:#2E8B57; --green-bg:#EAF5EC;
@@ -1237,7 +1237,7 @@ function bkView1(){
  ${B.dayIdx!=null?`<div class="card" style="padding:20px">
   <h4 style="font-family:var(--font-d);font-size:15px;color:var(--ink);margin-bottom:4px">🕐 ${fmtDate(days[B.dayIdx])}</h4>
   <div class="periods">
-   ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],['eve','مساء متأخر','🌙']].map(x=>`
+   ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],].map(x=>`
     <button class="period ${B.period===x[0]?'sel':''}" data-bp="${x[0]}">${x[2]} ${x[1]}</button>`).join('')}
   </div>
   <div class="slots">${slots}</div>

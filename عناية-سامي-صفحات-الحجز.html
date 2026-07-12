@@ -1087,7 +1087,7 @@ function view4(){
    <div class="date-line">📅 ${dateTitle}</div>
    ${S.date?`
    <div class="periods">
-    ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],['eve','مساء متأخر','🌙']].map(p=>`
+    ${[['all','كل اليوم','🗓️'],['am','صباحًا','☀️'],['pm','مساءً','🌇'],].map(p=>`
      <button class="period ${S.period===p[0]?'sel':''}" data-p="${p[0]}">${p[2]} ${p[1]}</button>`).join('')}
    </div>
    <div style="font-size:13px;color:var(--mute);margin-bottom:10px">الأوقات المتاحة</div>
