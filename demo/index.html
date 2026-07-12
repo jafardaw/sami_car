@@ -679,6 +679,8 @@ body.home-redesign{background:#FBFAF6;color:#17130D}
 .account-entry{position:relative;display:inline-grid;place-items:center}
 .account-trigger{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line,rgba(198,161,91,.28));color:var(--champagne,#F0E6CF);background:radial-gradient(circle at 30% 20%,rgba(232,190,108,.14),rgba(255,255,255,.02));transition:all .26s cubic-bezier(.33,.9,.35,1)}
 .account-trigger:hover,.account-entry:focus-within .account-trigger{border-color:var(--gold,#CE9234);color:var(--gold-bright,#E8BE6C);box-shadow:0 0 24px rgba(206,146,52,.22);transform:translateY(-1px)}
+.site-loc{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line,rgba(198,161,91,.28));color:var(--champagne,#F0E6CF);background:radial-gradient(circle at 30% 20%,rgba(232,190,108,.13),rgba(255,255,255,.02));height:42px;padding:0 15px;border-radius:999px;font-size:13px;transition:all .26s cubic-bezier(.33,.9,.35,1)}
+.site-loc:hover{border-color:var(--gold,#CE9234);color:var(--gold-bright,#E8BE6C);box-shadow:0 0 24px rgba(206,146,52,.2);transform:translateY(-1px)}
 .account-panel{position:absolute;top:calc(100% + 12px);left:0;z-index:1500;width:280px;padding:12px;border:1px solid rgba(206,146,52,.34);border-radius:18px;background:linear-gradient(155deg,#17120A,#090705);box-shadow:0 24px 50px -22px rgba(0,0,0,.78),inset 0 1px 0 rgba(255,255,255,.08);opacity:0;pointer-events:none;transform:translateY(8px);transition:all .24s cubic-bezier(.33,.9,.35,1)}
 .account-entry:hover .account-panel,.account-entry:focus-within .account-panel{opacity:1;pointer-events:auto;transform:translateY(0)}
 .account-panel::before{content:"";position:absolute;top:-6px;left:18px;width:12px;height:12px;background:#17120A;border-top:1px solid rgba(206,146,52,.34);border-right:1px solid rgba(206,146,52,.34);transform:rotate(-45deg)}
@@ -689,6 +691,16 @@ body.home-redesign{background:#FBFAF6;color:#17130D}
 .received-gift-link .arr{color:var(--gold-bright,#E8BE6C)}
 .received-gift-link:hover{border-color:var(--gold,#CE9234);transform:translateY(-1px)}
 @media(max-width:640px){.account-trigger{width:44px;height:44px}.account-panel{left:0;width:min(280px,calc(100vw - 22px))}}
+.branch-sheet-ov{position:fixed;inset:0;z-index:1600;background:rgba(10,7,3,.55);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
+.branch-sheet-ov.on{opacity:1;pointer-events:auto}
+.branch-sheet{position:fixed;left:50%;bottom:0;z-index:1601;width:min(560px,100%);transform:translate(-50%,105%);background:linear-gradient(160deg,#fff,#F8F0E4);border:1px solid rgba(206,146,52,.28);border-radius:26px 26px 0 0;padding:18px 18px 24px;box-shadow:0 -28px 70px -24px rgba(20,12,4,.58);transition:transform .36s var(--ease)}
+.branch-sheet.on{transform:translate(-50%,0)}
+.branch-sheet .grab{width:48px;height:4px;border-radius:999px;background:#D8C9AF;margin:0 auto 14px}
+.branch-sheet-head{text-align:center;margin-bottom:12px}.branch-sheet-head h3{font-family:var(--font-d);font-size:22px;color:var(--ink)}.branch-sheet-head p{font-size:13px;color:#7d745f;line-height:1.8;margin-top:5px}
+.branch-choice{display:grid;grid-template-columns:96px 1fr auto;gap:13px;align-items:center;padding:12px;border-radius:18px;border:1.5px solid rgba(143,113,52,.22);background:#fff;text-align:right;margin-top:10px;box-shadow:0 10px 22px -20px rgba(80,50,20,.35)}
+.branch-choice.sel{border-color:var(--gold);background:#FFF9EE;box-shadow:0 14px 28px -20px rgba(206,146,52,.75)}
+.branch-choice img{width:96px;height:72px;border-radius:14px;object-fit:cover;background:#21170D}.branch-choice b{font-family:var(--font-d);font-size:15px;color:var(--ink)}.branch-choice small{display:block;color:#7d745f;font-size:11.5px;line-height:1.55;margin-top:3px}
+.branch-choice .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.branch-choice .meta span{font-size:10px;color:var(--gold-deep);background:#FBFAF6;border:1px solid rgba(143,113,52,.22);border-radius:999px;padding:5px 8px}.branch-choice .check{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--gold-deep);border:1px solid rgba(206,146,52,.3);background:#fff;font-weight:900}
 
 </style>
 </head>
@@ -704,6 +716,10 @@ body.home-redesign{background:#FBFAF6;color:#17130D}
     </a>
     <nav class="links"><a href="index.html" class="on">الرئيسية</a><a href="booking.html">حجز موعد</a><a href="index.html#services">خدماتنا</a><a id="navPk" href="packages-gifts.html">الباقات</a><a id="navGift" href="gifts.html">الهدايا</a><a href="store.html">المتجر</a><a href="branches.html">فروعنا</a><a href="contact.html">تواصل معنا</a></nav>
     <div class="nav-actions">
+      <button class="site-loc" id="siteLocBtn" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="siteLocLabel">جدة</span>
+      </button>
       <a class="btn btn-ghost" href="#" style="padding:11px 22px;font-size:13.5px">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7s-2-5-5-5-3 5 0 5h5zM12 7s2-5 5-5 3 5 0 5h-5z"/></svg>
         نقاط الولاء
@@ -728,6 +744,8 @@ body.home-redesign{background:#FBFAF6;color:#17130D}
     </div>
   </div>
 </header>
+<div class="branch-sheet-ov" id="branchSheetOv"></div>
+<div class="branch-sheet" id="branchSheet"><div class="grab"></div><div id="branchSheetBody"></div></div>
 
 <!-- ============ الهيرو ============ -->
 <section class="hero" id="hero">
@@ -1225,6 +1243,50 @@ body.home-redesign{background:#FBFAF6;color:#17130D}
 (function(){
 "use strict";
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const siteBranches=[
+ {id:'qr',name:'فرع قريش',addr:'جدة، البوادي — شارع قريش',img:'https://sami-care.sa//storage/uploads/389/4fKSZ0AIoLjJT4JuFKO81qWrxGQ6ymQ6zLbi1L3b.jpg',rate:4.7,hours:'12:00 ص – 10:00 م',home:false},
+ {id:'bg',name:'فرع البغدادية',addr:'جدة، البغدادية الغربية — شارع حائل',img:'https://sami-care.sa//storage/uploads/391/sSX2TVdlk84EEewXCDhT0w24X5WAJnPOA0GE6VHD.jpg',rate:4.8,hours:'12:00 ص – 10:00 م',home:false},
+ {id:'hm',name:'خدمة منزلية',addr:'حلاقة وعناية ومساجات طبيعية — في منزلك',img:'https://sami-care.sa//storage/uploads/407/7gF352Ispha9FbN9jPxmjnpOQDg5vFY41n5ZTdqK.png',rate:4.9,hours:'خدمة VIP',home:true}
+];
+let siteBranch=localStorage.getItem('samiSiteBranch')||null;
+function siteBranchLabel(id){
+ const b=siteBranches.find(x=>x.id===id);
+ if(!b)return'جدة';
+ if(b.home)return'منزلي';
+ return b.id==='qr'?'جدة قريش':'جدة البغدادية';
+}
+function syncSiteBranch(){
+ const el=document.getElementById('siteLocLabel');
+ if(el)el.textContent=siteBranchLabel(siteBranch);
+}
+function closeBranchSheet(){
+ document.getElementById('branchSheetOv').classList.remove('on');
+ document.getElementById('branchSheet').classList.remove('on');
+}
+function openBranchSheet(){
+ const body=document.getElementById('branchSheetBody');
+ body.innerHTML=`<div class="branch-sheet-head"><h3>اختر موقع الخدمة</h3><p>اختر الفرع المناسب أو الخدمة المنزلية، وسيتم استخدامه عند الحجز.</p></div>
+ ${siteBranches.map(b=>`<button class="branch-choice ${siteBranch===b.id?'sel':''}" data-site-branch="${b.id}">
+  <img src="${b.img}" alt="${b.name}">
+  <span><b>${b.home?'خدمة منزلية':b.name}</b><small>${b.addr}</small>
+   <span class="meta"><span>⭐ ${b.rate}</span><span>${b.hours}</span><span>${b.home?'VIP في منزلك':'متاح الآن'}</span></span>
+  </span>
+  <span class="check">${siteBranch===b.id?'✓':'+'}</span>
+ </button>`).join('')}`;
+ document.getElementById('branchSheetOv').classList.add('on');
+ document.getElementById('branchSheet').classList.add('on');
+ document.querySelectorAll('[data-site-branch]').forEach(el=>el.addEventListener('click',()=>{
+  siteBranch=el.dataset.siteBranch;
+  localStorage.setItem('samiSiteBranch',siteBranch);
+  syncSiteBranch();
+  closeBranchSheet();
+ }));
+}
+syncSiteBranch();
+const siteLocBtn=document.getElementById('siteLocBtn');
+if(siteLocBtn)siteLocBtn.addEventListener('click',openBranchSheet);
+const branchOv=document.getElementById('branchSheetOv');
+if(branchOv)branchOv.addEventListener('click',closeBranchSheet);
 
 /* شريط تقدم التمرير + الهيدر */
 const bar = document.getElementById('scrollbar');

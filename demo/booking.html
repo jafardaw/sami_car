@@ -54,6 +54,9 @@ nav.links + .nav-actions{margin-inline-start:0}
 .icon-btn .count.pop{transform:scale(1.35)}
 .loyal{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--gold);color:var(--gold-bright);
   padding:9px 18px;border-radius:999px;font-size:13px}
+.site-loc{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-dark);color:var(--champagne);
+  padding:9px 14px;border-radius:999px;font-size:13px;background:rgba(255,255,255,.03);transition:var(--dur) var(--ease)}
+.site-loc:hover{border-color:var(--gold);color:var(--gold-bright)}
 
 /* ===== حاوية الصفحة ===== */
 .shell{background:var(--paper);border-radius:26px 26px 0 0;min-height:calc(100vh - 71px);padding-bottom:110px;position:relative}
@@ -129,6 +132,16 @@ nav.links + .nav-actions{margin-inline-start:0}
   padding:11px;font-size:13.5px;font-weight:600;display:flex;justify-content:center;gap:8px;transition:var(--dur) var(--ease)}
 .branch:hover .pick{background:rgba(198,161,91,.08)}
 .branch.sel .pick{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink);border-color:transparent}
+.branch-sheet-ov{position:fixed;inset:0;z-index:1600;background:rgba(10,7,3,.55);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
+.branch-sheet-ov.on{opacity:1;pointer-events:auto}
+.branch-sheet{position:fixed;left:50%;bottom:0;z-index:1601;width:min(560px,100%);transform:translate(-50%,105%);background:linear-gradient(160deg,#fff,#F8F0E4);border:1px solid rgba(206,146,52,.28);border-radius:26px 26px 0 0;padding:18px 18px 24px;box-shadow:0 -28px 70px -24px rgba(20,12,4,.58);transition:transform .36s var(--ease)}
+.branch-sheet.on{transform:translate(-50%,0)}
+.branch-sheet .grab{width:48px;height:4px;border-radius:999px;background:#D8C9AF;margin:0 auto 14px}
+.branch-sheet-head{text-align:center;margin-bottom:12px}.branch-sheet-head h3{font-family:var(--font-d);font-size:22px;color:var(--ink)}.branch-sheet-head p{font-size:13px;color:var(--mute);line-height:1.8;margin-top:5px}
+.branch-choice{display:grid;grid-template-columns:96px 1fr auto;gap:13px;align-items:center;padding:12px;border-radius:18px;border:1.5px solid var(--line);background:#fff;text-align:right;margin-top:10px;box-shadow:0 10px 22px -20px rgba(80,50,20,.35)}
+.branch-choice.sel{border-color:var(--gold);background:#FFF9EE;box-shadow:0 14px 28px -20px rgba(206,146,52,.75)}
+.branch-choice img{width:96px;height:72px;border-radius:14px;object-fit:cover;background:#21170D}.branch-choice b{font-family:var(--font-d);font-size:15px;color:var(--ink)}.branch-choice small{display:block;color:var(--mute);font-size:11.5px;line-height:1.55;margin-top:3px}
+.branch-choice .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.branch-choice .meta span{font-size:10px;color:var(--gold-deep);background:#FBFAF6;border:1px solid var(--line);border-radius:999px;padding:5px 8px}.branch-choice .check{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--gold-deep);border:1px solid rgba(206,146,52,.3);background:#fff;font-weight:900}
 
 /* ===== خطوة 2: الخدمات ===== */
 .branch-strip{display:flex;align-items:center;gap:18px;padding:14px 18px;margin-bottom:22px}
@@ -211,19 +224,20 @@ nav.links + .nav-actions{margin-inline-start:0}
 .mode.dark .glow-msg{color:var(--gold-bright);background:rgba(233,207,142,.1)}
 .mode.sel .glow-msg{opacity:1;transform:none}
 .emp-section{margin-top:6px}
-.emp-row{display:grid;grid-template-columns:150px 1fr;gap:14px;margin-bottom:16px;align-items:stretch}
-.emp-cat{border-radius:15px;padding:18px 16px;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:6px}
-.emp-cat b{font-family:var(--font-d);font-size:17px}
-.emp-cat small{font-size:11.5px;opacity:.9}
-.emp-list{display:flex;gap:10px;overflow-x:auto;padding:4px;scrollbar-width:thin}
+.emp-row{display:grid;grid-template-columns:150px 1fr;gap:0;margin-bottom:16px;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 14px 30px -24px rgba(80,50,20,.32)}
+.emp-cat{padding:18px 16px;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px;text-align:center}
+.emp-cat .cat-ico{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12)}
+.emp-cat b{font-family:var(--font-d);font-size:17px}.emp-cat small{font-size:11.5px;opacity:.9}
+.emp-list{display:flex;gap:12px;overflow-x:auto;padding:14px;background:linear-gradient(180deg,#fff,#FFFDF9);scrollbar-width:thin}
 .emp{
-  flex:0 0 128px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;
+  flex:0 0 132px;background:#fff;border:1.5px solid var(--line);border-radius:15px;padding:13px 10px;text-align:center;
   cursor:pointer;transition:all var(--dur) var(--ease);position:relative;
 }
 .emp:hover{transform:translateY(-4px);box-shadow:0 14px 26px -14px rgba(80,60,20,.4)}
 .emp.sel{border-color:var(--acc,var(--gold));box-shadow:0 0 0 3px color-mix(in srgb,var(--acc,var(--gold)) 22%,transparent)}
-.emp .av{width:56px;height:56px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;
-  font-family:var(--font-d);font-weight:700;font-size:19px;color:#fff;position:relative}
+.emp .av{width:60px;height:60px;border-radius:16px;margin:0 auto 10px;display:grid;place-items:center;
+  font-family:var(--font-d);font-weight:700;font-size:19px;color:#fff;position:relative;background:linear-gradient(145deg,#D8D3CC,#F8F6F2);overflow:hidden}
+.emp:not(.any) .av::before{content:"";width:38px;height:46px;border-radius:18px 18px 10px 10px;background:linear-gradient(180deg,#17130E 0 24%,#C08A52 24% 43%,#1B1712 43%);box-shadow:0 8px 16px -10px rgba(0,0,0,.6)}
 .emp .chk{position:absolute;top:8px;left:8px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
   color:#fff;opacity:0;transform:scale(.4);transition:all .25s var(--ease);background:var(--acc,var(--gold))}
 .emp.sel .chk{opacity:1;transform:scale(1)}
@@ -285,6 +299,9 @@ nav.links + .nav-actions{margin-inline-start:0}
 .plan-item.break-item::before{background:var(--gold);width:12px;height:12px;right:-31px}
 .plan-note{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:12px;color:var(--green);
   background:var(--green-bg);border-radius:10px;padding:10px 14px}
+.coffee-break{display:flex;align-items:center;justify-content:center;gap:9px;margin:5px 0;color:var(--gold-deep);font-size:12px;font-weight:800}
+.coffee-break::before,.coffee-break::after{content:"";height:1px;flex:1;border-top:1px dashed rgba(206,146,52,.4)}
+.coffee-break .cup{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#FFF8EA;border:1px solid rgba(206,146,52,.28);box-shadow:0 10px 20px -16px rgba(206,146,52,.8)}
 .best-slot{display:flex;align-items:center;gap:14px;margin-top:18px;padding:14px 18px;border-radius:14px;
   border:1px dashed var(--gold);background:#FFFDF6;font-size:13px;color:var(--gold-deep)}
 .best-slot button{margin-inline-start:auto;padding:9px 20px;border-radius:10px;font-size:12.5px;font-weight:700;
@@ -633,6 +650,10 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
     <a class="logo" href="index.html"><span class="mark"><img src="logo.png" alt="عناية سامي" style="width:29px;height:29px;object-fit:contain"></span><span class="name"><b>عناية سامي</b><span>SAMI CARE</span></span></a>
         <nav class="links"><a href="index.html">الرئيسية</a><a href="booking.html" class="on">حجز موعد</a><a href="index.html#services">خدماتنا</a><a id="navPk" href="packages-gifts.html">الباقات</a><a id="navGift" href="gifts.html">الهدايا</a><a href="store.html">المتجر</a><a href="branches.html">فروعنا</a><a href="contact.html">تواصل معنا</a></nav>
     <div class="nav-actions">
+      <button class="site-loc" id="siteLocBtn" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="siteLocLabel">جدة</span>
+      </button>
       <button class="icon-btn" id="cartBtn" aria-label="السلة">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1.6"/><circle cx="19" cy="21" r="1.6"/><path d="M1 1h4l2.7 13.4a2 2 0 002 1.6h9.7a2 2 0 002-1.6L23 6H6"/></svg>
         <span class="count" id="cartCount">0</span>
@@ -689,6 +710,8 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 </div>
 
 <div class="toast" id="toast"></div>
+<div class="branch-sheet-ov" id="branchSheetOv"></div>
+<div class="branch-sheet" id="branchSheet"><div class="grab"></div><div id="branchSheetBody"></div></div>
 
 <script>
 (function(){
@@ -770,6 +793,10 @@ try {
     S.branch = branchParam;
     S.step = 1; // skip branch selection and go straight to services selection
   }
+  if (!S.branch) {
+    const savedBranch = localStorage.getItem('samiSiteBranch');
+    if (savedBranch && (savedBranch === 'qr' || savedBranch === 'bg' || savedBranch === 'hm')) S.branch = savedBranch;
+  }
 } catch (e) {
   console.error("Error parsing URL parameters:", e);
 }
@@ -805,6 +832,41 @@ function toast(msg){
  const t=$('#toast');
  t.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>'+msg;
  t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2200);
+}
+function branchLabel(id){
+ const b=BRANCHES.find(x=>x.id===id);
+ if(!b)return'جدة';
+ if(b.home)return'منزلي';
+ return b.id==='qr'?'جدة قريش':'جدة البغدادية';
+}
+function syncBranchHeader(){
+ const el=$('#siteLocLabel');
+ if(el)el.textContent=branchLabel(S.branch);
+}
+function closeBranchSheet(){
+ $('#branchSheetOv').classList.remove('on');
+ $('#branchSheet').classList.remove('on');
+}
+function openBranchSheet(ctx){
+ const body=$('#branchSheetBody');
+ body.innerHTML=`<div class="branch-sheet-head"><h3>اختر موقع الخدمة</h3><p>اختر الفرع المناسب أو الخدمة المنزلية، وسنستخدم اختيارك في الحجز والتصفح.</p></div>
+ ${BRANCHES.map(b=>`<button class="branch-choice ${S.branch===b.id?'sel':''}" data-sheet-branch="${b.id}">
+  <img src="${b.img}" alt="${b.name}">
+  <span><b>${b.home?'خدمة منزلية':b.name}</b><small>${b.addr}</small>
+   <span class="meta"><span>⭐ ${b.rate}</span><span>${b.hours}</span><span>${b.home?'VIP في منزلك':'متاح الآن'}</span></span>
+  </span>
+  <span class="check">${S.branch===b.id?'✓':'+'}</span>
+ </button>`).join('')}`;
+ $('#branchSheetOv').classList.add('on');
+ $('#branchSheet').classList.add('on');
+ document.querySelectorAll('[data-sheet-branch]').forEach(el=>el.addEventListener('click',()=>{
+  S.branch=el.dataset.sheetBranch;
+  localStorage.setItem('samiSiteBranch',S.branch);
+  syncBranchHeader();
+  closeBranchSheet();
+  if(ctx==='booking'){S.step=1;render();scrollTo({top:0,behavior:'smooth'});toast('تم اختيار '+branchLabel(S.branch)+' — اختر خدماتك الآن')}
+  else{render();toast('تم تغيير الموقع إلى '+branchLabel(S.branch))}
+ }));
 }
 function initials(n){const p=n.trim().split(/\s+/);return p[0][0]+(p[1]?p[1][0]:'')}
 function bestEmp(cat){return EMPLOYEES[cat].slice().sort((a,b)=>b.r-a.r)[0]}
@@ -911,27 +973,20 @@ function syncEmp(){
 
 /* ================= خطوة 1 ================= */
 function view1(){
- return`<div class="panel-head"><h1>اختر المكان المناسب لك</h1><p>اختر بين فروعنا المنتشرة أو اطلب خدمة منزلية تصل إليك أينما كنت</p></div>
- <div class="branches-grid">${BRANCHES.map(b=>`
-  <div class="branch ${S.branch===b.id?'sel':''}" data-br="${b.id}">
-   <div class="img"><img src="${b.img}" alt="${b.name}">
-    ${b.home?'<span class="home-flag">🏠 خدمة تصل إليك</span>':''}
-    <span class="b-ic">${b.home
-      ?'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg>'
-      :'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l1-5h16l1 5M4 9v11h16V9M9 20v-6h6v6"/></svg>'}</span>
-   </div>
-   <div class="body">
-    <h3>${b.name}</h3><div class="addr">${b.addr}</div>
-    <div class="meta"><span>⭐ <b>${b.rate}</b></span><span class="live"><i></i> متاح الآن</span><span>👥 ${b.visitors}</span></div>
-    <div class="meta" style="border:none;padding-top:8px"><span>🕐 ${b.hours}</span></div>
-    <button class="pick">${S.branch===b.id?'✓ تم الاختيار':(b.home?'ابدأ الحجز المنزلي':'استعرض خدمات الفرع')}</button>
-   </div>
-  </div>`).join('')}</div>`;
+ const br=BRANCHES.find(b=>b.id===S.branch);
+ return`<div class="panel-head"><h1>اختر موقع الخدمة</h1><p>اختيار الفرع أصبح من نافذة سريعة واحدة، وبعدها تكمل نفس سيناريو الحجز.</p></div>
+ <div class="card" style="padding:30px;text-align:center;max-width:620px;margin-inline:auto">
+  <div style="width:72px;height:72px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink)">
+   <svg width="31" height="31" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  </div>
+  <h3 style="font-family:var(--font-d);font-size:24px;color:var(--ink);margin-bottom:8px">${br?'الموقع المختار: '+branchLabel(br.id):'لم يتم اختيار موقع الخدمة بعد'}</h3>
+  <p style="color:var(--mute);line-height:1.9;margin-bottom:20px">${br?br.addr:'اختر فرع قريش أو البغدادية أو الخدمة المنزلية من النافذة المختصرة.'}</p>
+  <button class="btn btn-gold" id="pickBranchBtn" style="padding:15px 34px">اختيار الفرع أو الخدمة المنزلية</button>
+ </div>`;
 }
 function bind1(){
- document.querySelectorAll('.branch').forEach(el=>el.addEventListener('click',()=>{
-  S.branch=el.dataset.br;render();
- }));
+ const btn=$('#pickBranchBtn');
+ if(btn)btn.addEventListener('click',()=>openBranchSheet('booking'));
 }
 
 /* ================= خطوة 2 ================= */
@@ -990,7 +1045,7 @@ function view3(){
   const chosen=S.emp[c.id]||null;
   return`<div class="emp-row">
    <div class="emp-cat" style="background:linear-gradient(150deg,${c.hex},${c.hex}CC)">
-    <b>${c.emoji} ${c.name}</b><small>${SERVICES.filter(s=>s.cat===c.id&&S.services.has(s.id)).length} خدمة</small>
+    <span class="cat-ico">${c.emoji}</span><b>${c.name}</b><small>${SERVICES.filter(s=>s.cat===c.id&&S.services.has(s.id)).length} خدمة</small>
    </div>
    <div class="emp-list" style="--acc:${c.hex}">
     <div class="emp any ${chosen==='any'?'sel':''}" data-cat="${c.id}" data-emp="any">
@@ -1001,7 +1056,7 @@ function view3(){
     ${EMPLOYEES[c.id].map(e=>`
     <div class="emp ${chosen===e.n?'sel':''}" data-cat="${c.id}" data-emp="${e.n}">
      <span class="chk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
-     <span class="av" style="background:linear-gradient(140deg,${c.hex},${c.hex}99)">${initials(e.n)}</span>
+     <span class="av" aria-hidden="true"></span>
      <b>${e.n}</b><span class="rate">★ ${e.r}</span>
     </div>`).join('')}
    </div>
@@ -1104,13 +1159,7 @@ function view4(){
    plan=`<div class="session-plan">
      <h4><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> خطة تنفيذ الجلسة</h4>
      <div class="plan-track">${ses.items.map(it=>it.isBreak?`
-      <div class="plan-item break-item" style="border: 1px dashed var(--gold); background: #FFFDF9; border-radius: 12px; margin-right: 15px;">
-       <span style="color: var(--gold-deep); font-weight: bold; display: flex; align-items: center; gap: 6px; font-size: 13px;">
-        ☕ استراحة وراحة للعميل والموظف
-       </span>
-       <span class="t" style="color: var(--gold-deep); font-weight: 700; margin-top: 5px; display: block; font-size: 12.5px;">${fmtTime(it.start)} – ${fmtTime(it.end)}</span>
-       <small style="color: var(--mute)">15 دقيقة</small>
-      </div>`:`
+      <div class="coffee-break"><span class="cup">☕</span><span>${fmtTime(it.start)} – ${fmtTime(it.end)}</span></div>`:`
       <div class="plan-item" style="border-color:${it.cat.hex}44;background:${it.cat.hex}0D">
        <b style="color:${it.cat.hex}">${it.cat.emoji} ${it.svc.name}</b>
        <small>مع ${it.emp}</small>
@@ -1197,12 +1246,7 @@ function view5(){
   <div class="timeline-cards">
    <div class="tl-rail"></div>
    ${ses.items.map((it,i)=>it.isBreak?`
-   <div class="tl break-card" style="border: 1px dashed var(--gold); background: #FFFDF9; color: var(--gold-deep); animation-delay:${i*.12}s">
-    <span class="ti" style="background: var(--gold); font-size: 14px;">☕</span>
-    <b>استراحة وراحة للعميل والموظف</b><div class="with">راحة قصيرة</div>
-    <span class="tm" style="color: var(--gold-deep);">${fmtTime(it.start)} – ${fmtTime(it.end)}</span>
-    <span class="dr">15 دقيقة</span>
-   </div>`:`
+   <div class="coffee-break" style="animation-delay:${i*.12}s"><span class="cup">☕</span><span>${fmtTime(it.start)} – ${fmtTime(it.end)}</span></div>`:`
    <div class="tl" style="border-color:${it.cat.hex}3E;background:${it.cat.hex}0A;color:${it.cat.hex};animation-delay:${i*.12}s">
     <span class="ti" style="background:${it.cat.hex}">${it.cat.emoji}</span>
     <b>${it.svc.name}</b><div class="with">مع ${it.emp}</div>
@@ -1463,7 +1507,11 @@ $('#btnNext').addEventListener('click',()=>{
  }
  S.step++;render();scrollTo({top:0,behavior:'smooth'});
 });
+$('#siteLocBtn').addEventListener('click',()=>openBranchSheet('header'));
+$('#branchSheetOv').addEventListener('click',closeBranchSheet);
+syncBranchHeader();
 render();
+if(S.step===0)setTimeout(()=>openBranchSheet('booking'),120);
 })();
 </script>
 <footer>
