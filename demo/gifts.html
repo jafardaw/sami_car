@@ -845,6 +845,7 @@ const $=s=>document.querySelector(s);
 const pkgOf=id=>PKGS.find(p=>p.id===id);
 const dsgOf=id=>DESIGNS.find(d=>d.id===id);
 const brOf=id=>BRANCHES.find(b=>b.id===id);
+const recipientURL=()=>new URL('gift-recipient.html',location.href).href+'?ref='+encodeURIComponent(S.ref||'');
 function svg(p,w){return`<svg width="${w||17}" height="${w||17}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${p}</svg>`}
 function toast(msg){
  const t=$('#toast');
@@ -1134,7 +1135,8 @@ function view5(){
    </div>
   </div>
   <div class="gsuc-actions">
-   <button class="btn btn-gold" id="trackGift">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7"/>',15)} تتبع الهدية</button>
+   <button class="btn btn-gold" id="openRecipient">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7"/>',15)} فتح صفحة المستلم</button>
+   <button class="btn btn-line" id="trackGift">${svg('<path d="M15 12H3M12 5l7 7-7 7"/>',15)} تتبع الهدية</button>
    <button class="btn btn-line" id="newGift">${svg('<path d="M12 5v14M5 12h14"/>',15)} إهداء جديد</button>
    <button class="btn btn-line" id="shareGift">${svg('<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',15)} مشاركة الهدية</button>
    <button class="btn btn-line" id="goHome">${svg('<path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/>',15)} العودة للرئيسية</button>
@@ -1321,6 +1323,7 @@ function bind(){
  }
  if(S.done){
   $('#trackGift').addEventListener('click',()=>toast('حالة الهدية: تم الإرسال — بانتظار فتح المستلم'));
+  $('#openRecipient').addEventListener('click',()=>{location.href=recipientURL()});
   $('#newGift').addEventListener('click',()=>{
    Object.assign(S,{step:0,gtype:null,branch:null,pkg:null,sender:'',name:'',phone:'',msg:'',
     design:'lux-dark',method:'wa',when:'now',schedDate:'',pay:null,extraCollapsed:false,terms:false,
@@ -1328,7 +1331,7 @@ function bind(){
    S.svcs.clear();render();scrollTo({top:0});
   });
   $('#shareGift').addEventListener('click',()=>{
-   const txt='هدية من عناية سامي — '+S.ref;
+   const txt='هدية من عناية سامي — '+recipientURL();
    if(navigator.share)navigator.share({title:'عناية سامي',text:txt}).catch(()=>{});
    else{navigator.clipboard&&navigator.clipboard.writeText(txt);toast('تم نسخ رابط الهدية')}
   });

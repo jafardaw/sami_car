@@ -826,6 +826,7 @@ const $=q=>document.querySelector(q);
 const $$=q=>[...document.querySelectorAll(q)];
 const rs=n=>n.toLocaleString('ar-EG-u-nu-latn');
 const svg=(p,w)=>`<svg width="${w||16}" height="${w||16}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${p}</svg>`;
+const recipientURL=()=>new URL('gift-recipient.html',location.href).href+'?ref='+encodeURIComponent(S.giftRef||'');
 function initials(n){const p=String(n||'').trim().split(/\s+/);return (p[0]?.[0]||'')+(p[1]?.[0]||'')}
 function toast(msg,ic){
  const t=$('#toast');
@@ -1838,7 +1839,7 @@ function giftSuccessHTML(){
  return`<div class="m-success"><div class="check">${svg('<path d="M20 6L9 17l-5-5"/>',38)}</div><h1>تم إرسال الهدية بنجاح</h1><p>تم تجهيز هديتك وإرسالها للمستلم، وسيتم إشعاره فور استلامها.</p>
  <div class="w-gift-preview" style="margin-top:14px"><div class="w-gift-preview-card ${S.giftDesign}"><b>${gLabel()}</b><small style="margin-top:10px">إلى: ${S.giftRecipient}</small><small>${S.giftMsg||'مع أطيب التمنيات'}</small></div></div>
  <div class="m-card m-detail" style="text-align:right;margin-top:12px"><h4>تفاصيل الهدية</h4><div class="m-detail-row"><span>رقم الطلب</span><b>${S.giftRef}</b></div><div class="m-detail-row"><span>الفرع</span><b>${br?br.name:'-'}</b></div><div class="m-detail-row"><span>المستلم</span><b>${S.giftRecipient}</b></div><div class="m-detail-row"><span>طريقة الإرسال</span><b>${S.giftMethod==='wa'?'واتساب':S.giftMethod==='sms'?'SMS':'بريد'}</b></div><div class="m-detail-row"><span>الإجمالي</span><b>${rs(p.total)} ر.س</b></div></div>
- <button class="btn btn-org" id="giftDoneHome" style="width:100%;margin-top:14px">العودة إلى الرئيسية</button><button class="btn btn-line" id="giftAgain" style="width:100%;margin-top:8px">إهداء جديد</button></div>`;
+ <button class="btn btn-org" id="giftOpenRecipient" style="width:100%;margin-top:14px">معاينة صفحة المستلم</button><button class="btn btn-line" id="giftShareRecipient" style="width:100%;margin-top:8px">مشاركة رابط الهدية</button><button class="btn btn-line" id="giftDoneHome" style="width:100%;margin-top:8px">العودة إلى الرئيسية</button><button class="btn btn-line" id="giftAgain" style="width:100%;margin-top:8px">إهداء جديد</button></div>`;
 }
 function canGiftWizNext(){
  if(S.giftDone)return true;
@@ -1887,6 +1888,14 @@ function bind(){
    if (cancel) cancel.addEventListener('click', () => { S.giftWizard = false; S.giftStep = 1; S.giftDone=false; render(); });
    const doneHome=$('#giftDoneHome');
    if(doneHome)doneHome.addEventListener('click',()=>{S.giftWizard=false;S.giftDone=false;S.giftStep=1;S.tab='home';render();scrollTo({top:0,behavior:'smooth'})});
+   const openRecipient=$('#giftOpenRecipient');
+   if(openRecipient)openRecipient.addEventListener('click',()=>{location.href=recipientURL()});
+   const shareRecipient=$('#giftShareRecipient');
+   if(shareRecipient)shareRecipient.addEventListener('click',()=>{
+    const txt='هدية من عناية سامي — '+recipientURL();
+    if(navigator.share)navigator.share({title:'عناية سامي',text:txt}).catch(()=>{});
+    else{navigator.clipboard&&navigator.clipboard.writeText(txt);toast('تم نسخ رابط الهدية')}
+   });
    const again=$('#giftAgain');
    if(again)again.addEventListener('click',()=>{
     S.giftDone=false;S.giftStep=1;S.giftType='pkg';S.giftBranch=null;S.giftPkg=null;S.giftServices.clear();

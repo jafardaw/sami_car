@@ -757,6 +757,7 @@ const BK_STEPS=[
 const AR_DAYS=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
 const AR_MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 const TODAY=new Date(2026,6,7);
+const recipientURL=()=>new URL('gift-recipient.html',location.href).href+'?ref='+encodeURIComponent(S.ref||'');
 function bkDays(){
  return Array.from({length:12},(_,i)=>{const d=new Date(TODAY);d.setDate(d.getDate()+i);return d});
 }
@@ -1015,6 +1016,7 @@ function gView4(){
    </div>
   </div>
   <div class="gsuc-actions">
+   <button class="btn btn-gold" id="openRecipient">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7"/>',15)} فتح صفحة المستلم</button>
    <button class="btn btn-dark" id="newGift">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7s-2-5-5-5-3 5 0 5h5zM12 7s2-5 5-5 3 5 0 5h-5z"/>',15)} إهداء جديد</button>
    <button class="btn btn-line" id="copySelf">${svg('<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/>',15)} إرسال نسخة لنفسي</button>
    <button class="btn btn-line" id="shareGift">${svg('<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/>',15)} مشاركة الهدية</button>
@@ -1109,9 +1111,10 @@ function bindGift(){
  if(S.done){
   $('#newGift').addEventListener('click',()=>{startGift(null,null)});
   $('#backHome').addEventListener('click',()=>{S.page='packages';S.done=false;render();scrollTo({top:0})});
+  $('#openRecipient').addEventListener('click',()=>{location.href=recipientURL()});
   $('#copySelf').addEventListener('click',()=>toast('تم إرسال نسخة من الهدية إلى بريدك'));
   $('#shareGift').addEventListener('click',()=>{
-   const txt='هدية من عناية سامي — '+S.ref;
+   const txt='هدية من عناية سامي — '+recipientURL();
    if(navigator.share)navigator.share({title:'عناية سامي',text:txt}).catch(()=>{});
    else{navigator.clipboard&&navigator.clipboard.writeText(txt);toast('تم نسخ رابط الهدية')}
   });
