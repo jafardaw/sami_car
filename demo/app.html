@@ -467,20 +467,30 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .rw-light .ref b{font-family:var(--fd);font-size:21px;color:var(--org)}
 .rw-c .btn{width:100%;min-height:40px;padding:9px;font-size:11.5px;border-radius:11px}
 .rw-dark .btn{border:1.5px solid var(--gold-d);color:var(--gold);background:transparent}
-.wheel-c{margin:4px 16px 0;border-radius:22px;overflow:hidden;position:relative;padding:22px 18px;color:#fff;
-  background:radial-gradient(320px 200px at 82% 60%,rgba(206,146,52,.35),transparent 60%),linear-gradient(130deg,#1E150C,#0F0A05);
-  display:flex;align-items:center;gap:14px;border:1px solid rgba(233,207,142,.2)}
+.wheel-c{margin:4px 16px 0;border-radius:26px;overflow:hidden;position:relative;padding:24px 18px;color:#fff;
+  background:radial-gradient(260px 220px at 84% 48%,rgba(232,190,108,.28),transparent 64%),radial-gradient(220px 180px at 18% 12%,rgba(255,255,255,.08),transparent 62%),linear-gradient(145deg,#21170D,#0F0A05 56%,#070503);
+  display:flex;align-items:center;gap:16px;border:1px solid rgba(233,207,142,.28);
+  box-shadow:0 24px 54px -34px rgba(0,0,0,.88),inset 0 1px 0 rgba(255,255,255,.08)}
+.wheel-c::before{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(130deg,rgba(255,255,255,.16),transparent 28%,transparent 72%,rgba(232,190,108,.13));
+  mix-blend-mode:screen}
+.wheel-c::after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;left:-72px;bottom:-82px;
+  background:radial-gradient(circle,rgba(232,190,108,.22),transparent 68%);filter:blur(2px)}
 .wheel-c .wtxt{flex:1}
 .wheel-c h3{font-family:var(--fd);font-size:16px;font-weight:700;line-height:1.6}
 .wheel-c h3 b{color:var(--org);display:block;font-size:19px}
 .wheel-c p{font-size:11px;color:#C9BCA7;margin:8px 0 14px}
-.wheel-wrap{flex:none;width:150px;height:150px;position:relative;filter:drop-shadow(0 12px 22px rgba(0,0,0,.5))}
+.wheel-wrap{flex:none;width:158px;height:158px;position:relative;z-index:2;transform:perspective(620px) rotateX(13deg) rotateY(-11deg) translateY(-4px);
+  filter:drop-shadow(0 24px 18px rgba(0,0,0,.48)) drop-shadow(0 5px 0 rgba(93,58,12,.65))}
 .wheel-wrap::before{content:"";position:absolute;inset:-8px;border-radius:50%;
-  background:radial-gradient(circle,rgba(233,207,142,.35),transparent 70%);animation:wglow 3.4s ease-in-out infinite}
+  background:radial-gradient(circle,rgba(255,234,177,.46),rgba(206,146,52,.18) 42%,transparent 72%);animation:wglow 3.4s ease-in-out infinite}
+.wheel-wrap::after{content:"";position:absolute;inset:12px;border-radius:50%;z-index:-1;
+  background:rgba(0,0,0,.52);filter:blur(14px);transform:translateY(26px) scale(.92)}
 @keyframes wglow{0%,100%{opacity:.5;transform:scale(.96)}50%{opacity:1;transform:scale(1.04)}}
-#wheelSvg{width:100%;height:100%;transition:transform 3.6s cubic-bezier(.16,.9,.24,1)}
-.wheel-pin{position:absolute;top:-7px;right:calc(50% - 9px);width:18px;height:20px;z-index:3;
-  color:var(--gold);filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+#wheelSvg{width:100%;height:100%;transition:transform 3.6s cubic-bezier(.16,.9,.24,1);border-radius:50%;
+  filter:contrast(1.03) saturate(1.06)}
+.wheel-pin{position:absolute;top:-10px;right:calc(50% - 13px);width:26px;height:30px;z-index:3;
+  color:#F2C96D;filter:drop-shadow(0 6px 5px rgba(0,0,0,.55))}
 /* ===== الشاشة 4: الآراء والفروع وCTA والفوتر ===== */
 .tst{width:calc(100vw - 90px);max-width:320px;background:#FFFDF9;border:1px solid var(--line);border-radius:18px;
   padding:20px;text-align:center;box-shadow:0 10px 22px -18px rgba(90,60,30,.25)}
@@ -974,9 +984,25 @@ function wheelSVG(){
    <text x="${cx}" y="${cy-r+16}" transform="rotate(${mid} ${cx} ${cy})" text-anchor="middle" font-size="6.5" font-weight="700" fill="${WHEEL[i].c==='#F7F1E4'?'#7A5A20':'#E8BE6C'}">${WHEEL[i].n}</text>`;
  }
  return`<svg id="wheelSvg" viewBox="0 0 150 150">
-  <circle cx="75" cy="75" r="73" fill="#140E07" stroke="#CE9234" stroke-width="2"/>${segs}
-  <circle cx="75" cy="75" r="17" fill="#1B140D" stroke="#E8BE6C" stroke-width="1.5"/>
-  <path d="M75 66l8 4.6v9.2L75 84.4l-8-4.6v-9.2z" fill="none" stroke="#E8BE6C" stroke-width="1.2"/></svg>`;
+  <defs>
+   <radialGradient id="wheelFace" cx="36%" cy="28%" r="72%">
+    <stop offset="0" stop-color="#FFF0C2"/><stop offset=".22" stop-color="#E8BE6C"/><stop offset=".6" stop-color="#9C6B1F"/><stop offset="1" stop-color="#3A250B"/>
+   </radialGradient>
+   <linearGradient id="rimGold" x1="24" y1="10" x2="128" y2="142">
+    <stop offset="0" stop-color="#FFF0C2"/><stop offset=".44" stop-color="#CE9234"/><stop offset="1" stop-color="#5A390F"/>
+   </linearGradient>
+   <filter id="wheelBevel" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity=".55"/>
+   </filter>
+  </defs>
+  <circle cx="75" cy="77" r="70" fill="#5A390F" opacity=".75"/>
+  <circle cx="75" cy="75" r="73" fill="url(#rimGold)" filter="url(#wheelBevel)"/>
+  <circle cx="75" cy="75" r="67" fill="#140E07" stroke="#FFF0C2" stroke-width=".7"/>
+  ${segs}
+  <circle cx="75" cy="75" r="69" fill="none" stroke="rgba(255,255,255,.38)" stroke-width="1"/>
+  <circle cx="75" cy="75" r="21" fill="url(#wheelFace)" stroke="#FFF0C2" stroke-width="1.3"/>
+  <circle cx="75" cy="75" r="10" fill="#1B140D" stroke="#F2C96D" stroke-width="1"/>
+  <path d="M75 66l8 4.6v9.2L75 84.4l-8-4.6v-9.2z" fill="none" stroke="#1B140D" stroke-width="1.2" opacity=".8"/></svg>`;
 }
 function homeHTML(){
  return`
