@@ -822,7 +822,7 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .badge-tag{position:absolute;top:12px;right:12px;z-index:3;font-size:10px;font-weight:800;padding:6px 13px;border-radius:999px;
   background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--ink)}
 .badge-tag.new{background:#fff;color:var(--gold-deep);border:1px solid var(--gold)}
-.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;
+.pcard{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;cursor:pointer;
   transition:transform .3s var(--ease),box-shadow .3s;animation:pkgIn .4s var(--ease) both;display:flex;flex-direction:column}
 .pcard:hover{transform:translateY(-6px);box-shadow:0 26px 46px -26px rgba(80,60,20,.5)}
 .pcard .pimg{aspect-ratio:16/11;position:relative;display:grid;place-items:center;overflow:hidden;
@@ -894,6 +894,15 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
   background:radial-gradient(60px 40px at 50% 80%,rgba(198,161,91,.35),transparent 65%),linear-gradient(150deg,#2A2318,#0F0C07)}
 .sheet .sprod b{font-size:14px;color:var(--ink);display:block;font-family:var(--font-d)}
 .sheet .sprod .p{font-family:var(--font-d);color:var(--gold-deep);font-size:15px;margin-top:4px;display:block}
+.sheet.detail .sprod{display:block;text-align:right;padding:0;overflow:hidden;background:linear-gradient(155deg,#fff,#F7F0E3);border-color:rgba(198,161,91,.35)}
+.sheet-detail{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;padding:18px}
+.sheet-detail .dthumb{min-height:118px;border-radius:18px;display:grid;place-items:center;background:radial-gradient(100px 70px at 50% 80%,rgba(198,161,91,.4),transparent 70%),linear-gradient(150deg,#2A2318,#0E0B06);box-shadow:inset 0 0 0 1px rgba(233,207,142,.24)}
+.sheet-detail h3{font-family:var(--font-d);font-size:20px;color:var(--ink);margin-bottom:7px}
+.sheet-detail p{font-size:13px;color:var(--mute);line-height:1.8;margin-bottom:12px}
+.sheet-detail .meta{display:flex;flex-wrap:wrap;gap:8px}
+.sheet-detail .meta span{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;color:var(--gold-deep)}
+.sheet-detail .price{font-family:var(--font-d);font-size:22px;color:var(--ink);margin-top:12px}
+.sheet.detail .sacts .btn-gold.added{background:linear-gradient(135deg,#1E6B41,#2E8B57);color:#fff}
 .sheet .sacts{display:flex;gap:10px;margin-top:18px}
 .sheet .sacts .btn{flex:1;padding:13px}
 /* توست علوي */
@@ -950,6 +959,10 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
  .best-caro .pcard{flex-basis:74%}
  .gt-count{display:none}
  .pgrid.list .pimg{width:120px}
+ .sheet-detail{grid-template-columns:1fr;text-align:center;padding:16px}
+ .sheet-detail .dthumb{min-height:104px}
+ .sheet-detail .meta{justify-content:center}
+ .sheet .sacts{flex-direction:column}
 }
 </style>
 </head>
@@ -1059,6 +1072,11 @@ const $=q=>document.querySelector(q);
 const rs=n=>n.toLocaleString('ar-EG-u-nu-latn');
 const pOf=id=>PRODUCTS.find(p=>p.id===id);
 function svg(p,w){return`<svg width="${w||17}" height="${w||17}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${p}</svg>`}
+function addLabel(inCart){
+ return inCart
+  ? svg('<path d="M20 6L9 17l-5-5"/>',14)+' مضاف للسلة'
+  : svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',14)+' إضافة للسلة';
+}
 function toastTop(msg){
  const t=$('#toastTop');$('#toastTopMsg').textContent=msg;
  t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2000);
@@ -1074,7 +1092,8 @@ function bumpCart(){
 
 /* ================= بطاقة المنتج ================= */
 function card(p,i){
- return`<article class="pcard" style="animation-delay:${Math.min(i*.05,.4)}s">
+ const inCart=S.cart.has(p.id);
+ return`<article class="pcard" data-product="${p.id}" style="animation-delay:${Math.min(i*.05,.4)}s">
   <div class="pimg"><div class="shelf"></div>
    ${p.badge?`<span class="badge-tag ${p.new?'new':''}">${p.badge}</span>`:''}
    <button class="fav2 ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}" aria-label="مفضلة">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
@@ -1083,7 +1102,7 @@ function card(p,i){
   <div class="pbody">
    <b>${p.n}</b><small>${p.d}</small>
    <div class="prow">
-    <button class="addbtn" data-add="${p.id}">${svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',14)} إضافة للسلة</button>
+    <button class="addbtn ${inCart?'added':''}" data-add="${p.id}">${addLabel(inCart)}</button>
     <span class="pr">${rs(p.pr)} <small>ر.س</small></span>
    </div>
   </div>
@@ -1205,28 +1224,57 @@ function renderStore(){
 }
 
 /* ================= السلة والتفاعلات ================= */
-function addToCart(id,btn){
- S.cart.set(id,(S.cart.get(id)||0)+1);
- bumpCart();renderDrawer();
- if(btn){
-  btn.classList.add('added');
-  btn.innerHTML=svg('<path d="M20 6L9 17l-5-5"/>',14)+' تمت الإضافة';
-  setTimeout(()=>{
-   btn.classList.remove('added');
-   btn.innerHTML=svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',14)+' إضافة للسلة';
-  },1100);
- }
- const p=pOf(id);
- if(S.firstAdd){
-  S.firstAdd=false;
-  $('#sheetProd').innerHTML=`<span class="thumb">${SHAPES[p.shape](46)}</span>
-   <span style="flex:1"><b>${p.n}</b><span class="p">${rs(p.pr)} ر.س</span></span>`;
-  $('#sheetOv').classList.add('on');$('#sheet').classList.add('on');
- }else{
-  toastTop('تمت إضافة المنتج للسلة');
+function syncProductButtons(id){
+ const inCart=S.cart.has(id);
+ document.querySelectorAll(`[data-add="${id}"]`).forEach(btn=>{
+  btn.classList.toggle('added',inCart);
+  btn.innerHTML=addLabel(inCart);
+ });
+ const sheetBtn=$('#sheetAdd');
+ if(sheetBtn&&sheetBtn.dataset.sheetAdd===id){
+  sheetBtn.classList.toggle('added',inCart);
+  sheetBtn.innerHTML=addLabel(inCart);
  }
 }
-function closeSheet(){$('#sheetOv').classList.remove('on');$('#sheet').classList.remove('on')}
+function toggleCart(id){
+ if(S.cart.has(id)){
+  S.cart.delete(id);
+  $('#cartCount').textContent=cartQty();
+  toastTop('تم حذف المنتج من السلة');
+ }else{
+  S.cart.set(id,1);
+  bumpCart();
+  toastTop('تمت إضافة المنتج للسلة');
+ }
+ syncProductButtons(id);
+ renderDrawer();
+}
+function openProductSheet(id){
+ const p=pOf(id);
+ const inCart=S.cart.has(id);
+ $('#sheet').classList.add('detail');
+ $('#sheet .shead b').textContent='تفاصيل المنتج';
+ $('#sheet .shead .si').innerHTML=svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',20);
+ $('#sheetProd').innerHTML=`<div class="sheet-detail">
+  <span class="dthumb">${SHAPES[p.shape](84)}</span>
+  <span>
+   <h3>${p.n}</h3>
+   <p>${p.d}</p>
+   <span class="meta"><span>جودة صالون</span><span>منتج عناية فاخر</span><span>${p.badge||'متوفر الآن'}</span></span>
+   <div class="price">${rs(p.pr)} <small>ر.س</small></div>
+   <button class="btn btn-gold ${inCart?'added':''}" id="sheetAdd" data-sheet-add="${p.id}" style="width:100%;margin-top:14px">${addLabel(inCart)}</button>
+  </span>
+ </div>`;
+ $('#sheetCont').textContent='متابعة التسوق';
+ $('#sheetOv').classList.add('on');$('#sheet').classList.add('on');
+ $('#sheetAdd').onclick=e=>{e.stopPropagation();toggleCart(id)};
+}
+function closeSheet(){
+ $('#sheetOv').classList.remove('on');$('#sheet').classList.remove('on');
+ const sheet=$('#sheet');
+ if(sheet)sheet.classList.remove('detail');
+ const title=$('#sheet .shead b');if(title)title.textContent='تفاصيل المنتج';
+}
 function openDrawer(){renderDrawer();$('#drawerOv').classList.add('on');$('#drawer').classList.add('on')}
 function closeDrawer(){$('#drawerOv').classList.remove('on');$('#drawer').classList.remove('on')}
 function renderDrawer(){
@@ -1249,15 +1297,16 @@ function renderDrawer(){
  foot.innerHTML=`<div class="dtotal"><small>الإجمالي (${cartQty()} منتجات)</small><b>${rs(cartTotal())} ر.س</b></div>
   <button class="btn btn-gold" id="checkout">${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',15)} متابعة الشراء</button>`;
  body.querySelectorAll('[data-inc]').forEach(b=>b.addEventListener('click',()=>{
-  S.cart.set(b.dataset.inc,S.cart.get(b.dataset.inc)+1);bumpCart();renderDrawer();
+ S.cart.set(b.dataset.inc,S.cart.get(b.dataset.inc)+1);bumpCart();renderDrawer();
+  syncProductButtons(b.dataset.inc);
  }));
  body.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',()=>{
   const id=b.dataset.dec,q=S.cart.get(id);
   q<=1?S.cart.delete(id):S.cart.set(id,q-1);
-  $('#cartCount').textContent=cartQty();renderDrawer();
+  $('#cartCount').textContent=cartQty();syncProductButtons(id);renderDrawer();
  }));
  body.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{
-  S.cart.delete(b.dataset.del);$('#cartCount').textContent=cartQty();renderDrawer();
+  const id=b.dataset.del;S.cart.delete(id);$('#cartCount').textContent=cartQty();syncProductButtons(id);renderDrawer();
  }));
  const co=$('#checkout');
  if(co)co.addEventListener('click',()=>{
@@ -1296,12 +1345,17 @@ function bind(){
    hero.querySelectorAll('[data-depth]').forEach(el=>el.style.transform='');
   });
  }
- document.querySelectorAll('[data-fav]').forEach(el=>el.addEventListener('click',()=>{
+ document.querySelectorAll('[data-product]').forEach(el=>el.addEventListener('click',()=>openProductSheet(el.dataset.product)));
+ document.querySelectorAll('[data-fav]').forEach(el=>el.addEventListener('click',e=>{
+  e.stopPropagation();
   const id=el.dataset.fav;
   S.favs.has(id)?S.favs.delete(id):S.favs.add(id);
   document.querySelectorAll(`[data-fav="${id}"]`).forEach(x=>x.classList.toggle('on',S.favs.has(id)));
  }));
- document.querySelectorAll('[data-add]').forEach(el=>el.addEventListener('click',()=>addToCart(el.dataset.add,el)));
+ document.querySelectorAll('[data-add]').forEach(el=>el.addEventListener('click',e=>{
+  e.stopPropagation();
+  toggleCart(el.dataset.add);
+ }));
  document.querySelectorAll('[data-view]').forEach(el=>el.addEventListener('click',()=>{S.view=el.dataset.view;render()}));
  const srt=$('#sortSel');if(srt)srt.addEventListener('change',()=>{S.sort=srt.value;render()});
  const mb=$('#moreBtn');if(mb)mb.addEventListener('click',()=>{S.showAll=!S.showAll;render();

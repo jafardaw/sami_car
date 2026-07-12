@@ -72,6 +72,7 @@ a{color:inherit;text-decoration:none}
 .btn-org{background:var(--org);color:#fff;box-shadow:0 10px 22px -10px rgba(206,146,52,.55)}
 .btn-org:hover{box-shadow:0 14px 26px -10px rgba(206,146,52,.6)}
 .btn-line{border:1.5px solid var(--org);color:var(--org);background:rgba(255,255,255,.9)}
+.btn-lite{border:1px solid var(--line);color:var(--ink);background:#fff}
 .btn-w{border:1.5px solid rgba(255,255,255,.85);color:#fff;background:rgba(255,255,255,.08);backdrop-filter:blur(4px)}
 .btn:disabled{opacity:.45}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
@@ -401,7 +402,7 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .gift-c h3{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--ink);line-height:1.5}
 .gift-c h3 b{color:var(--org);font-size:18px;display:block}
 .gift-c p{font-size:11.5px;color:var(--mute);margin:7px 0 12px;line-height:1.7}
-.prod-m{width:158px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.prod-m{width:158px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer}
 .prod-m .pim{position:relative;aspect-ratio:1/1.02;background:linear-gradient(150deg,#F0E8DA,#E7DCC9);display:grid;place-items:center}
 .prod-m .pim img{width:100%;height:100%;object-fit:cover}
 .prod-m .fv{position:absolute;top:9px;right:9px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);
@@ -412,10 +413,29 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .prod-m .ad{position:absolute;top:9px;left:9px;width:32px;height:32px;border-radius:50%;background:var(--org);color:#fff;
   display:grid;place-items:center;box-shadow:0 8px 16px -6px rgba(206,146,52,.6);transition:transform .25s var(--ease)}
 .prod-m .ad:active{transform:scale(1.15) rotate(90deg)}
+.prod-m .ad.added{background:linear-gradient(135deg,#1E6B41,#2E8B57);box-shadow:0 8px 16px -6px rgba(46,139,87,.55)}
+.prod-m .ad.added:active{transform:scale(1.08)}
 .prod-m .pb{padding:11px 12px;text-align:center}
 .prod-m .pb b{font-size:12.5px;font-weight:700;color:var(--ink);display:block;font-family:var(--fd)}
 .prod-m .pb .pr{font-size:13px;color:var(--org);font-weight:800;margin-top:5px;display:flex;justify-content:center;gap:4px;align-items:baseline}
 .prod-m .pb .pr small{font-size:10px;color:var(--mute)}
+.bs-ov{position:fixed;inset:0;z-index:110;background:rgba(12,9,5,.52);backdrop-filter:blur(5px);opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
+.bs-ov.on{opacity:1;pointer-events:auto}
+.bs{position:fixed;left:50%;bottom:0;z-index:111;width:min(430px,100%);transform:translate(-50%,105%);background:linear-gradient(160deg,#fff,#F8F0E4);border:1px solid rgba(206,146,52,.28);border-radius:24px 24px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -24px 60px -22px rgba(20,12,4,.55);transition:transform .38s var(--ease)}
+.bs.on{transform:translate(-50%,0)}
+.bs .grab{width:44px;height:4px;border-radius:999px;background:#D8C9AF;margin:0 auto 14px}
+.bs-hero{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center}
+.bs-img{height:118px;border-radius:18px;overflow:hidden;background:linear-gradient(150deg,#21160E,#0E0905);display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(232,190,108,.2)}
+.bs-img img{width:100%;height:100%;object-fit:cover}
+.bs-copy h3{font-family:var(--fd);font-size:18px;line-height:1.45;color:var(--ink)}
+.bs-copy p{font-size:11.5px;line-height:1.8;color:var(--mute);margin:7px 0}
+.bs-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.bs-tags span{font-size:10.5px;font-weight:800;color:var(--org);border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 9px}
+.bs-price{font-family:var(--fd);font-size:21px;color:var(--ink);margin-top:10px}
+.bs-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.bs-actions .btn{min-height:46px}
+.bs-actions .added{background:linear-gradient(135deg,#1E6B41,#2E8B57)!important;color:#fff!important}
+@media(max-width:390px){.bs-hero{grid-template-columns:1fr}.bs-img{height:145px}.bs-actions{grid-template-columns:1fr}}
 .rw-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
 .rw-c{border-radius:18px;padding:16px;position:relative;overflow:hidden}
 .rw-c h4{font-family:var(--fd);font-size:13.5px;font-weight:700;display:flex;gap:7px;align-items:center;margin-bottom:8px}
@@ -834,12 +854,91 @@ function toast(msg,ic){
  t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2300);
 }
 function scrollAppTop(){requestAnimationFrame(()=>scrollTo({top:0,behavior:'auto'}))}
+function addIcon(inCart){
+ return inCart?svg('<path d="M20 6L9 17l-5-5"/>',15):svg('<path d="M12 5v14M5 12h14"/>',15);
+}
+function syncAppAddButtons(id){
+ const inCart=S.cart.has(id);
+ $$(`[data-add="${id}"]`).forEach(btn=>{
+  btn.classList.toggle('added',inCart);
+  btn.innerHTML=addIcon(inCart);
+ });
+ const sheetBtn=$('#bsAdd');
+ if(sheetBtn&&sheetBtn.dataset.id===id){
+  sheetBtn.classList.toggle('added',inCart);
+  sheetBtn.innerHTML=(inCart?'إزالة من السلة ':'إضافة للسلة ')+addIcon(inCart);
+ }
+}
+function toggleAppCart(id){
+ if(S.cart.has(id)){
+  S.cart.delete(id);
+  toast('تم حذف المنتج من السلة');
+ }else{
+  S.cart.set(id,1);
+  toast('تمت إضافة المنتج للسلة');
+ }
+ refreshBadge(true);
+ syncAppAddButtons(id);
+}
 function cartQty(){let n=0;S.cart.forEach(q=>n+=q);return n}
 function cartTotal(){let t=0;S.cart.forEach((q,id)=>t+=PRODUCTS.find(p=>p.id===id).pr*q);return t}
 function refreshBadge(pop){
  const b=$('#cartBdg'),n=cartQty();
  b.textContent=n;b.classList.toggle('hide',!n);
  if(pop){b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');setTimeout(()=>b.classList.remove('pop'),320)}
+}
+function closeBottomSheet(){
+ const ov=$('#bsOv'),sheet=$('#bs');
+ if(ov)ov.classList.remove('on');
+ if(sheet)sheet.classList.remove('on');
+}
+function ensureBottomSheet(){
+ let ov=$('#bsOv'),sheet=$('#bs');
+ if(!ov){
+  document.body.insertAdjacentHTML('beforeend','<div class="bs-ov" id="bsOv"></div><div class="bs" id="bs"><div class="grab"></div><div id="bsBody"></div></div>');
+  ov=$('#bsOv');sheet=$('#bs');
+  ov.addEventListener('click',closeBottomSheet);
+ }
+ return {ov,sheet,body:$('#bsBody')};
+}
+function openProductSheet(id){
+ const p=PRODUCTS.find(x=>x.id===id),inCart=S.cart.has(id);
+ const ui=ensureBottomSheet();
+ ui.body.innerHTML=`<div class="bs-hero">
+  <span class="bs-img"><img src="${p.img}" alt="${p.n}"></span>
+  <span class="bs-copy">
+   <h3>${p.n}</h3>
+   <p>منتج مختار من عناية سامي ليكمل تجربة العناية اليومية بجودة فاخرة ولمسة صالون.</p>
+   <span class="bs-tags"><span>أصلي 100%</span><span>مناسب للاستخدام اليومي</span><span>استلام أو توصيل</span></span>
+   <div class="bs-price">${rs(p.pr)} <small>ر.س</small></div>
+  </span>
+ </div>
+ <div class="bs-actions">
+  <button class="btn btn-lite" id="bsClose">إغلاق</button>
+  <button class="btn btn-org ${inCart?'added':''}" id="bsAdd" data-id="${p.id}">${inCart?'إزالة من السلة ':'إضافة للسلة '}${addIcon(inCart)}</button>
+ </div>`;
+ ui.ov.classList.add('on');ui.sheet.classList.add('on');
+ $('#bsClose').addEventListener('click',closeBottomSheet);
+ $('#bsAdd').addEventListener('click',e=>{e.stopPropagation();toggleAppCart(id)});
+}
+function openServiceSheet(id){
+ const svc=HSVCS.find(x=>x.id===id);
+ const ui=ensureBottomSheet();
+ ui.body.innerHTML=`<div class="bs-hero">
+  <span class="bs-img"><img src="${svc.img}" alt="${svc.n}"></span>
+  <span class="bs-copy">
+   <h3>${svc.n}</h3>
+   <p>خدمة رجالية بتجربة راقية، تنفيذ احترافي، واهتمام بالتفاصيل من لحظة الدخول حتى نهاية الجلسة.</p>
+   <span class="bs-tags"><span>جلسة مريحة</span><span>خبراء متخصصون</span><span>حجز سريع</span></span>
+  </span>
+ </div>
+ <div class="bs-actions">
+  <button class="btn btn-lite" id="bsClose">إغلاق</button>
+  <button class="btn btn-org" id="bsBook">احجز الآن ${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',13)}</button>
+ </div>`;
+ ui.ov.classList.add('on');ui.sheet.classList.add('on');
+ $('#bsClose').addEventListener('click',closeBottomSheet);
+ $('#bsBook').addEventListener('click',()=>{closeBottomSheet();S.svPage=true;render();scrollAppTop()});
 }
 function svTotal(){
  let t=S.svSel?CUTS.find(c=>c.id===S.svSel).pr:0;
@@ -945,10 +1044,10 @@ function homeHTML(){
   <div class="sec-h"><h2><span class="hi">${svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',15)}</span> منتجات مختارة لك</h2><a data-go="store">${svg('<path d="M15 6l-6 6 6 6"/>',12)} عرض الكل</a></div>
  </section>
  <div class="hscroll" id="prodTrack">
-  ${PRODUCTS.map(p=>`<div class="prod-m">
+  ${PRODUCTS.map(p=>`<div class="prod-m" data-product="${p.id}">
    <div class="pim"><img src="${p.img}" alt="${p.n}" loading="lazy">
     <button class="fv ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
-    <button class="ad" data-add="${p.id}">${svg('<path d="M12 5v14M5 12h14"/>',15)}</button></div>
+    <button class="ad ${S.cart.has(p.id)?'added':''}" data-add="${p.id}">${addIcon(S.cart.has(p.id))}</button></div>
    <div class="pb"><b>${p.n}</b><span class="pr">${rs(p.pr)} <small>ر.س</small></span></div>
   </div>`).join('')}
  </div>
@@ -1110,10 +1209,10 @@ function bookbarHTML(){
 function storeHTML(){
  return`<div class="pg-head"><h1>المتجر 🛍️</h1><p>منتجات عناية سامي الأصلية — تصلك أو تستلمها من الفرع</p></div>
  <div class="store-grid">${PRODUCTS.map(p=>`
-  <div class="prod-m">
+  <div class="prod-m" data-product="${p.id}">
    <div class="pim"><img src="${p.img}" alt="${p.n}" loading="lazy">
     <button class="fv ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
-    <button class="ad" data-add="${p.id}">${svg('<path d="M12 5v14M5 12h14"/>',15)}</button></div>
+    <button class="ad ${S.cart.has(p.id)?'added':''}" data-add="${p.id}">${addIcon(S.cart.has(p.id))}</button></div>
    <div class="pb"><b>${p.n}</b><span class="pr">${rs(p.pr)} <small>ر.س</small></span></div>
   </div>`).join('')}</div>`;
 }
@@ -2110,11 +2209,9 @@ function bind(){
  }));
  $$('[data-add]').forEach(el=>el.addEventListener('click',e=>{
   e.stopPropagation();
-  const id=el.dataset.add;
-  S.cart.set(id,(S.cart.get(id)||0)+1);
-  refreshBadge(true);
-  toast('تمت إضافة المنتج للسلة');
+  toggleAppCart(el.dataset.add);
  }));
+ $$('[data-product]').forEach(el=>el.addEventListener('click',()=>openProductSheet(el.dataset.product)));
  if(S.tab==='home'&&!S.svPage){
   /* هيرو: مزامنة النقاط + تشغيل تلقائي */
   const tr=$('#heroTrack'),dots=$$('#heroDots i');
@@ -2149,9 +2246,9 @@ function bind(){
    const i=Math.min(TSTS.length-1,Math.round(Math.abs(tt.scrollLeft)/w));
    if(i!==S.tstI){S.tstI=i;td.forEach((d,j)=>d.classList.toggle('on',j===i))}
   },{passive:true});
-  /* بطاقات الخدمات ← صفحة الحلاقة */
+  /* بطاقات الخدمات ← تفاصيل الخدمة */
   $$('.svc-card').forEach(el=>el.addEventListener('click',()=>{
-   S.svPage=true;render();scrollTo({top:0,behavior:'smooth'});
+   openServiceSheet(el.dataset.svc);
   }));
   /* الكوفي والمشاركة والعجلة */
   const cf=$('#coffeeBar');if(cf)cf.addEventListener('click',()=>toast('كوفي شوب عناية سامي بانتظارك في الفرع ☕'));
