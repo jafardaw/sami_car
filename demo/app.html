@@ -43,6 +43,15 @@ a{color:inherit;text-decoration:none}
 .hd .loc svg{color:var(--org)}
 .hd .burger{width:42px;height:42px;display:grid;place-items:center;color:var(--ink)}
 .hexa{width:34px;height:34px}
+.app.home-shell .hd{position:absolute;top:0;right:0;left:0;z-index:305;background:linear-gradient(180deg,rgba(8,5,3,.5),rgba(8,5,3,0));backdrop-filter:none;border-bottom:0}
+.app.home-shell .hd .in{padding-top:calc(12px + env(safe-area-inset-top))}
+.app.home-shell .hd .bell,.app.home-shell .hd .burger{color:#F9E9C5;background:rgba(255,255,255,.08);border:1px solid rgba(232,190,108,.24);backdrop-filter:blur(10px);box-shadow:0 12px 24px -18px rgba(0,0,0,.7)}
+.app.home-shell .hd .bell .bdg{background:linear-gradient(135deg,var(--gold),var(--org));color:#1B140D}
+.app.home-shell .hd .logo{color:#fff;text-shadow:0 8px 22px rgba(0,0,0,.55)}
+.app.home-shell .hd .logo img{opacity:.76;filter:drop-shadow(0 10px 20px rgba(0,0,0,.55))}
+.app.home-shell .hd .logo small{color:#F4D48E;opacity:.82}
+.app.home-shell .hd .loc{color:#F9E9C5;background:rgba(255,255,255,.08);border-color:rgba(232,190,108,.24);backdrop-filter:blur(10px);box-shadow:0 12px 24px -18px rgba(0,0,0,.7)}
+.app.home-shell .hd .loc svg{color:#F4D48E}
 /* ===== شريط التنقل السفلي ===== */
 .tabbar{position:fixed;bottom:0;right:50%;transform:translateX(50%);width:100%;max-width:430px;z-index:320;
   background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);
@@ -298,14 +307,14 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .hero-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:0;
   box-shadow:0 24px 58px -36px rgba(24,15,7,.9)}
 .hero-track::-webkit-scrollbar{display:none}
-.hslide{flex:0 0 100%;scroll-snap-align:start;position:relative;min-height:calc(100svh - 190px);display:flex;align-items:flex-end;overflow:hidden;
+.hslide{flex:0 0 100%;scroll-snap-align:start;position:relative;min-height:calc(100svh - 96px);display:flex;align-items:flex-end;overflow:hidden;
   background:#120D08;color:#fff;border-radius:0}
 .hslide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:saturate(.94) contrast(1.03) brightness(.78);transform:scale(1.02)}
 .hslide::before{content:"";position:absolute;inset:0;background:
   radial-gradient(circle at 22% 8%,rgba(232,190,108,.32),transparent 28%),
   linear-gradient(180deg,rgba(10,7,4,.08) 0%,rgba(10,7,4,.42) 42%,rgba(8,5,3,.96) 100%)}
 .hslide::after{content:"";position:absolute;inset:0;border-block-end:1px solid rgba(232,190,108,.45);pointer-events:none}
-.hslide .hin{position:relative;z-index:2;width:100%;padding:112px 24px 38px;text-align:right}
+.hslide .hin{position:relative;z-index:2;width:100%;padding:150px 24px 42px;text-align:right}
 .hslide .tagline{width:max-content;max-width:100%;font-size:10.5px;color:#F3D99B;font-weight:800;margin-bottom:12px;
   background:rgba(232,190,108,.12);border:1px solid rgba(232,190,108,.38);border-radius:999px;padding:7px 12px;
   backdrop-filter:blur(10px)}
@@ -322,7 +331,7 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .hslide .hbtns .btn-line::before{content:"";width:17px;height:17px;background:currentColor;
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Cpath d='M15 6l-6 6 6 6'/%3E%3C/svg%3E") center/contain no-repeat;
   mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4'%3E%3Cpath d='M15 6l-6 6 6 6'/%3E%3C/svg%3E") center/contain no-repeat}
-.hero-meta{position:absolute;z-index:3;top:28px;right:28px;left:28px;display:flex;justify-content:space-between;align-items:center;
+.hero-meta{position:absolute;z-index:3;top:112px;right:24px;left:24px;display:flex;justify-content:space-between;align-items:center;
   color:#F7DFA4;pointer-events:none}
 .hero-meta .hm-logo{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-size:11px;font-weight:800}
 .hero-meta .hm-logo img{position:static;width:30px;height:30px;object-fit:cover;border-radius:10px;border:1px solid rgba(232,190,108,.42);
@@ -1971,6 +1980,7 @@ function giftWizardHTML(){
 /* ================= العرض والربط ================= */
 function render(){
  const scr=$('#screens');
+ const appShell=document.querySelector('.app');
  let html='';
  if(S.giftWizard)html=giftWizardHTML();
  else if(S.bookWizard)html=wizardHTML();
@@ -1979,6 +1989,7 @@ function render(){
  else if(S.tab==='cart')html=cartHTML();
  else if(S.tab==='bookings')html=bookingsHTML();
  else html=accountHTML();
+ if(appShell)appShell.classList.toggle('home-shell',S.tab==='home'&&!S.svPage&&!S.bookWizard&&!S.giftWizard);
  scr.innerHTML=`<div class="screen on">${html}</div>`;
  /* الشريط اللاصق */
  let bar=$('#bookbar');
