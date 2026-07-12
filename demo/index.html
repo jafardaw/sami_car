@@ -702,6 +702,104 @@ body.home-redesign{background:#FBFAF6;color:#17130D}
 .branch-choice img{width:96px;height:72px;border-radius:14px;object-fit:cover;background:#21170D}.branch-choice b{font-family:var(--font-d);font-size:15px;color:var(--ink)}.branch-choice small{display:block;color:#7d745f;font-size:11.5px;line-height:1.55;margin-top:3px}
 .branch-choice .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.branch-choice .meta span{font-size:10px;color:var(--gold-deep);background:#FBFAF6;border:1px solid rgba(143,113,52,.22);border-radius:999px;padding:5px 8px}.branch-choice .check{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--gold-deep);border:1px solid rgba(206,146,52,.3);background:#fff;font-weight:900}
 
+/* ===== نافذة نقاط الولاء ===== */
+.loyalty-modal-ov {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(10, 9, 6, 0.75);
+  backdrop-filter: blur(8px);
+  display: grid; place-items: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.loyalty-modal-ov.open {
+  opacity: 1; pointer-events: auto;
+}
+.loyalty-modal-card {
+  width: min(600px, 94%);
+  background: linear-gradient(155deg, #1C1811, #0A0906);
+  border: 1px solid var(--gold);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(20px);
+  transition: transform 0.3s var(--ease);
+  color: var(--ivory);
+  text-align: right;
+  direction: rtl;
+}
+.loyalty-modal-ov.open .loyalty-modal-card {
+  transform: translateY(0);
+}
+.loyalty-modal-head {
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 20px;
+}
+.loyalty-modal-head h3 {
+  font-family: var(--font-d); font-size: 22px; color: var(--gold-bright); margin: 0;
+}
+.loyalty-modal-close {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--line); display: grid; place-items: center;
+  color: var(--smoke); transition: var(--dur); cursor: pointer; background: none;
+}
+.loyalty-modal-close:hover {
+  border-color: var(--gold); color: var(--gold-bright);
+}
+.loyalty-status {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px; margin-bottom: 24px;
+}
+.loyalty-status-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px;
+}
+.loyalty-status-row b {
+  font-family: var(--font-d); font-size: 26px; color: var(--gold-bright);
+}
+.loyalty-status-row span {
+  font-size: 13px; color: var(--smoke);
+}
+.loyalty-lvl-badge {
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep));
+  color: var(--ink); padding: 5px 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 700;
+}
+.loyalty-progress-bar {
+  height: 6px; background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px; overflow: hidden; margin: 8px 0;
+}
+.loyalty-progress-bar i {
+  display: block; height: 100%; width: 62%;
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
+}
+.loyalty-methods-grid {
+  display: grid; grid-template-columns: 1fr; gap: 12px;
+  max-height: 240px; overflow-y: auto; padding-inline-end: 6px;
+}
+.loyalty-methods-grid::-webkit-scrollbar {
+  width: 4px;
+}
+.loyalty-methods-grid::-webkit-scrollbar-thumb {
+  background: var(--gold-deep); border-radius: 2px;
+}
+.loyalty-method-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px; border: 1px solid var(--line);
+  border-radius: 14px; background: rgba(255, 255, 255, 0.01);
+}
+.loyalty-method-item .ic {
+  flex: none; width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(198, 161, 91, 0.08); border: 1px solid var(--line);
+  color: var(--gold-bright); display: grid; place-items: center;
+}
+.loyalty-method-item b {
+  display: block; font-size: 14px; color: var(--champagne); margin-bottom: 2px;
+}
+.loyalty-method-item p {
+  font-size: 11.5px; color: var(--smoke); line-height: 1.5; font-weight: 300; margin: 0;
+}
 </style>
 </head>
 <body class="home-redesign">
@@ -720,10 +818,10 @@ body.home-redesign{background:#FBFAF6;color:#17130D}
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span id="siteLocLabel">جدة</span>
       </button>
-      <a class="btn btn-ghost" href="#" style="padding:11px 22px;font-size:13.5px">
+      <button class="btn btn-ghost" id="loyaltyHeaderBtn" style="padding:11px 22px;font-size:13.5px">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7s-2-5-5-5-3 5 0 5h5zM12 7s2-5 5-5 3 5 0 5h-5z"/></svg>
         نقاط الولاء
-      </a>
+      </button>
       <span class="account-entry">
         <button class="account-trigger" aria-label="حسابي والهدايا المستلمة">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -1458,7 +1556,80 @@ if (fortuneBtn && fortuneWheel && fortuneResult) {
     }, 3900);
   });
 }
+
+/* ربط نافذة نقاط الولاء */
+const lBtn = document.getElementById('loyaltyHeaderBtn');
+const lOv = document.getElementById('loyaltyModalOv');
+const lClose = document.getElementById('loyaltyModalClose');
+if (lBtn && lOv && lClose) {
+  lBtn.addEventListener('click', () => lOv.classList.add('open'));
+  lClose.addEventListener('click', () => lOv.classList.remove('open'));
+  lOv.addEventListener('click', e => { if (e.target === lOv) lOv.classList.remove('open'); });
+}
 })();
 </script>
+
+<!-- نافذة نقاط الولاء التفاعلية -->
+<div class="loyalty-modal-ov" id="loyaltyModalOv">
+  <div class="loyalty-modal-card">
+    <div class="loyalty-modal-head">
+      <h3>برنامج نقاط الولاء | Sami Loyalty ✨</h3>
+      <button class="loyalty-modal-close" id="loyaltyModalClose" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="loyalty-status">
+      <div class="loyalty-status-row">
+        <span>أهلاً بك، محمد عبدالله</span>
+        <span class="loyalty-lvl-badge">⭐ المستوى الذهبي</span>
+      </div>
+      <div class="loyalty-status-row" style="margin-bottom: 8px;">
+        <span>رصيدك الحالي</span>
+        <b>2,450 <span style="font-size: 16px; color: var(--gold-bright);">نقطة</span></b>
+      </div>
+      <div class="loyalty-progress-bar"><i></i></div>
+      <div class="loyalty-status-row" style="margin-top: 6px; margin-bottom: 0;">
+        <span style="font-size: 11px;">متبقي 1,550 نقطة للترقية للمستوى البلاتيني</span>
+        <span style="font-size: 11px; color: var(--gold-bright);">قيمة الخصم المتاحة: 49 ر.س</span>
+      </div>
+    </div>
+    <h4 style="font-family: var(--font-d); font-size: 15px; color: var(--gold-bright); margin-bottom: 12px;">كيف يمكنك كسب النقاط?</h4>
+    <div class="loyalty-methods-grid">
+      <div class="loyalty-method-item">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+        <div>
+          <b>الحجوزات المتكررة</b>
+          <p>اكسب 50 نقطة أساسية عن كل حجز، بالإضافة لبونص 100 نقطة عند إتمام 5 حجوزات متتالية.</p>
+        </div>
+      </div>
+      <div class="loyalty-method-item">
+        <span class="ic">🌿</span>
+        <div>
+          <b>حجوزات أوقات الهدوء</b>
+          <p>اكسب 50 نقطة إضافية عند اختيار أوقات الصباح أو الأيام التي يقل فيها الضغط (المميزة بـ 🌿) لدعم أوقات الهدوء.</p>
+        </div>
+      </div>
+      <div class="loyalty-method-item">
+        <span class="ic">✨</span>
+        <div>
+          <b>أوقات الذكاء الاصطناعي المقترحة</b>
+          <p>اكسب 40 نقطة إضافية عند قبول المواعيد التي يقترحها النظام ذكياً لتسريع الخدمة وتقليل انتظارك.</p>
+        </div>
+      </div>
+      <div class="loyalty-method-item">
+        <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg></span>
+        <div>
+          <b>الشراء من المتجر الإلكتروني</b>
+          <p>اكسب نقطة واحدة مقابل كل 2 ريال تنفقها عند شراء منتجات العناية بالشعر والبشرة من متجرنا.</p>
+        </div>
+      </div>
+      <div class="loyalty-method-item">
+        <span class="ic">🔗</span>
+        <div>
+          <b>نظام الإحالات والمشاركة</b>
+          <p>شارك رابطك الخاص مع أصدقائك، واحصلا معاً على 150 نقطة عند إتمام صديقك لحجزه الأول.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -893,6 +893,7 @@ const WHEEL=[
 /* ================= الحالة ================= */
 const S={
  tab:'home', svPage:false, svFlt:'hot', storeCat:'all',
+ loyaltyPoints: 2450, bookEarnedPoints: 50,
  currentBranch:null,
  svSel:null, svExtras:new Set(), barOpen:false,
  cart:new Map(), favs:new Set(),
@@ -1097,6 +1098,60 @@ function svTotal(){
  S.svExtras.forEach(id=>t+=EXTRAS.find(e=>e.id===id).pr);
  return t;
 }
+function openLoyaltySheet(){
+ const ui=ensureBottomSheet();
+ ui.body.innerHTML=`<div class="bs-head" style="text-align:center;margin-bottom:14px">
+   <h3 style="font-family:var(--fd);font-size:18px;color:var(--org-d);margin:0">برنامج نقاط الولاء | Sami Loyalty ✨</h3>
+   <p style="font-size:12px;color:var(--mute);margin-top:4px;margin-bottom:0">تتبع رصيدك، وانجز التحديات واكسب المزيد من النقاط والمكافآت</p>
+  </div>
+  <div class="pts-box" style="margin-bottom:16px;background:rgba(206,146,52,.05);padding:14px;border-radius:12px;border:1px solid var(--line);text-align:right">
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:12.5px;color:var(--mute)">رصيدك الحالي</span>
+    <span style="font-size:11px;font-weight:700;color:var(--org-d);background:rgba(206,146,52,.1);padding:4px 10px;border-radius:999px">⭐ المستوى الذهبي</span>
+   </div>
+   <b style="font-size:24px;color:var(--org-d);font-family:var(--fd)">${rs(S.loyaltyPoints)} <span style="font-size:14px;font-family:var(--fb)">نقطة</span></b>
+   <div style="height:6px;background:rgba(0,0,0,.06);border-radius:3px;margin:10px 0 6px;overflow:hidden">
+    <div style="width:62%;height:100%;background:linear-gradient(90deg,var(--org-d),var(--gold))"></div>
+   </div>
+   <span style="font-size:10.5px;color:var(--mute)">باقي 1,550 نقطة للترقية للمستوى البلاتيني والحصول على مزايا مضاعفة</span>
+  </div>
+  <h4 style="font-family:var(--fd);font-size:14px;color:var(--ink);margin-bottom:10px;text-align:right">🏆 تحديات كسب النقاط النشطة</h4>
+  <div style="display:grid;gap:8px;max-height:160px;overflow-y:auto;margin-bottom:18px;text-align:right">
+   <div style="display:flex;gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff">
+    <span style="font-size:20px;line-height:1">💇‍♂️</span>
+    <div style="flex:1">
+     <b style="font-size:12px;color:var(--ink);display:block">تحدي الحلاقة الدورية (2/3)</b>
+     <p style="font-size:10.5px;color:var(--mute);margin-top:2px;margin-bottom:0">احجز 3 مرات هذا الشهر لتحصل على 150 نقطة بونص.</p>
+    </div>
+   </div>
+   <div style="display:flex;gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff">
+    <span style="font-size:20px;line-height:1">🌿</span>
+    <div style="flex:1">
+     <b style="font-size:12px;color:var(--ink);display:block">حجوزات أوقات الهدوء</b>
+     <p style="font-size:10.5px;color:var(--mute);margin-top:2px;margin-bottom:0">احجز موعداً في الفترة الصباحية (قبل 12 م) واكسب 50 نقطة بونص.</p>
+    </div>
+   </div>
+   <div style="display:flex;gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff">
+    <span style="font-size:20px;line-height:1">✨</span>
+    <div style="flex:1">
+     <b style="font-size:12px;color:var(--ink);display:block">الأوقات الموصى بها ذكياً</b>
+     <p style="font-size:10.5px;color:var(--mute);margin-top:2px;margin-bottom:0">اقبل وقت الجلسة المقترح تلقائياً من النظام لتحصل على 40 نقطة إضافية.</p>
+    </div>
+   </div>
+  </div>
+  <h4 style="font-family:var(--fd);font-size:14px;color:var(--ink);margin-bottom:10px;text-align:right">📜 سجل العمليات الأخيرة</h4>
+  <div style="display:grid;gap:6px;max-height:120px;overflow-y:auto;margin-bottom:18px;text-align:right;font-size:11.5px;border-top:1px dashed var(--line);padding-top:10px">
+   <div style="display:flex;justify-content:space-between;padding:4px 0"><span>🎉 دوران عجلة الحظ</span><b style="color:var(--green)">+150 نقطة</b></div>
+   <div style="display:flex;justify-content:space-between;padding:4px 0"><span>🌿 حجز موعد (ساعات الهدوء)</span><b style="color:var(--green)">+100 نقطة</b></div>
+   <div style="display:flex;justify-content:space-between;padding:4px 0"><span>💳 استبدال نقاط (حسم 10 ر.س)</span><b style="color:var(--org-d)">-500 نقطة</b></div>
+   <div style="display:flex;justify-content:space-between;padding:4px 0"><span>✂️ حجز موعد أساسي</span><b style="color:var(--green)">+50 نقطة</b></div>
+  </div>
+  <div class="bs-actions">
+   <button class="btn btn-lite" id="bsClose" style="width:100%">إغلاق</button>
+  </div>`;
+ ui.ov.classList.add('on');ui.sheet.classList.add('on');
+ $('#bsClose').addEventListener('click',closeBottomSheet);
+}
 
 /* ================= شاشة الرئيسية ================= */
 function wheelSVG(){
@@ -1232,8 +1287,8 @@ function homeHTML(){
   <div class="rw-c rw-dark">
    <h4>${svg('<path d="M8 21h8m-4-4v4M17 4H7v5a5 5 0 0010 0z"/><path d="M5 4H3v3a4 4 0 004 4M19 4h2v3a4 4 0 01-4 4"/>',14)} نقاط الولاء</h4>
    <p>اجمع النقاط من الحجز والمشاركة واستبدلها بمزايا وخدمات فاخرة</p>
-   <div class="pts-box"><small>رصيدك الحالي</small><b>2,450 ✦</b><span class="lvl">المستوى الذهبي</span><span class="bar"><i></i></span><span class="nxt">1,550 نقطة للمستوى التالي</span></div>
-   <button class="btn" data-go="account">${svg('<path d="M15 6l-6 6 6 6"/>',13)} عرض نقاطي</button>
+   <div class="pts-box"><small>رصيدك الحالي</small><b>${rs(S.loyaltyPoints)} ✦</b><span class="lvl">المستوى الذهبي</span><span class="bar"><i></i></span><span class="nxt">1,550 نقطة للمستوى التالي</span></div>
+   <button class="btn" data-go="loyalty">${svg('<path d="M15 6l-6 6 6 6"/>',13)} عرض نقاطي</button>
   </div>
  </div>
  <section class="sec">
@@ -1464,17 +1519,17 @@ function accountHTML(){
  <div class="acc-hero">
   <span class="av2">م</span>
   <span><b>محمد عبدالله</b><small>+966 50 123 4567</small><small style="color:var(--gold)">⭐ المستوى الذهبي</small></span>
-  <span class="pts"><b>2,450</b><small>نقطة ولاء</small></span>
+  <span class="pts"><b>${rs(S.loyaltyPoints)}</b><small>نقطة ولاء</small></span>
  </div>
  <div class="rw-c rw-dark" style="margin:14px 16px 0">
   <h4>${svg('<path d="M8 21h8m-4-4v4M17 4H7v5a5 5 0 0010 0z"/>',14)} نقاطي</h4>
   <p>رصيد نقاط الولاء والمكافآت محفوظ هنا داخل ملفاتي بدل الصفحة الرئيسية.</p>
-  <div class="pts-box"><small>رصيد نقاطك الحالي</small><b>2,450 ✦</b>
+  <div class="pts-box"><small>رصيد نقاطك الحالي</small><b>${rs(S.loyaltyPoints)} ✦</b>
    <span class="lvl">المستوى الذهبي</span><span class="bar"><i></i></span>
    <span class="nxt">إلى المستوى التالي: 1,550 نقطة</span></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
-   <button class="btn btn-org" style="min-height:42px;padding:10px;font-size:12px">استبدال النقاط</button>
-   <button class="btn btn-line" style="min-height:42px;padding:10px;font-size:12px">سجل النقاط</button>
+   <button class="btn btn-org" id="appRedeemPoints" style="min-height:42px;padding:10px;font-size:12px">استبدال النقاط</button>
+   <button class="btn btn-line" id="appPointsLog" style="min-height:42px;padding:10px;font-size:12px">سجل النقاط</button>
   </div>
  </div>
  <button class="received-gift-card" data-go-url="gift-recipient/">
@@ -1485,7 +1540,7 @@ function accountHTML(){
  <div class="menu-l">
   ${[['حجوزاتي','<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>','bookings'],
      ['المفضلة','<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',''],
-     ['نقاط الولاء والمكافآت','<path d="M8 21h8m-4-4v4M17 4H7v5a5 5 0 0010 0z"/>',''],
+     ['نقاط الولاء والمكافآت','<path d="M8 21h8m-4-4v4M17 4H7v5a5 5 0 0010 0z"/>','loyalty'],
      ['العناوين المحفوظة','<path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',''],
      ['الدعم والمساعدة','<path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>',''],
      ['تسجيل الخروج','<path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>','']]
@@ -1646,13 +1701,19 @@ function wizDateTimeHTML() {
         </div>
       `).join('')}
     </div>
-    <div class="pg-head" style="padding:0; margin-top:10px"><h3>🕐 الأوقات المتاحة</h3></div>
     <div class="w-slots-grid">
-      ${slots.map(s => `
-        <div class="w-slot ${S.bookTime === s.t ? 'sel' : ''}" data-w-slot="${s.t}">
-          ${s.s}
-        </div>
-      `).join('')}
+      ${slots.map((s, idx) => {
+        let tag = '';
+        const h = s.t/60;
+        if (h < 12) tag = '🌿 هدوء';
+        else if (idx === 3 || idx === 4) tag = '✨ مقترح';
+        return `
+          <div class="w-slot ${S.bookTime === s.t ? 'sel' : ''}" data-w-slot="${s.t}" style="position:relative">
+            ${tag ? `<span style="position:absolute;top:-6px;right:6px;font-size:7px;background:var(--org);color:#fff;padding:2px 4px;border-radius:4px;line-height:1;transform:scale(0.85);">${tag}</span>` : ''}
+            ${s.s}
+          </div>
+        `;
+      }).join('')}
     </div>
     ${timelineHtml}
   `;
@@ -1794,7 +1855,15 @@ function bMiniSummary(){
   <div class="row"><span>الفرع</span><b>${br?br.name:'لم يحدد'}</b></div>
   <div class="row"><span>الخدمات</span><b>${S.bookServices.size||0}</b></div>
   <div class="row"><span>المدة</span><b>${bFmtDur(bTotalDur())}</b></div>
-  <div class="row"><span>الإجمالي</span><b>${rs(p.total)} ر.س</b></div>
+   </div>
+   <div class="m-card m-detail" style="background:rgba(206,146,52,0.06); border:1px solid var(--org); text-align:right">
+    <h4 style="color:var(--org-d)">✨ مكافأة نقاط الولاء لهذه الجلسة</h4>
+    <div style="font-size:11.5px; line-height:1.6; color:var(--mute); padding:4px 0">
+      ستحصل على <b>${S.bookEarnedPoints || 50} نقطة ولاء</b> عند إتمام هذا الحجز.
+      ${(S.bookEarnedPoints || 50) > 50 ? `(بونص ${(S.bookTime/60 < 12)? 'ساعة الهدوء 🌿' : 'الموعد الموصى به ✨'})` : '}
+      <br><span style="color:var(--org-d); font-weight:700;">يتبقى حجز واحد لك للحصول على 100 نقطة ولاء بونص!</span>
+    </div>
+   </div>
  </div>`;
 }
 function wizBranchHTML(){
@@ -1843,7 +1912,20 @@ function wizDateTimeHTML(){
  let slots='',plan='';
  if(S.bookDate){
   const all=bSlotsForDay(S.bookDate).filter(s=>{const h=s.t/60;return S.bookPeriod==='all'||(S.bookPeriod==='am'&&h<12)||(S.bookPeriod==='pm'&&h>=12&&h<17)||(S.bookPeriod==='eve'&&h>=17)});
-  slots=all.map(s=>`<button class="m-slot ${S.bookTime===s.t?'sel':''}" data-w-slot="${s.t}" ${s.busy?'disabled':''}>${fmtWizTime(s.t)}</button>`).join('');
+  slots=all.map((s,i)=>{
+    let tag = '';
+    if (!s.busy) {
+      const h=s.t/60;
+      if (h<12) {
+        tag = '🌿 هدوء';
+      } else if (i === 3 || i === 4) {
+        tag = '✨ مقترح';
+      }
+    }
+    return`<button class="m-slot ${S.bookTime===s.t?'sel':''}" data-w-slot="${s.t}" ${s.busy?'disabled':''} style="position:relative">
+      ${tag?`<span style="position:absolute;top:-6px;right:6px;font-size:7px;background:var(--org);color:#fff;padding:2px 4px;border-radius:4px;line-height:1;transform:scale(0.85);">${tag}</span>`:''}
+      ${fmtWizTime(s.t)}</button>`;
+   }).join('');
   if(S.bookTime!=null){const ses=bBuildSession(S.bookTime);plan=`<div class="m-plan">${ses.items.map(it=>it.isBreak?`<div class="m-coffee-break"><span class="cup">☕</span><span>${fmtWizTime(it.start)} - ${fmtWizTime(it.end)}</span></div>`:`<div class="m-plan-item" style="border-color:${it.cat.hex}55;background:${it.cat.hex}10"><b>${it.cat.emoji} ${it.svc.name}</b><small>مع ${it.emp}</small><span class="t">${fmtWizTime(it.start)} - ${fmtWizTime(it.end)}</span><small>${it.svc.dur} دقيقة</small></div>`).join('')}<div class="m-secure">✓ نهاية الجلسة المتوقعة ${fmtWizTime(ses.end)}</div></div>`}
  }
  return`<div class="m-panel-title"><h1>اختر الوقت المناسب لك</h1><p>كل وقت ظاهر يمكن تنفيذ جلستك فيه بالكامل حسب مدة الخدمات وتوفر الموظفين</p></div>
@@ -1870,7 +1952,7 @@ function wizPaymentHTML(){
  return`<div class="m-panel-title"><h1>الدفع</h1><p>اختر طريقة الدفع المناسبة وأكمل حجزك بأمان</p></div>
  <div class="m-stack">${B_PAY_METHODS.map(m=>`<button class="m-pay ${S.bookPay===m.id?'sel':''}" data-w-pay="${m.id}"><span class="logo">${m.logo}</span><span><b>${m.n}</b><small>${m.d}</small></span><span style="margin-inline-start:auto;color:var(--org)">${S.bookPay===m.id?'✓':''}</span></button>`).join('')}</div>
  <div class="m-card m-detail" style="margin-top:12px"><h4>العروض والمكافآت</h4>
-  <button class="m-pay ${S.bookUsePoints?'sel':''}" id="wbPoints"><span class="logo">★</span><span><b>استخدام نقاط الولاء</b><small>2450 نقطة - خصم 50 ر.س</small></span></button>
+  <button class="m-pay ${S.bookUsePoints?'sel':''}" id="wbPoints"><span class="logo">★</span><span><b>استخدام نقاط الولاء</b><small>${rs(S.loyaltyPoints)} نقطة - خصم 50 ر.س</small></span></button>
   <button class="m-pay ${S.bookUseWallet?'sel':''}" id="wbWallet"><span class="logo">👛</span><span><b>استخدام المحفظة</b><small>خصم 120 ر.س من الرصيد</small></span></button>
   <div class="m-field"><small>كود الخصم</small><input id="wbCoupon" placeholder="جرّب SAMI25" value="${S.bookCouponCode}"></div><button class="m-pick" id="wbCouponBtn">تطبيق الكود</button>
  </div>
@@ -2316,7 +2398,9 @@ function bind(){
          branch: bBranch().name,
          team: ses.emps.join('، ')
        });
-       S.bookDone = true;
+        if (S.bookUsePoints) S.loyaltyPoints = Math.max(0, S.loyaltyPoints - 500);
+        S.loyaltyPoints += (S.bookEarnedPoints || 50);
+        S.bookDone = true;
        render();
        scrollAppTop();
        toast('تم تأكيد حجزك وتثبيته بنجاح');
@@ -2365,7 +2449,13 @@ function bind(){
      render();
    }));
    $$('[data-w-slot]').forEach(el => el.addEventListener('click', () => {
-     S.bookTime = parseInt(el.dataset.wSlot);
+      S.bookTime = parseInt(el.dataset.wSlot);
+      const h = S.bookTime / 60;
+      let earned = 50;
+      const idx = [...el.parentNode.children].indexOf(el);
+      if (h < 12) earned += 50;
+      else if (idx === 3 || idx === 4) earned += 40;
+      S.bookEarnedPoints = earned;
      render();
    }));
    const quick=$('[data-w-quick]');
@@ -2395,7 +2485,10 @@ function bind(){
  $$('[data-go]').forEach(el=>el.addEventListener('click',e=>{
   e.stopPropagation();
   const g=el.dataset.go;
-  if(g==='services'){S.tab='home';S.svPage=true;render();scrollTo({top:0,behavior:'smooth'})}
+   const arp=$("#appRedeemPoints");if(arp)arp.addEventListener("click",openLoyaltySheet);
+   const apl=$("#appPointsLog");if(apl)apl.addEventListener("click",openLoyaltySheet);
+   if(g==="loyalty"){openLoyaltySheet();return}
+   if(g==='services'){S.tab='home';S.svPage=true;render();scrollTo({top:0,behavior:'smooth'})}
   else if(g==='book'){
    S.bookWizard=true;S.bookDone=false;S.bookStep=1;
    render();scrollTo({top:0,behavior:'smooth'});
@@ -2484,7 +2577,14 @@ function bind(){
    $('#wheelSvg').style.transform=`rotate(${S.wheelDeg}deg)`;
    setTimeout(()=>{
     S.spinning=false;sp.disabled=false;
-    toast('مبروك! ربحت: '+WHEEL[win].n+' 🎉','<path d="M12 2l2.2 4.9 5.3.6-4 3.7 1.1 5.3L12 13.9 7.4 16.5l1.1-5.3-4-3.7 5.3-.6z"/>');
+     const prize = WHEEL[win].n;
+     if (prize.includes("نقطة")) {
+       const pts = parseInt(prize) || 50;
+       S.loyaltyPoints += pts;
+     }
+     toast("مبروك! ربحت: "+prize+" 🎉",'<path d="M12 2l2.2 4.9 5.3.6-4 3.7 1.1 5.3L12 13.9 7.4 16.5l1.1-5.3-4-3.7 5.3-.6z"/>');
+     render();
+    },3700);
    },3700);
   });
  }

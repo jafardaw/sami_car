@@ -782,6 +782,7 @@ const S={
  upsell:new Set(), notes:'',
  cust:{name:'محمد عبدالله',phone:'+966 50 123 4567',mail:'mohammed@gmail.com'},
  pay:null, usePoints:false, pointsVal:500, useWallet:false, walletVal:120, coupon:0, couponCode:'',
+ earnedPoints: 50,
  done:false, bookRef:null,
 };
 
@@ -1150,10 +1151,22 @@ function view4(){
    return S.period==='all'||(S.period==='am'&&h<12)||(S.period==='pm'&&h>=12&&h<17)||(S.period==='eve'&&h>=17);
   });
   slotsHtml=all.length?all.map((s,i)=>{
-   const tag=i===2?'الأكثر طلبًا':(i===all.length-1?'آخر موعد':'');
-   return`<button class="slot ${S.time===s.t?'sel':''}" data-t="${s.t}" ${s.busy?'disabled':''} style="animation-delay:${Math.min(i*0.03,0.4)}s">
-    ${tag&&!s.busy?`<span class="tag">${tag}</span>`:''}${fmtTime(s.t)}</button>`;
-  }).join(''):'<div class="empty-hint" style="grid-column:1/-1">لا توجد أوقات متاحة في هذه الفترة</div>';
+    let tag = '';
+    if (!s.busy) {
+      const h=s.t/60;
+      if (h<12) {
+        tag = '🌿 وقت الهدوء (+50)';
+      } else if (i === 3 || i === 4) {
+        tag = '✨ موصى به (+40)';
+      } else if (i === 2) {
+        tag = 'الأكثر طلبًا';
+      } else if (i === all.length-1) {
+        tag = 'آخر موعد';
+      }
+    }
+    return`<button class="slot ${S.time===s.t?'sel':''}" data-t="${s.t}" ${s.busy?'disabled':''} style="animation-delay:${Math.min(i*0.03,0.4)}s">
+     ${tag&&!s.busy?`<span class="tag">${tag}</span>`:''}${fmtTime(s.t)}</button>`;
+   }).join(''):'<div class="empty-hint" style="grid-column:1/-1">لا توجد أوقات متاحة في هذه الفترة</div>';
   if(S.time!=null){
    const ses=buildSession(S.time);
    plan=`<div class="session-plan">
@@ -1180,7 +1193,18 @@ function view4(){
    <div class="cell"><b>${fmtDur(totalDur())}</b>المدة الإجمالية</div>
   </div>
  </div>
- ${S.mode==='auto'?`<div class="notice"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> الأوقات الظاهرة أوقات جلسة كاملة قابلة للتنفيذ — وسيتم تنفيذ بعض الخدمات بالتوازي لتقليل وقت الانتظار</div>`:''}
+ ${S.time!=null?`
+  <div class="loyalty-earn-banner" style="background:rgba(206, 146, 52, 0.08); border:1.5px solid var(--gold); border-radius:18px; padding:16px 20px; display:flex; align-items:center; gap:14px; margin-top:20px; color:var(--ink); text-align:right; direction:rtl;">
+    <div style="font-size:24px;">✨</div>
+    <div>
+      <b style="display:block; font-size:14.5px; color:var(--gold-deep)">مكافأة نقاط الولاء لهذه الجلسة</b>
+      <small style="color:var(--mute); font-size:12px; display:block; margin-top:4px;">ستكسب <b>${S.earnedPoints || 50} نقطة ولاء</b> عند إتمام هذا الحجز.
+        ${(S.earnedPoints || 50) > 50 ? `(تتضمن نقاط إضافية لاختيار ${(S.earnedPoints === 100)? 'أوقات الهدوء 🌿' : 'الموعد الموصى به ✨'})` : ''}
+        <br><span style="color:var(--gold-deep); font-weight:600;">باقي لك حجز واحد بعد هذا الحجز للحصول على بونص 100 نقطة إضافية! 👥</span>
+      </small>
+    </div>
+  </div>`:''}
+ ${S.mode==='auto'?`<div class="notice" style="margin-top:20px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> الأوقات الظاهرة أوقات جلسة كاملة قابلة للتنفيذ — وسيتم تنفيذ بعض الخدمات بالتوازي لتقليل وقت الانتظار</div>`:''}
  <div class="time-grid">
   <div class="card cal">
    <div class="cal-head">
@@ -1218,7 +1242,14 @@ function bind4(){
  }));
  document.querySelectorAll('.period').forEach(b=>b.addEventListener('click',()=>{S.period=b.dataset.p;S.time=null;render()}));
  document.querySelectorAll('.slot').forEach(b=>b.addEventListener('click',()=>{
-  S.time=+b.dataset.t;render();
+  S.time=+b.dataset.t;
+  const tagEl = b.querySelector('.tag');
+  const tagText = tagEl ? tagEl.textContent : '';
+  let earned = 50;
+  if (tagText.includes('وقت الهدوء')) earned += 50;
+  else if (tagText.includes('موصى به')) earned += 40;
+  S.earnedPoints = earned;
+  render();
   if(S.mode==='auto')toast('تم بناء جلستك وتنسيق الفريق الأنسب تلقائيًا');
  }));
  const q=document.querySelector('[data-quick]');
@@ -1239,6 +1270,16 @@ function view5(){
    <div class="d-cell"><small>📅 التاريخ</small><b>${AR_DAYS[S.date.getDay()]} ${S.date.getDate()} ${AR_MONTHS[S.date.getMonth()]} ${S.date.getFullYear()}</b></div>
    <div class="d-cell"><small>🕐 وقت الحجز</small><b>${fmtTime(S.time)}</b></div>
    <div class="d-cell"><small>⏱️ مدة الجلسة</small><b>${fmtDur(totalDur())}</b></div>
+  </div>
+ </div>
+ <div class="loyalty-earn-banner" style="background:rgba(206, 146, 52, 0.08); border:1.5px solid var(--gold); border-radius:18px; padding:16px 20px; display:flex; align-items:center; gap:14px; margin-top:20px; color:var(--ink); text-align:right; direction:rtl;">
+  <div style="font-size:24px;">✨</div>
+  <div>
+    <b style="display:block; font-size:14.5px; color:var(--gold-deep)">مكافأة نقاط الولاء لهذه الجلسة</b>
+    <small style="color:var(--mute); font-size:12px; display:block; margin-top:4px;">ستكسب <b>${S.earnedPoints || 50} نقطة ولاء</b> عند إتمام هذا الحجز.
+      ${(S.earnedPoints || 50) > 50 ? `(تتضمن نقاط إضافية لاختيار ${(S.earnedPoints === 100)? 'أوقات الهدوء 🌿' : 'الموعد الموصى به ✨'})` : ''}
+      <br><span style="color:var(--gold-deep); font-weight:600;">باقي لك حجز واحد بعد هذا الحجز للحصول على بونص 100 نقطة إضافية! 👥</span>
+    </small>
   </div>
  </div>
  <div class="card detail-card">
