@@ -286,7 +286,7 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
         <b></b>
         <b></b><small>SAMI CARE</small>
       </div>
-      <button class="loc" id="locBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> جدة <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="loc" id="locBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span id="locLabel">جدة</span> <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
       <button class="burger" aria-label="القائمة"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     </div>
   </header>
@@ -444,6 +444,18 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .bs-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .bs-actions .btn{min-height:46px}
 .bs-actions .added{background:linear-gradient(135deg,#1E6B41,#2E8B57)!important;color:#fff!important}
+.branch-sheet{display:grid;gap:10px}
+.branch-sheet-head{text-align:center;margin-bottom:4px}
+.branch-sheet-head h3{font-family:var(--fd);font-size:20px;color:var(--ink)}
+.branch-sheet-head p{font-size:12px;color:var(--mute);line-height:1.8;margin-top:5px}
+.branch-choice{display:grid;grid-template-columns:76px 1fr auto;gap:11px;align-items:center;padding:10px;border-radius:18px;border:1.5px solid var(--line);background:#fff;text-align:right;box-shadow:0 10px 22px -20px rgba(80,50,20,.35)}
+.branch-choice.sel{border-color:var(--org);background:#FFF9EE;box-shadow:0 14px 26px -20px rgba(206,146,52,.75)}
+.branch-choice img{width:76px;height:66px;border-radius:14px;object-fit:cover;background:#21170D}
+.branch-choice b{font-family:var(--fd);font-size:14px;color:var(--ink)}
+.branch-choice small{display:block;color:var(--mute);font-size:10.5px;line-height:1.55;margin-top:2px}
+.branch-choice .meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.branch-choice .meta span{font-size:9.5px;color:var(--org-d);background:#FBFAF6;border:1px solid var(--line);border-radius:999px;padding:4px 7px}
+.branch-choice .check{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:var(--org);border:1px solid rgba(206,146,52,.28);background:#fff;font-weight:900}
 @media(max-width:390px){.bs-hero{grid-template-columns:1fr}.bs-img{height:145px}.bs-actions{grid-template-columns:1fr}}
 .rw-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
 .loyalty-mark{width:34px;height:34px;border-radius:12px;display:inline-grid;place-items:center;margin-inline-start:8px;color:#1B140D;background:linear-gradient(135deg,#F7DFA4,#CE9234);box-shadow:0 12px 22px -13px rgba(206,146,52,.8);vertical-align:middle}
@@ -810,6 +822,7 @@ const WHEEL=[
 /* ================= الحالة ================= */
 const S={
  tab:'home', svPage:false, svFlt:'hot',
+ currentBranch:null,
  svSel:null, svExtras:new Set(), barOpen:false,
  cart:new Map(), favs:new Set(),
  bookings:[], heroI:0, offerI:0, tstI:0,
@@ -926,6 +939,48 @@ function ensureBottomSheet(){
   ov.addEventListener('click',closeBottomSheet);
  }
  return {ov,sheet,body:$('#bsBody')};
+}
+function branchLabel(id){
+ const b=B_BRANCHES.find(x=>x.id===id);
+ if(!b)return'جدة';
+ if(b.home)return'منزلي';
+ return b.id==='qr'?'جدة قريش':'جدة البغدادية';
+}
+function syncBranchHeader(){
+ const el=$('#locLabel');
+ if(el)el.textContent=branchLabel(S.currentBranch);
+}
+function pickBranch(id,ctx){
+ S.currentBranch=id;
+ S.bookBranch=id;
+ S.bookDate=null;
+ S.bookTime=null;
+ syncBranchHeader();
+ closeBottomSheet();
+ if(ctx==='booking'){
+  S.bookStep=2;
+  render();
+  scrollAppTop();
+  toast('تم اختيار '+branchLabel(id)+' — اختر خدماتك الآن');
+ }else{
+  render();
+  toast('تم تغيير الفرع إلى '+branchLabel(id));
+ }
+}
+function openBranchSheet(ctx){
+ const ui=ensureBottomSheet();
+ ui.body.innerHTML=`<div class="branch-sheet">
+  <div class="branch-sheet-head"><h3>اختر موقع الخدمة</h3><p>اختر الفرع المناسب أو الخدمة المنزلية، وسنستخدم اختيارك في الحجز والتصفح.</p></div>
+  ${B_BRANCHES.map(b=>`<button class="branch-choice ${S.currentBranch===b.id||S.bookBranch===b.id?'sel':''}" data-bs-branch="${b.id}">
+   <img src="${b.img}" alt="${b.name}">
+   <span><b>${b.home?'خدمة منزلية':b.name}</b><small>${b.addr}</small>
+    <span class="meta"><span>⭐ ${b.rate}</span><span>${b.hours}</span><span>${b.home?'VIP في منزلك':'متاح الآن'}</span></span>
+   </span>
+   <span class="check">${S.currentBranch===b.id||S.bookBranch===b.id?'✓':'+'}</span>
+  </button>`).join('')}
+ </div>`;
+ ui.ov.classList.add('on');ui.sheet.classList.add('on');
+ $$('[data-bs-branch]').forEach(el=>el.addEventListener('click',()=>pickBranch(el.dataset.bsBranch,ctx)));
 }
 function openProductSheet(id){
  const p=PRODUCTS.find(x=>x.id===id),inCart=S.cart.has(id);
@@ -1301,7 +1356,7 @@ function bookingsHTML(){
    <div class="bb2">
     <span>${svg('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',13)} ${b.date}</span>
     <span>${svg('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',13)} ${b.time} — ${b.dur} دقيقة</span>
-    <span>${svg('<path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',13)} فرع البوادي</span>
+    <span>${svg('<path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>',13)} ${b.branch}</span>
     <span>${svg('<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',13)} ${rs(b.total)} ريال</span>
    </div>
   </div>`).join('')}`;
@@ -1645,13 +1700,16 @@ function bMiniSummary(){
  </div>`;
 }
 function wizBranchHTML(){
- return`<div class="m-panel-title"><h1>اختر المكان المناسب لك</h1><p>اختر بين فروعنا المنتشرة أو اطلب خدمة منزلية تصل إليك أينما كنت</p></div>
- <div class="m-stack">${B_BRANCHES.map(b=>`<article class="m-card ${S.bookBranch===b.id?'sel':''}" data-w-br="${b.id}">
-  <div class="m-branch-img"><img src="${b.img}" alt="${b.name}">${b.home?'<span class="flag">🏠 خدمة تصل إليك</span>':''}</div>
-  <div class="m-card-body"><h3>${b.name}</h3><div class="addr">📍 ${b.addr}</div>
-   <div class="m-meta"><span>⭐ ${b.rate}</span><span>متاح الآن</span><span>${b.visitors}</span><span>🕐 ${b.hours}</span></div>
-   <button class="m-pick">${S.bookBranch===b.id?'✓ تم الاختيار':(b.home?'ابدأ الحجز المنزلي':'استعرض خدمات الفرع')}</button>
-  </div></article>`).join('')}</div>`;
+ const br=bBranch();
+ return`<div class="m-panel-title"><h1>اختر موقع الخدمة</h1><p>اختيار الفرع صار من نافذة سريعة واحدة، وبعدها تكمل نفس سيناريو الحجز.</p></div>
+ <div class="m-summary-mini" style="text-align:center">
+  <b>${br?'الموقع المختار: '+branchLabel(br.id):'لم يتم اختيار موقع الخدمة بعد'}</b>
+  <span>${br?br.addr:'اضغط الزر لاختيار فرع قريش أو البغدادية أو الخدمة المنزلية'}</span>
+ </div>
+ <button class="m-card m-mode dark" id="wizPickBranch" style="text-align:center;margin-top:12px">
+  <h3>📍 اختيار الفرع أو الخدمة المنزلية</h3>
+  <p>تظهر لك نفس نافذة الفروع المختصرة، وعند الاختيار ننتقل مباشرة إلى الخدمات.</p>
+ </button>`;
 }
 function wizServiceHTML(){
  const br=bBranch();
@@ -2170,11 +2228,8 @@ function bind(){
      }
    });
 
-   // Step 1: Branch Select
-   $$('[data-w-br]').forEach(el => el.addEventListener('click', () => {
-     S.bookBranch = el.dataset.wBr;
-     render();
-   }));
+   const pickBranchBtn=$('#wizPickBranch');
+   if(pickBranchBtn)pickBranchBtn.addEventListener('click',()=>openBranchSheet('booking'));
 
    $$('[data-w-cat]').forEach(el => el.addEventListener('click', () => {
      const id=el.dataset.wCat;
@@ -2245,6 +2300,7 @@ function bind(){
   else if(g==='book'){
    S.bookWizard=true;S.bookDone=false;S.bookStep=1;
    render();scrollTo({top:0,behavior:'smooth'});
+   setTimeout(()=>openBranchSheet('booking'),80);
   }
   else if(g==='gift'){
    S.giftWizard=true;S.giftDone=false;S.giftStep=1;
@@ -2349,14 +2405,14 @@ function bind(){
  if(bbGo)bbGo.addEventListener('click',()=>{
   const c=CUTS.find(x=>x.id===S.svSel);
   const map={vip:'s4',classic:'s1',beard:'s2',kids:'s1'};
-  S.bookWizard=true;S.bookDone=false;S.bookStep=1;
+ S.bookWizard=true;S.bookDone=false;S.bookStep=1;
   S.bookServices=new Set(map[c.id]?[map[c.id]]:[]);
   S.bookOpenCats=new Set(['hair']);
   S.bookMode=null;S.bookEmp={};S.bookDate=null;S.bookTime=null;S.bookPay=null;
   S.svSel=null;S.svExtras.clear();S.barOpen=false;S.svPage=false;
   bSyncEmp();
   render();scrollTo({top:0,behavior:'smooth'});
-  toast('ابدأ الآن سيناريو الحجز الكامل');
+  setTimeout(()=>openBranchSheet('booking'),80);
  });
  if(S.tab==='cart'){
   $$('[data-inc]').forEach(b=>b.addEventListener('click',()=>{S.cart.set(b.dataset.inc,S.cart.get(b.dataset.inc)+1);refreshBadge();render()}));
@@ -2375,7 +2431,8 @@ function bind(){
 }
 $$('#tabbar .tab').forEach(t=>t.addEventListener('click',()=>go(t.dataset.tab)));
 $('#bellBtn').addEventListener('click',()=>toast('لديك إشعاران جديدان 🔔'));
-$('#locBtn').addEventListener('click',()=>toast('الموقع الحالي: جدة — فرعا البوادي والبغدادية'));
+$('#locBtn').addEventListener('click',()=>openBranchSheet('header'));
+syncBranchHeader();
 render();
 })();
 </script>
