@@ -633,18 +633,25 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .store-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:14px 16px}
 .store-grid .prod-m{width:auto}
 .store-page{padding-bottom:96px}
-.store-hero{position:relative;min-height:282px;margin:0 0 20px;border-radius:0 0 26px 26px;overflow:hidden;
-  background:#15100A;box-shadow:0 26px 50px -36px rgba(35,22,8,.75)}
-.store-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% center;filter:saturate(.96) contrast(1.02)}
+.store-hero{position:relative;min-height:292px;margin:0 0 22px;border-radius:0 0 30px 30px;overflow:hidden;
+  background:#15100A;box-shadow:0 30px 58px -36px rgba(35,22,8,.82),inset 0 -1px 0 rgba(255,255,255,.35)}
+.store-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% center;filter:saturate(.98) contrast(1.04)}
 .store-hero::before{content:"";position:absolute;inset:0;background:
-  linear-gradient(90deg,rgba(245,241,233,.95) 0%,rgba(245,241,233,.78) 38%,rgba(245,241,233,.2) 62%,rgba(0,0,0,.08) 100%),
-  linear-gradient(0deg,rgba(0,0,0,.2),transparent 42%)}
-.store-hero::after{content:"";position:absolute;inset:13px;border:1px solid rgba(206,146,52,.46);border-radius:22px;pointer-events:none}
-.store-hero .copy{position:relative;z-index:2;min-height:282px;padding:28px 20px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:var(--ink);max-width:58%}
-.store-hero small{font-size:11px;font-weight:800;color:var(--org);margin-bottom:8px}
-.store-hero h1{font-family:var(--fd);font-size:25px;line-height:1.35;font-weight:900;max-width:9ch;color:#2B2117}
-.store-hero p{font-size:12px;color:#5F5242;line-height:1.8;margin:10px 0 16px;max-width:22ch}
-.store-hero .btn{align-self:flex-start;min-height:40px;padding:9px 16px;font-size:11.5px;border-color:var(--org);background:rgba(255,255,255,.62);color:var(--org-d);backdrop-filter:blur(8px)}
+  radial-gradient(circle at 17% 22%,rgba(255,255,255,.92),rgba(255,255,255,.42) 21%,transparent 42%),
+  radial-gradient(circle at 53% 44%,rgba(232,190,108,.28),transparent 36%),
+  linear-gradient(90deg,rgba(248,244,236,.97) 0%,rgba(248,244,236,.84) 37%,rgba(248,244,236,.3) 64%,rgba(0,0,0,.1) 100%),
+  linear-gradient(0deg,rgba(0,0,0,.24),transparent 44%)}
+.store-hero::after{content:"";position:absolute;inset:13px;border:1px solid rgba(206,146,52,.52);border-radius:24px;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),inset 0 0 42px rgba(206,146,52,.12)}
+.store-hero .shine{position:absolute;z-index:1;top:18px;right:18px;width:72px;height:72px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,190,108,.5),transparent 68%);filter:blur(1px);opacity:.75}
+.store-hero .copy{position:relative;z-index:2;min-height:292px;padding:30px 20px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:var(--ink);max-width:60%}
+.store-hero small{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:900;color:var(--org-d);margin-bottom:10px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(206,146,52,.24);border-radius:999px;padding:7px 11px;backdrop-filter:blur(10px)}
+.store-hero h1{font-family:var(--fd);font-size:26px;line-height:1.34;font-weight:900;max-width:9ch;color:#261C12;text-shadow:0 1px 0 rgba(255,255,255,.45)}
+.store-hero p{font-size:12px;color:#584A39;line-height:1.8;margin:10px 0 16px;max-width:23ch}
+.store-hero .btn{align-self:flex-start;min-height:41px;padding:9px 17px;font-size:11.5px;border-color:rgba(151,96,21,.55);
+  background:linear-gradient(135deg,#F5D084,#BD842D);color:#1B1208;box-shadow:0 14px 26px -18px rgba(138,85,18,.8)}
 .store-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 16px 12px}
 .store-section-head h2{font-family:var(--fd);font-size:20px;color:var(--ink);position:relative}
 .store-section-head h2::after{content:"";position:absolute;right:0;bottom:-5px;width:28px;height:2px;background:var(--org);border-radius:2px}
@@ -1378,8 +1385,9 @@ function storeHTML(){
  return`<div class="store-page">
  <div class="store-hero">
   <img src="${IMG.p2}" alt="منتجات عناية سامي" loading="lazy">
+  <span class="shine"></span>
   <div class="copy">
-   <small>منتجات مختارة بعناية</small>
+   <small>${svg('<path d="M12 2l2.2 4.9 5.3.6-4 3.7 1.1 5.3L12 13.9 7.4 16.5l1.1-5.3-4-3.7 5.3-.6z"/>',11)} منتجات مختارة بعناية</small>
    <h1>لتجربة يومية استثنائية</h1>
    <p>منتجات فاخرة بجودة عالية لرجل يهتم بأدق التفاصيل.</p>
    <button class="btn btn-line" data-store-cat="all">${svg('<path d="M15 6l-6 6 6 6"/>',13)} اكتشف المجموعة</button>
