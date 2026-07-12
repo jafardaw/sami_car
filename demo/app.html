@@ -633,9 +633,26 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .store-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:14px 16px}
 .store-grid .prod-m{width:auto}
 .store-page{padding-bottom:96px}
-.store-hero{position:relative;min-height:292px;margin:0 0 22px;border-radius:0 0 30px 30px;overflow:hidden;
-  background:#15100A;box-shadow:0 30px 58px -36px rgba(35,22,8,.82),inset 0 -1px 0 rgba(255,255,255,.35)}
-.store-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% center;filter:saturate(.98) contrast(1.04)}
+.store-hero {
+  position: relative;
+  min-height: 250px;
+  margin: 16px 16px 24px; /* إضافة هوامش لجعله كارد طائر واحترافي */
+  border-radius: 24px;    /* زوايا دائرية متناسقة */
+  overflow: hidden;
+  background: linear-gradient(135deg, #1B140D 0%, #241B10 100%);
+  box-shadow: 0 20px 40px -15px rgba(36, 27, 16, 0.4);
+  border: 1px solid rgba(232, 190, 108, 0.2);
+}
+.store-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.35; /* تقليل الإضاءة لإعطاء فخامة وبروز للنص */
+  mix-blend-mode: luminosity; /* دمج احترافي للصورة مع الخلفية الداكنة */
+}
 .store-hero::before{content:"";position:absolute;inset:0;background:
   radial-gradient(circle at 17% 22%,rgba(255,255,255,.92),rgba(255,255,255,.42) 21%,transparent 42%),
   radial-gradient(circle at 53% 44%,rgba(232,190,108,.28),transparent 36%),
@@ -645,13 +662,62 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),inset 0 0 42px rgba(206,146,52,.12)}
 .store-hero .shine{position:absolute;z-index:1;top:18px;right:18px;width:72px;height:72px;border-radius:50%;
   background:radial-gradient(circle,rgba(232,190,108,.5),transparent 68%);filter:blur(1px);opacity:.75}
-.store-hero .copy{position:relative;z-index:2;min-height:292px;padding:30px 20px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;color:var(--ink);max-width:60%}
-.store-hero small{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:900;color:var(--org-d);margin-bottom:10px;
-  background:rgba(255,255,255,.72);border:1px solid rgba(206,146,52,.24);border-radius:999px;padding:7px 11px;backdrop-filter:blur(10px)}
-.store-hero h1{font-family:var(--fd);font-size:26px;line-height:1.34;font-weight:900;max-width:9ch;color:#261C12;text-shadow:0 1px 0 rgba(255,255,255,.45)}
-.store-hero p{font-size:12px;color:#584A39;line-height:1.8;margin:10px 0 16px;max-width:23ch}
-.store-hero .btn{align-self:flex-start;min-height:41px;padding:9px 17px;font-size:11.5px;border-color:rgba(151,96,21,.55);
-  background:linear-gradient(135deg,#F5D084,#BD842D);color:#1B1208;box-shadow:0 14px 26px -18px rgba(138,85,18,.8)}
+.store-hero .copy {
+  position: relative;
+  z-index: 2;
+  min-height: 250px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+  max-width: 75%; /* إعطاء مساحة مريحة للنصوص */
+}
+.store-hero small {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
+  background: rgba(232, 190, 108, 0.12);
+  border: 1px solid rgba(232, 190, 108, 0.25);
+  border-radius: 8px;
+  padding: 6px 12px;
+  backdrop-filter: blur(8px);
+}
+.store-hero h1 {
+  font-family: var(--fd);
+  font-size: 24px;
+  line-height: 1.4;
+  font-weight: 800;
+  color: #FFF8EA;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.store-hero p {
+  font-size: 12px;
+  color: #B3A594;
+  line-height: 1.75;
+  margin: 8px 0 16px;
+}
+.store-hero .btn {
+  align-self: flex-start;
+  min-height: 42px;
+  padding: 10px 20px;
+  font-size: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--gold), var(--org));
+  color: #1B140D;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px -8px rgba(206, 146, 52, 0.5);
+  transition: transform var(--dur) var(--ease);
+}
+.store-hero .btn:active {
+  transform: scale(0.96);
+}
 .store-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 16px 12px}
 .store-section-head h2{font-family:var(--fd);font-size:20px;color:var(--ink);position:relative}
 .store-section-head h2::after{content:"";position:absolute;right:0;bottom:-5px;width:28px;height:2px;background:var(--org);border-radius:2px}
