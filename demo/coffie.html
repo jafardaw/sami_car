@@ -970,7 +970,7 @@ $('#sideOv').addEventListener('click',closeSide);
 /* مزامنة الطلبات الجديدة من واجهة العميل (نفس المتصفح) */
 window.addEventListener('storage',e=>{if(e.key===KEY){DB=load();render();
  if(S.page!=='orders')toast('طلب جديد وصل من إحدى الطاولات 🔔','<path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>')}});
-/* فحص دوري لطلبات جديدة (احتياطي) */
+
 setInterval(()=>{const fresh=load();if(fresh.orders.length!==DB.orders.length){DB=fresh;render()}},4000);
 render();
 })();
