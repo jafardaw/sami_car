@@ -145,6 +145,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .table-sel-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:8px}
 .table-sel-btn{background:#fff;border:1px solid rgba(140,110,80,0.15);border-radius:10px;padding:8px 6px;font-size:12.5px;font-weight:700;color:var(--mute);text-align:center;box-shadow:0 2px 4px rgba(0,0,0,0.02)}
 .table-sel-btn.sel{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:0 4px 10px rgba(0,0,0,0.15)}
+/* ===== السلايدر الاحترافي ===== */
+.cslider{position:relative;width:100%;height:200px;border-radius:18px;overflow:hidden;margin-top:16px;box-shadow:0 12px 30px rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08)}
+.cslide{position:absolute;inset:0;opacity:0;transition:opacity 0.6s ease;pointer-events:none}
+.cslide.active{opacity:1;pointer-events:auto;z-index:2}
+.cslide img{width:100%;height:100%;object-fit:cover}
+.cslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(16,11,6,0.95) 0%, rgba(16,11,6,0.4) 55%, rgba(16,11,6,0.1) 100%);z-index:1}
+.cslide-info{position:absolute;inset:0;z-index:2;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;text-align:right}
+.cslide-info h3{font-family:var(--fd);font-size:15px;font-weight:800;color:#F3E7D0;line-height:1.4}
+.cslide-info p{font-size:11px;color:#CBBB9E;margin-top:4px;line-height:1.5}
+.cslider-dots{position:absolute;bottom:12px;left:16px;display:flex;gap:5px;z-index:10}
+.cslider-dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.3);transition:all 0.3s;cursor:pointer}
+.cslider-dots i.active{width:14px;border-radius:2.5px;background:var(--gold-b)}
 </style>
 </head>
 <body>
@@ -250,7 +262,35 @@ function render(){
  <div class="chero">
   <div class="top"><img class="lg" src="${LOGO}" alt=""><span><b>مقهى عناية سامي</b><small>SAMI CAFE</small></span>
    <span class="tbadge">${svg('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>',13)} طاولة ${rs(TABLE)}</span></div>
-  <h1>أهلًا بك ✨</h1><p>تصفّح القائمة واطلب مباشرة من طاولتك</p>
+  
+  <div class="cslider">
+    <div class="cslide active">
+      <img src="cafe_play.jpg" alt="ألعاب الفيديو">
+      <div class="cslide-info">
+        <h3>لأن التجربة لا تنتهي عند الخدمة</h3>
+        <p>استمتع بلعب الفيديو لبين ما يجي موعدك في صالون عناية سامي</p>
+      </div>
+    </div>
+    <div class="cslide">
+      <img src="cafe_slide1.png" alt="قهوة مختصة">
+      <div class="cslide-info">
+        <h3>قهوة مختصة محضّرة بشغف</h3>
+        <p>تذوق أجود أنواع البن المختص مع تشكيلة واسعة من المشروبات والحلويات</p>
+      </div>
+    </div>
+    <div class="cslide">
+      <img src="cafe_slide2.png" alt="أجواء مريحة">
+      <div class="cslide-info">
+        <h3>أجواء مريحة تليق بك</h3>
+        <p>استمتع بوقتك في أجواء من الرفاهية والهدوء أثناء زيارتك لنا</p>
+      </div>
+    </div>
+    <div class="cslider-dots">
+      <i class="active"></i>
+      <i></i>
+      <i></i>
+    </div>
+  </div>
  </div>
  <div class="tabs">${cats.map(c=>`<button class="ctab ${S.tab===c.id?'on':''}" data-tab="${c.id}">${c.n}
    <span class="cn">${rs(DB.drinks.filter(d=>d.cat===c.id&&d.on).length)}</span></button>`).join('')}</div>
@@ -269,6 +309,40 @@ function render(){
  <div style="height:20px"></div>`;
  bindMenu();
  syncCart();
+ runSlider();
+}
+let sliderInterval = null;
+function runSlider() {
+ if (sliderInterval) clearInterval(sliderInterval);
+ const slides = $$('.cslide');
+ const dots = $$('.cslider-dots i');
+ if (!slides.length) return;
+ 
+ let current = 0;
+ 
+ function showSlide(idx) {
+  slides[current].classList.remove('active');
+  if (dots[current]) dots[current].classList.remove('active');
+  
+  current = idx;
+  
+  slides[current].classList.add('active');
+  if (dots[current]) dots[current].classList.add('active');
+ }
+ 
+ sliderInterval = setInterval(() => {
+  showSlide((current + 1) % slides.length);
+ }, 4000);
+ 
+ dots.forEach((dot, idx) => {
+  dot.onclick = () => {
+   clearInterval(sliderInterval);
+   showSlide(idx);
+   sliderInterval = setInterval(() => {
+    showSlide((current + 1) % slides.length);
+   }, 5000);
+  };
+ });
 }
 function bindMenu(){
  $$('[data-tab]').forEach(b=>b.addEventListener('click',()=>{S.tab=b.dataset.tab;render()}));
