@@ -726,6 +726,318 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 .menu-l button:last-child{border:none}
 .menu-l .mi{width:38px;height:38px;border-radius:11px;background:var(--bg);color:var(--org);display:grid;place-items:center;flex:none}
 .menu-l .ar{margin-inline-start:auto;color:var(--soft)}
+
+/* ===== تعديلات تصميم المتجر والمنتجات الفاخرة للجوال ===== */
+.store-page {
+  background: #FDFCF7 !important;
+}
+.store-section-head {
+  padding: 16px 16px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.store-section-head h2 {
+  font-family: var(--fd);
+  font-size: 16.5px;
+  font-weight: 800;
+  color: #1B130B;
+}
+.store-section-head a {
+  font-size: 11.5px;
+  color: var(--gold);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+/* كارت المنتج المختار المميز للجوال */
+.app-featured-wrap {
+  padding: 0 16px;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+.app-featured-card {
+  background: linear-gradient(135deg, #F5EFE6 0%, #EFE8DB 100%);
+  border-radius: 20px;
+  padding: 16px;
+  border: 1px solid rgba(198,161,91,0.2);
+  box-shadow: 0 8px 24px rgba(140,110,80,0.06);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.app-featured-card .hot-badge {
+  background: #1B130B;
+  color: #FAF6EF;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 20px;
+  padding: 4px 10px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.app-featured-card .fc-main {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.app-featured-card .fc-img {
+  width: 110px;
+  height: 110px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.app-featured-card .fc-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+}
+.app-featured-card .fc-info {
+  flex: 1;
+  text-align: right;
+}
+.app-featured-card .fc-info h3 {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 800;
+  color: #1B130B;
+  margin: 0 0 3px;
+}
+.app-featured-card .fc-info p {
+  font-size: 11.5px;
+  color: var(--mute);
+  margin-bottom: 8px;
+}
+.app-featured-card .fc-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--mute);
+}
+.app-featured-card .fc-rating .stars {
+  color: #C6A15B;
+}
+.app-featured-card .fc-badges {
+  display: flex;
+  gap: 10px;
+  border-top: 1px dashed rgba(198,161,91,0.2);
+  border-bottom: 1px dashed rgba(198,161,91,0.2);
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+.app-featured-card .fc-badges span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #3E3220;
+  font-weight: 700;
+}
+.app-featured-card .fc-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.app-featured-card .fc-bottom .price {
+  font-family: var(--fd);
+  font-size: 20px;
+  font-weight: 800;
+  color: #1B130B;
+}
+.app-featured-card .fc-bottom .price small {
+  font-size: 11px;
+  color: var(--mute);
+  font-weight: 400;
+}
+.app-featured-card .fc-actions {
+  display: flex;
+  gap: 8px;
+}
+.app-featured-card .fc-actions .fv {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(198,161,91,0.3);
+  background: #fff;
+  color: var(--mute);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.app-featured-card .fc-actions .fv.on {
+  color: #C0392B;
+  border-color: #C0392B;
+}
+.app-featured-card .fc-actions .buy-btn {
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  padding: 0 16px;
+  height: 36px;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(198,161,91,0.2);
+}
+
+/* بطاقات المنتجات المحدثة للجوال */
+.store-grid.lux {
+  padding: 0 16px 16px;
+  gap: 12px;
+}
+.store-grid.lux .prod-m {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(140,110,80,0.04);
+}
+.store-grid.lux .prod-m .pim {
+  aspect-ratio: 1/1;
+  background: #FAF8F5;
+  display: grid;
+  place-items: center;
+}
+.store-grid.lux .prod-m .pim img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.06));
+}
+.store-grid.lux .prod-m .pb {
+  text-align: right;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.store-grid.lux .prod-m .pb b {
+  font-family: var(--fd);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #1B130B;
+  min-height: auto;
+  margin-bottom: 2px;
+}
+.store-grid.lux .prod-m .desc {
+  font-size: 10.5px;
+  color: var(--mute);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  min-height: 28px;
+}
+.store-grid.lux .prod-m .act-row {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.store-grid.lux .prod-m .act-row .pr {
+  font-family: var(--fd);
+  font-size: 15.5px;
+  color: var(--gold);
+  font-weight: 800;
+}
+.store-grid.lux .prod-m .act-row .pr small {
+  font-size: 10.5px;
+  color: var(--mute);
+  font-weight: 400;
+}
+.store-grid.lux .prod-m .cart-pill {
+  width: 100%;
+  height: 34px;
+  min-height: 34px;
+  border: 1px solid rgba(198,161,91,0.5);
+  background: transparent;
+  color: #1B130B;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.store-grid.lux .prod-m .cart-pill.added {
+  background: linear-gradient(135deg,#1E6B41,#2E8B57) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* بنر الإهداء الفاخر للجوال */
+.app-gift-banner {
+  background: #130E08;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px;
+  border: 1px solid rgba(198,161,91,0.15);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+}
+.app-gift-banner .gb-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.app-gift-banner .gb-text {
+  flex: 1.2;
+  text-align: right;
+}
+.app-gift-banner .gb-text h3 {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 800;
+  color: #F8F5EE;
+  margin: 0 0 4px;
+}
+.app-gift-banner .gb-text p {
+  font-size: 11px;
+  color: #A99E90;
+  margin-bottom: 12px;
+}
+.app-gift-banner .gb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-weight: 800;
+  font-size: 11px;
+  cursor: pointer;
+}
+.app-gift-banner .gb-image {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app-gift-banner .gb-image img {
+  max-width: 100px;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+}
 </style>
 <script>
 (function(){
@@ -774,11 +1086,11 @@ const OFFERS=[
 ];
 const PRODUCTS=[
  {id:'m1',cat:'skin',n:'كريم الترطيب اليومي',pr:99,img:IMG.p1,d:'ترطيب عميق وحماية تدوم طوال اليوم'},
- {id:'m2',cat:'beard',n:'زيت اللحية الفاخر',pr:89,img:IMG.p2,d:'تركيبة مغذية تمنح اللحية نعومة ولمعان'},
- {id:'m3',cat:'hair',n:'غسول الوجه اليومي',pr:79,img:IMG.p3,d:'ينظف بعمق وينعش بشرتك'},
- {id:'m4',cat:'perfume',n:'عطر سامي',pr:249,img:IMG.p4,d:'رائحة فاخرة تدوم طويلًا'},
-];
-const STORE_CATS=[
+ {id:'m2',cat:'beard',n:'زيت اللحية الفاخر',pr:89,img:IMG.p2,d:'زيت طبيعي 100%'},
+ {id:'m3',cat:'skin',n:'غسول الوجه المنعش',pr:79,img:IMG.p3,d:'تنظيف عميق ومنعش'},
+ {id:'m4',cat:'skin',n:'سيروم العناية بالبشرة',pr:119,img:IMG.p1,d:'تغذية وتجديد البشرة'},
+ {id:'m5',cat:'skin',n:'قناع الطين النقي',pr:109,img:IMG.p3,d:'تنقية وامتصاص الدهون'},
+];const STORE_CATS=[
  {id:'all',n:'كل المنتجات',s:'مختارات سامي',img:IMG.p2},
  {id:'hair',n:'العناية بالشعر',s:'غسول وتصفيف',img:IMG.p3},
  {id:'beard',n:'العناية باللحية',s:'زيوت فاخرة',img:IMG.p2},
@@ -1426,42 +1738,118 @@ function bookbarHTML(){
 }
 /* ================= بقية التبويبات ================= */
 function storeHTML(){
- const list=S.storeCat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===S.storeCat);
+ if(S.storeCat!=='all'){
+  const list=PRODUCTS.filter(p=>p.cat===S.storeCat);
+  return`<div class="store-page">
+  <div class="store-section-head"><h2>${STORE_CATS.find(c=>c.id===S.storeCat).n}</h2><a data-store-cat="all">${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',13)} العودة للمتجر</a></div>
+  <div class="store-grid lux">${list.map(p=>`
+   <div class="prod-m" data-product="${p.id}">
+    <div class="pim"><img src="${p.img}" alt="${p.n}" loading="lazy">
+     <button class="fv ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
+    </div>
+    <div class="pb"><b>${p.n}</b><span class="desc">${p.d}</span>
+     <div class="act-row"><span class="pr">${rs(p.pr)} <small>ر.س</small></span>
+      <button class="cart-pill ${S.cart.has(p.id)?'added':''}" data-add="${p.id}">${S.cart.has(p.id)?'مضاف للسلة':'أضف للسلة'} ${addIcon(S.cart.has(p.id))}</button></div>
+    </div>
+   </div>`).join('')}</div>
+  </div>`;
+ }
+ 
+ const otherProducts=PRODUCTS.filter(p=>p.id!=='m1');
+ 
  return`<div class="store-page">
- <div class="store-hero">
-  <img src="${IMG.p2}" alt="منتجات عناية سامي" loading="lazy">
-  <span class="shine"></span>
-  <div class="copy">
-   <small>${svg('<path d="M12 2l2.2 4.9 5.3.6-4 3.7 1.1 5.3L12 13.9 7.4 16.5l1.1-5.3-4-3.7 5.3-.6z"/>',11)} منتجات مختارة بعناية</small>
-   <h1>لتجربة يومية استثنائية</h1>
-   <p>منتجات فاخرة بجودة عالية لرجل يهتم بأدق التفاصيل.</p>
-   <button class="btn btn-line" data-store-cat="all">${svg('<path d="M15 6l-6 6 6 6"/>',13)} اكتشف المجموعة</button>
-  </div>
- </div>
- <div class="store-section-head"><h2>تسوق حسب الفئة</h2><a data-store-cat="all">عرض جميع الفئات ${svg('<path d="M15 6l-6 6 6 6"/>',11)}</a></div>
- <div class="store-cats">${STORE_CATS.map(c=>`
-  <button class="store-cat ${S.storeCat===c.id?'sel':''}" data-store-cat="${c.id}">
-   <img src="${c.img}" alt="${c.n}" loading="lazy"><span><b>${c.n}</b><small>${c.s}</small></span>
-  </button>`).join('')}</div>
- <div class="store-section-head"><h2>الأكثر مبيعًا</h2><a data-store-cat="all">عرض جميع المنتجات ${svg('<path d="M15 6l-6 6 6 6"/>',11)}</a></div>
- <div class="store-grid lux">${list.map(p=>`
-  <div class="prod-m" data-product="${p.id}">
-   <div class="pim"><img src="${p.img}" alt="${p.n}" loading="lazy">
-    <button class="fv ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
-    <button class="ad ${S.cart.has(p.id)?'added':''}" data-add="${p.id}">${addIcon(S.cart.has(p.id))}</button></div>
-   <div class="pb"><b>${p.n}</b><span class="desc">${p.d}</span>
-    <div class="act-row"><span class="pr">${rs(p.pr)} <small>ر.س</small></span>
-     <button class="cart-pill ${S.cart.has(p.id)?'added':''}" data-add="${p.id}">${S.cart.has(p.id)?'مضاف للسلة':'إضافة للسلة'} ${addIcon(S.cart.has(p.id))}</button></div>
+  <div class="store-hero">
+   <img src="${IMG.p2}" alt="منتجات عناية سامي" loading="lazy">
+   <span class="shine"></span>
+   <div class="copy">
+    <small>${svg('<path d="M12 2l2.2 4.9 5.3.6-4 3.7 1.1 5.3L12 13.9 7.4 16.5l1.1-5.3-4-3.7 5.3-.6z"/>',11)} منتجات مختارة بعناية</small>
+    <h1>لتجربة يومية استثنائية</h1>
+    <p>منتجات فاخرة بجودة عالية لرجل يهتم بأدق التفاصيل.</p>
+    <button class="btn btn-line" data-store-cat="all">${svg('<path d="M15 6l-6 6 6 6"/>',13)} اكتشف المجموعة</button>
    </div>
-  </div>`).join('')}</div>
- <div class="store-benefits">
-  <div class="store-benefit"><i>${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',17)}</i><span><b>دفع آمن ومشفر</b><small>جميع عمليات الدفع محمية</small></span></div>
-  <div class="store-benefit"><i>${svg('<path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>',17)}</i><span><b>شحن سريع</b><small>توصيل سريع لجميع الطلبات</small></span></div>
-  <div class="store-benefit"><i>${svg('<path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1v-8h3zM3 19a2 2 0 002 2h1v-8H3z"/>',17)}</i><span><b>دعم عملاء 24/7</b><small>نحن هنا لخدمتك دائمًا</small></span></div>
-  <div class="store-benefit"><i>${svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',17)}</i><span><b>منتجات أصلية</b><small>جودة مختارة بعناية</small></span></div>
- </div>
+  </div>
+
+  <div class="store-section-head"><h2>تسوق حسب الفئة</h2><a data-store-cat="all">عرض جميع الفئات ${svg('<path d="M15 6l-6 6 6 6"/>',11)}</a></div>
+  <div class="store-cats">${STORE_CATS.slice(1).map(c=>`
+   <button class="store-cat ${S.storeCat===c.id?'sel':''}" data-store-cat="${c.id}">
+    <img src="${c.img}" alt="${c.n}" loading="lazy"><span><b>${c.n}</b><small>${c.s}</small></span>
+   </button>`).join('')}</div>
+
+  <div class="store-section-head"><h2>منتجات مختارة لك</h2><a data-store-cat="all">عرض الكل ${svg('<path d="M15 6l-6 6 6 6"/>',11)}</a></div>
+  
+  <div class="app-featured-wrap">
+   <div class="app-featured-card">
+    <span class="hot-badge">${svg('<path d="M12 2c-4 4-6 7.5-6 10a6 6 0 0012 0c0-2.5-2-6-6-10z"/>',11)} الأكثر مبيعاً</span>
+    
+    <div class="fc-main">
+     <div class="fc-img">
+      <img src="featured_products.png" alt="كريم الترطيب اليومي">
+     </div>
+     <div class="fc-info">
+      <h3>كريم الترطيب اليومي</h3>
+      <p>ترطيب عميق وحماية تدوم طوال اليوم</p>
+      
+      <div class="fc-rating">
+       <span class="stars">⭐⭐⭐⭐⭐</span>
+       <span>4.9 (126 تقييم)</span>
+      </div>
+     </div>
+    </div>
+    
+    <div class="fc-badges">
+     <span>${svg('<path d="M12 3v10M12 3a9 9 0 00-9 9c0 2 1.5 4.5 3 6M12 3a9 9 0 019 9c0 2-1.5 4.5-3 6"/>',12)} مكونات آمنة</span>
+     <span>${svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',12)} حماية البشرة</span>
+     <span>${svg('<path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>',12)} ترطيب عميق</span>
+    </div>
+    
+    <div class="fc-bottom">
+     <span class="price">${rs(99)} <small>ر.س</small></span>
+     <div class="fc-actions">
+      <button class="fv ${S.favs.has('m1')?'on':''}" data-fav="m1">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',15)}</button>
+      <button class="buy-btn" data-add="m1">${svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',13)} اشتر الآن</button>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="store-section-head"><h2>منتجات أخرى قد تعجبك</h2><a data-store-cat="all">عرض الكل ${svg('<path d="M15 6l-6 6 6 6"/>',11)}</a></div>
+  
+  <div class="store-grid lux">
+   ${otherProducts.map(p=>`
+    <div class="prod-m" data-product="${p.id}">
+     <div class="pim"><img src="${p.img}" alt="${p.n}" loading="lazy">
+      <button class="fv ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
+     </div>
+     <div class="pb"><b>${p.n}</b><span class="desc">${p.d}</span>
+      <div class="act-row"><span class="pr">${rs(p.pr)} <small>ر.س</small></span>
+       <button class="cart-pill ${S.cart.has(p.id)?'added':''}" data-add="${p.id}">${S.cart.has(p.id)?'مضاف للسلة':'أضف للسلة'} ${addIcon(S.cart.has(p.id))}</button></div>
+     </div>
+    </div>`).join('')}
+  </div>
+
+  <!-- بنر الإهداء الفاخر للجوال -->
+  <div class="app-gift-banner">
+   <div class="gb-content">
+    <div class="gb-text">
+     <h3>أهدي تجربة عناية فاخرة</h3>
+     <p>بطاقات هدايا تناسب كل المناسبات</p>
+     <button class="gb-btn" data-go="gift">${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7a3.5 3.5 0 110-7 3.5 3.5 0 110 7z"/>',13)} إهداء الآن</button>
+    </div>
+    <div class="gb-image">
+     <img src="gift_banner_image.png" alt="بطاقة هدية عناية سامي">
+    </div>
+   </div>
+  </div>
+
+  <div class="store-benefits">
+   <div class="store-benefit"><i>${svg('<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',17)}</i><span><b>دفع آمن ومشفر</b><small>جميع عمليات الدفع محمية</small></span></div>
+   <div class="store-benefit"><i>${svg('<path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>',17)}</i><span><b>شحن سريع</b><small>توصيل سريع لجميع الطلبات</small></span></div>
+   <div class="store-benefit"><i>${svg('<path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1v-8h3zM3 19a2 2 0 002 2h1v-8H3z"/>',17)}</i><span><b>دعم عملاء 24/7</b><small>نحن هنا لخدمتك دائمًا</small></span></div>
+   <div class="store-benefit"><i>${svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',17)}</i><span><b>منتجات أصلية</b><small>جودة مختارة بعناية</small></span></div>
+  </div>
  </div>`;
 }
+
 function cartHTML(){
  if(!S.cart.size)return`<div class="pg-head"><h1>السلة 🛒</h1></div>
   <div class="empty"><span class="ei2">${svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',26)}</span>

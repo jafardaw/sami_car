@@ -980,6 +980,287 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
  .sheet-detail .meta{justify-content:center}
  .sheet .sacts{flex-direction:column}
 }
+/* ===== كريم الترطيب اليومي المميز والمنتجات والهدية ===== */
+.selected-for-you {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+.featured-card {
+  background: linear-gradient(135deg, #F5EFE6 0%, #EFE8DB 100%);
+  border-radius: 24px;
+  padding: 30px;
+  border: 1px solid rgba(198,161,91,0.22);
+  box-shadow: 0 12px 36px rgba(140,110,80,0.06);
+  position: relative;
+  overflow: hidden;
+  margin-top: 16px;
+}
+.featured-card .hot-badge {
+  background: #1B130B;
+  color: #FAF6EF;
+  font-size: 11.5px;
+  font-weight: 800;
+  border-radius: 20px;
+  padding: 6px 14px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.featured-card .fc-content {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.featured-card .fc-image-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.featured-card .fc-image-container {
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.featured-card .fc-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.12));
+  transition: transform 0.5s ease;
+}
+.featured-card:hover .fc-image-container img {
+  transform: translateY(-5px) scale(1.02);
+}
+.featured-card .fc-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+.featured-card .fc-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(140,110,80,0.25);
+  transition: all 0.3s ease;
+}
+.featured-card .fc-dots .dot.active {
+  width: 18px;
+  border-radius: 3px;
+  background: var(--gold);
+}
+.featured-card .fc-info-pane {
+  flex: 1.2;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.featured-card .fc-info-pane h1 {
+  font-family: var(--font-d);
+  font-size: 32px;
+  font-weight: 800;
+  color: #1B130B;
+  margin: 0 0 6px;
+}
+.featured-card .fc-subtitle {
+  font-size: 14.5px;
+  color: var(--mute);
+  margin-bottom: 24px;
+}
+.featured-card .fc-badges {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  border-top: 1px dashed rgba(198,161,91,0.25);
+  border-bottom: 1px dashed rgba(198,161,91,0.25);
+  padding: 12px 0;
+  flex-wrap: wrap;
+}
+.featured-card .fc-badges span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #3E3220;
+  font-weight: 700;
+}
+.featured-card .fc-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--mute);
+  margin-bottom: 24px;
+}
+.featured-card .fc-rating .stars {
+  color: #C6A15B;
+  letter-spacing: 2px;
+}
+.featured-card .fc-rating .rating-val {
+  font-weight: 800;
+  color: #1B130B;
+}
+.featured-card .fc-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(198,161,91,0.15);
+  padding-top: 20px;
+}
+.featured-card .fc-price-row .price-lbl {
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 800;
+  color: #1B130B;
+}
+.featured-card .fc-price-row .price-lbl small {
+  font-size: 13px;
+  color: var(--mute);
+  font-weight: 400;
+}
+.featured-card .fc-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.featured-card .fc-actions .fav2 {
+  position: static;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(198,161,91,0.3);
+  background: #fff;
+  color: var(--mute);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.featured-card .fc-actions .fav2:hover {
+  background: rgba(198,161,91,0.1);
+  color: #C94F63;
+  border-color: #C94F63;
+}
+.featured-card .fc-actions .buy-btn {
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  padding: 0 28px;
+  height: 46px;
+  border-radius: 23px;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(198,161,91,0.25);
+  transition: all 0.3s;
+}
+.featured-card .fc-actions .buy-btn:hover {
+  background: #1B130B;
+  box-shadow: 0 8px 24px rgba(27,19,11,0.2);
+}
+
+/* بنر الإهداء الفاخر */
+.luxury-gift-banner {
+  background: #130E08;
+  border-radius: 20px;
+  padding: 30px 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(198,161,91,0.15);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+}
+.luxury-gift-banner .gift-banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.luxury-gift-banner .gb-text {
+  flex: 1.2;
+  text-align: right;
+}
+.luxury-gift-banner .gb-text h2 {
+  font-family: var(--font-d);
+  font-size: 26px;
+  font-weight: 800;
+  color: #F8F5EE;
+  margin: 0 0 8px;
+}
+.luxury-gift-banner .gb-text p {
+  font-size: 14px;
+  color: #A99E90;
+  margin-bottom: 24px;
+}
+.luxury-gift-banner .gift-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-weight: 800;
+  font-size: 13.5px;
+  box-shadow: 0 6px 20px rgba(198,161,91,0.25);
+}
+.luxury-gift-banner .gb-image {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.luxury-gift-banner .gb-image img {
+  max-width: 260px;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.3));
+  transition: transform 0.4s ease;
+}
+.luxury-gift-banner:hover .gb-image img {
+  transform: scale(1.04) rotate(1deg);
+}
+
+@media(max-width:768px) {
+  .featured-card .fc-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .featured-card .fc-info-pane {
+    text-align: center;
+    align-items: center;
+  }
+  .featured-card .fc-badges {
+    justify-content: center;
+  }
+  .featured-card .fc-rating {
+    justify-content: center;
+  }
+  .featured-card .fc-price-row {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  .luxury-gift-banner {
+    padding: 24px;
+  }
+  .luxury-gift-banner .gift-banner-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .luxury-gift-banner .gb-text {
+    text-align: center;
+  }
+}
 </style>
 </head>
 <body>
@@ -1073,21 +1354,21 @@ const CATS=[
 ];
 const PRODUCTS=[
  {id:'p1',n:'كريم الترطيب اليومي',d:'ترطيب عميق وحماية تدوم طوال اليوم',pr:99,cat:'skin',shape:'jar',badge:'الأكثر مبيعًا',best:1,ts:16},
- {id:'p2',n:'زيت اللحية الفاخر',d:'تركيبة مغذية تمنح اللحية نعومة ولمعان',pr:89,cat:'beard',shape:'dropper',badge:'جديد',new:1,best:1,ts:15},
- {id:'p3',n:'غسول الوجه اليومي',d:'ينظف بعمق وينعش بشرتك',pr:79,cat:'skin',shape:'tube',best:1,ts:14},
+ {id:'p2',n:'زيت اللحية الفاخر',d:'زيت طبيعي 100%',pr:89,cat:'beard',shape:'dropper',badge:'جديد',new:1,best:1,ts:15},
+ {id:'p3',n:'غسول الوجه المنعش',d:'تنظيف عميق ومنعش',pr:79,cat:'skin',shape:'tube',best:1,ts:14},
  {id:'p4',n:'عطر سامي',d:'رائحة فاخرة تدوم طويلًا',pr:249,cat:'perf',shape:'perfume',badge:'مفضل العملاء',best:1,ts:13},
  {id:'p5',n:'باقة العناية المتكاملة',d:'مجموعة متكاملة للعناية اليومية',pr:299,cat:'sets',shape:'kit',ts:12},
  {id:'p6',n:'شامبو الشعر',d:'ينظف ويقوي الشعر من الجذور',pr:69,cat:'hair',shape:'pump',ts:11},
  {id:'p7',n:'مجموعة العناية باللحية',d:'فرشاة + زيت + بلسم فاخر',pr:149,cat:'beard',shape:'kit',ts:10},
  {id:'p8',n:'شمعة عطرية',d:'رائحة هادئة تضفي لمسة استرخاء',pr:89,cat:'perf',shape:'candle',ts:9},
  {id:'p9',n:'واقي الشمس للوجه',d:'حماية عالية من UVA وUVB',pr:79,cat:'skin',shape:'tube',ts:8},
- {id:'p10',n:'سيروم الوجه',d:'يمنح البشرة إشراقة ونضارة',pr:129,cat:'skin',shape:'dropper',ts:7},
+ {id:'p10',n:'سيروم العناية بالبشرة',d:'تغذية وتجديد البشرة',pr:119,cat:'skin',shape:'dropper',best:1,ts:7},
  {id:'p11',n:'لوشن الجسم',d:'ترطيب عميق وامتصاص سريع',pr:89,cat:'body',shape:'pump',ts:6},
  {id:'p12',n:'زيت الشعر',d:'لمعان وكثافة وحماية من التساقط',pr:99,cat:'hair',shape:'dropper',ts:5},
  {id:'p13',n:'بلسم الشعر المغذي',d:'نعومة فائقة وترطيب متوازن',pr:59,cat:'hair',shape:'pump',ts:4},
  {id:'p14',n:'فرشاة الحلاقة الفاخرة',d:'شعيرات ناعمة ومقبض كلاسيكي',pr:119,cat:'sets',shape:'brush',ts:3},
  {id:'p15',n:'معطر الجسم',d:'انتعاش يدوم على مدار اليوم',pr:139,cat:'body',shape:'spray',ts:2},
- {id:'p16',n:'سكراب الجسم',d:'تقشير لطيف وتجديد للبشرة',pr:109,cat:'body',shape:'jar',ts:1},
+ {id:'p16',n:'قناع الطين النقي',d:'تنقية وامتصاص الدهون',pr:109,cat:'skin',shape:'jar',best:1,ts:1},
 ];
 
 /* ================= الحالة ================= */
@@ -1117,7 +1398,6 @@ function bumpCart(){
  setTimeout(()=>c.classList.remove('pop'),350);
 }
 
-/* ================= بطاقة المنتج ================= */
 function card(p,i){
  const inCart=S.cart.has(p.id);
  return`<article class="pcard" data-product="${p.id}" style="animation-delay:${Math.min(i*.05,.4)}s">
@@ -1126,16 +1406,14 @@ function card(p,i){
    <button class="fav2 ${S.favs.has(p.id)?'on':''}" data-fav="${p.id}" aria-label="مفضلة">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',14)}</button>
    ${SHAPES[p.shape](S.view==='list'?96:118)}
   </div>
-  <div class="pbody">
-   <b>${p.n}</b><small>${p.d}</small>
-   <div class="prow">
-    <button class="addbtn ${inCart?'added':''}" data-add="${p.id}">${addLabel(inCart)}</button>
-    <span class="pr">${rs(p.pr)} <small>ر.س</small></span>
-   </div>
+  <div class="pbody" style="text-align:right; display:flex; flex-direction:column; align-items:stretch; flex:1;">
+   <b style="font-family:var(--font-d); font-size:14.5px; color:var(--ink); text-align:right">${p.n}</b>
+   <small style="font-size:11.5px; color:var(--mute); display:block; margin:5px 0 8px; line-height:1.4; text-align:right; min-height:32px">${p.d}</small>
+   <span class="pr" style="font-family:var(--font-d); font-size:18px; color:var(--gold); font-weight:800; text-align:right; display:block; margin-bottom:10px">${rs(p.pr)} <small style="display:inline; font-size:11.5px; color:var(--mute); margin:0; font-weight:400">ر.س</small></span>
+   <button class="addbtn ${inCart?'added':''}" data-add="${p.id}" style="width:100%; border: 1px solid rgba(198,161,91,0.5); border-radius:12px; height:38px; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:800; font-size:12.5px; cursor:pointer; background:transparent; color:#1B130B; transition:all 0.3s">${addLabel(inCart)}</button>
   </div>
  </article>`;
 }
-
 /* ================= العرض ================= */
 function sorted(list){
  const l=list.slice();
@@ -1213,11 +1491,82 @@ function renderStore(){
    <div class="ill" style="background:radial-gradient(70px 40px at 50% 85%,rgba(198,161,91,.28),transparent 65%),linear-gradient(150deg,#2A2318,#0F0C07);border-radius:11px">${SHAPES[c.shape](52)}</div>
    <b>${c.n}</b>
   </div>`).join('')}</div>
- <div class="sec-line"><h2>الأكثر مبيعًا</h2><a data-showall="1">${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',13)} عرض جميع المنتجات</a></div>
+ <div class="selected-for-you">
+  <div class="sec-line">
+   <h2>منتجات مختارة لك</h2>
+   <a data-showall="1">${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',13)} عرض الكل</a>
+  </div>
+  
+  <div class="featured-card">
+   <span class="hot-badge">${svg('<path d="M12 2c-4 4-6 7.5-6 10a6 6 0 0012 0c0-2.5-2-6-6-10z"/>',12)} الأكثر مبيعاً</span>
+   
+   <div class="fc-content">
+    <div class="fc-image-pane">
+     <div class="fc-image-container">
+      <img src="featured_products.png" alt="كريم الترطيب اليومي" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+      <div class="fb-fallback">${SHAPES.jar(130)}</div>
+     </div>
+     <div class="fc-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+     </div>
+    </div>
+    
+    <div class="fc-info-pane">
+     <h1>كريم الترطيب اليومي</h1>
+     <p class="fc-subtitle">ترطيب عميق وحماية تدوم طوال اليوم</p>
+     
+     <div class="fc-badges">
+      <span>${svg('<path d="M12 3v10M12 3a9 9 0 00-9 9c0 2 1.5 4.5 3 6M12 3a9 9 0 019 9c0 2-1.5 4.5-3 6"/>',14)} مكونات آمنة</span>
+      <span>${svg('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',14)} حماية البشرة</span>
+      <span>${svg('<path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/>',14)} ترطيب عميق</span>
+     </div>
+     
+     <div class="fc-rating">
+      <span class="rating-val">4.9</span>
+      <span class="stars">⭐⭐⭐⭐⭐</span>
+      <span class="rating-count">(126 تقييم)</span>
+     </div>
+     
+     <div class="fc-price-row">
+      <span class="price-lbl">${rs(99)} <small>ر.س</small></span>
+      <div class="fc-actions">
+       <button class="fav2 ${S.favs.has('p1')?'on':''}" data-fav="p1" aria-label="مفضلة">${svg('<path d="M12 21s-7-4.4-9.3-8.5C.8 9 2.6 5.5 6 5.5c2 0 3.4 1.1 4 2.3.6-1.2 2-2.3 4-2.3 3.4 0 5.2 3.5 3.3 7-2.3 4.1-9.3 8.5-9.3 8.5z"/>',16)}</button>
+       <button class="buy-btn" data-add="p1">${svg('<path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/>',16)} اشتر الآن</button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="sec-line">
+  <h2>منتجات أخرى قد تعجبك</h2>
+  <a data-showall="1">${svg('<path d="M19 12H5M11 18l-6-6 6-6"/>',13)} عرض الكل</a>
+ </div>
  <div class="best-wrap">
   <button class="caro-btn r" data-caro="1">${svg('<path d="M9 6l6 6-6 6"/>',15)}</button>
   <button class="caro-btn l" data-caro="-1">${svg('<path d="M15 6l-6 6 6 6"/>',15)}</button>
-  <div class="best-caro" id="bestCaro">${PRODUCTS.filter(p=>p.best).map((p,i)=>card(p,i)).join('')}</div>
+  <div class="best-caro" id="bestCaro">
+   ${PRODUCTS.filter(p=>p.best && p.id !== 'p1').map((p,i)=>card(p,i)).join('')}
+  </div>
+ </div>
+
+ <div class="luxury-gift-banner">
+  <div class="gift-banner-content">
+   <div class="gb-text">
+    <h2>أهدي تجربة عناية فاخرة</h2>
+    <p>بطاقات هدايا تناسب كل المناسبات</p>
+    <a href="packages-gifts.html" class="btn btn-gold gift-banner-btn">
+     ${svg('<path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7a3.5 3.5 0 110-7 3.5 3.5 0 110 7z"/>',16)} إهداء الآن
+    </a>
+   </div>
+   <div class="gb-image">
+    <img src="gift_banner_image.png" alt="بطاقة هدية عناية سامي">
+   </div>
+  </div>
  </div>
  <div class="sec-line"><h2>منتجات عناية سامي</h2></div>
  <div class="grid-tools">
