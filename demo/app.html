@@ -31,17 +31,16 @@ a{color:inherit;text-decoration:none}
 .hd{position:sticky;top:0;z-index:300;background:rgba(247,243,238,.92);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line)}
 .hd .in{display:flex;align-items:center;gap:10px;padding:12px 16px}
-.hd .bell{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--ink)}
+.hd .bell{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--ink);flex:none}
 .hd .bell .bdg{position:absolute;top:2px;left:2px;min-width:17px;height:17px;border-radius:9px;background:var(--org);
   color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;padding-inline:4px}
-.hd .logo{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink)}
-.hd .logo img{height:56px!important;width:auto!important;margin-bottom:-10px;object-fit:fill}
-.hd .logo b{font-family:var(--fd);font-weight:700;font-size:17px}
-.hd .logo small{font-size:8.5px;letter-spacing:.3em;color:var(--org)}
+.hd .logo{flex:1;display:flex;justify-content:center;align-items:center}
+.hd .logo img{height:34px!important;width:auto!important;object-fit:contain}
+.hd .logo b,.hd .logo small{display:none}
 .hd .loc{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink);
-  background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px}
+  background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px;flex:none}
 .hd .loc svg{color:var(--org)}
-.hd .burger{width:42px;height:42px;display:grid;place-items:center;color:var(--ink)}
+.hd .burger{width:42px;height:42px;display:grid;place-items:center;color:var(--ink);flex:none}
 .hexa{width:34px;height:34px}
 .app.home-shell .hd{position:absolute;top:0;right:0;left:0;z-index:305;background:linear-gradient(180deg,rgba(8,5,3,.5),rgba(8,5,3,0));backdrop-filter:none;border-bottom:0}
 .app.home-shell .hd .in{padding-top:calc(12px + env(safe-area-inset-top))}
@@ -49,7 +48,6 @@ a{color:inherit;text-decoration:none}
 .app.home-shell .hd .bell .bdg{background:linear-gradient(135deg,var(--gold),var(--org));color:#1B140D}
 .app.home-shell .hd .logo{color:#fff;text-shadow:0 8px 22px rgba(0,0,0,.55)}
 .app.home-shell .hd .logo img{opacity:.76;filter:drop-shadow(0 10px 20px rgba(0,0,0,.55))}
-.app.home-shell .hd .logo small{color:#F4D48E;opacity:.82}
 .app.home-shell .hd .loc{color:#F9E9C5;background:rgba(255,255,255,.08);border-color:rgba(232,190,108,.24);backdrop-filter:blur(10px);box-shadow:0 12px 24px -18px rgba(0,0,0,.7)}
 .app.home-shell .hd .loc svg{color:#F4D48E}
 /* ===== شريط التنقل السفلي ===== */
@@ -288,18 +286,12 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
     <div class="in">
       <button class="bell" id="bellBtn" aria-label="الإشعارات">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
-        <span class="bdg">2</span>
+        <span class="bdg">3</span>
       </button>
-      <div class="logo">
-        <img src="logo.png" alt="عناية سامي" style="height:38px;width:auto">
-        <b></b>
-        <b></b>
-        <b></b>
-        <b></b>
-        <b></b>
-        <b></b><small>SAMI CARE</small>
-      </div>
       <button class="loc" id="locBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span id="locLabel">جدة</span> <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="logo">
+        <img src="logo.png" alt="عناية سامي">
+      </div>
       <button class="burger" aria-label="القائمة"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     </div>
   </header>
