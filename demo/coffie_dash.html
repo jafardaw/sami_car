@@ -320,6 +320,7 @@ tbody tr:last-child td{border-bottom:none}
    <button class="navi" data-page="menu"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4zM6 1v3M10 1v3M14 1v3"/></svg></span> المشروبات</button>
    <button class="navi" data-page="cats"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span> الأقسام</button>
    <button class="navi" data-page="tables"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14h1M14 20h1M18 18h3v3h-3z"/></svg></span> الطاولات</button>
+   <button class="navi" data-page="slides"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21h16a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v14a2 2 0 002 2zM9 9a2 2 0 110-4 2 2 0 010 4zm11 8H4v-2l4-4 4 4 5-5 3 3v4z"/></svg></span> إدارة السلايدر</button>
    <div class="grp">عام</div>
    <!-- <button class="navi" data-ext="menu.html"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span> معاينة واجهة الطلب</button> -->
    <button class="navi" data-page="settings"><span class="ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg></span> الإعدادات</button>
@@ -393,6 +394,11 @@ const SEED={
   {id:'o4',table:2,ref:'ORD-2068',ts:Date.now()-52*60000,status:'done',
    items:[{n:'عصير برتقال طازج',q:3,pr:16},{n:'لاتيه',q:1,pr:20}]},
  ],
+ slides:[
+  {id:'s1', img:'cafe_play.jpg', t:'لأن التجربة لا تنتهي عند الخدمة', p:'استمتع بلعب الفيديو لبين ما يجي موعدك في صالون عناية سامي', on:true},
+  {id:'s2', img:'cafe_slide1.png', t:'قهوة مختصة محضّرة بشغف', p:'تذوق أجود أنواع البن المختص مع تشكيلة واسعة من المشروبات والحلويات', on:true},
+  {id:'s3', img:'cafe_slide2.png', t:'أجواء مريحة تليق بك', p:'استمتع بوقتك في أجواء من الرفاهية والهدوء أثناء زيارتك لنا', on:true}
+ ],
  seq:2073,
  settings:{
   name:'مقهى عناية سامي', slogan:'قهوة تُروى بحكاية', phone:'0126000000', wa:'966550046462',
@@ -410,6 +416,7 @@ const SEED={
 function withDefaults(db){
  if(!db.settings)db.settings={};
  for(const k in SEED.settings){if(!(k in db.settings))db.settings[k]=JSON.parse(JSON.stringify(SEED.settings[k]))}
+ if(!db.slides) db.slides = JSON.parse(JSON.stringify(SEED.slides));
  if(db.seq==null)db.seq=2073;
  return db;
 }
@@ -598,6 +605,45 @@ function ordersPage(){
 function emptyState(t,p,modal){
  return`<div class="card empty"><span class="ei">${svg('<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/>',30)}</span>
   <b>${t}</b><p>${p}</p><button class="btn btn-g" data-modal="${modal}">${svg('<path d="M12 5v14M5 12h14"/>',15)} إضافة الآن</button></div>`;
+}
+function slidesPage() {
+ const slides = DB.slides || [];
+ if (!slides.length) {
+  return emptyState('لا توجد شرائح حاليًا', 'أضف صورًا وعبارات جذابة لتظهر لعملائك في صفحة الطلب.', 'slide');
+ }
+ return `
+  <div class="sec-head" style="margin-bottom:18px">
+   <h2>إدارة شرائح السلايدر</h2>
+   <button class="btn btn-g btn-sm" data-modal="slide"><span>${svg('<path d="M12 5v14M5 12h14"/>',14)}</span> إضافة شريحة جديدة</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px">
+   ${slides.map(s => `
+    <div class="card" style="padding:0;overflow:hidden;border:1px solid var(--line);border-radius:18px">
+     <div style="height:150px;position:relative;background:#FAF6EF">
+      <img src="${s.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='logo.png';this.style.objectFit='contain';">
+      <span style="position:absolute;top:10px;left:10px;font-size:10px;font-weight:800;padding:4px 8px;border-radius:20px;background:${s.on ? 'var(--green-bg)' : 'var(--red-bg)'};color:${s.on ? 'var(--green)' : 'var(--red)'}">
+       ${s.on ? 'نشط' : 'معطل'}
+      </span>
+     </div>
+     <div style="padding:16px;text-align:right">
+      <h4 style="font-family:var(--fd);font-size:14px;font-weight:800;color:var(--ink);margin-bottom:4px">${s.t}</h4>
+      <p style="font-size:11.5px;color:var(--mute);line-height:1.5;min-height:36px">${s.p}</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;border-top:1px solid var(--line);padding-top:12px;gap:8px">
+       <button class="btn btn-ghost btn-sm" style="flex:1" data-edit-slide="${s.id}">
+        ${svg('<path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z"/>',13)} تعديل
+       </button>
+       <button class="btn btn-sm ${s.on ? 'btn-ghost' : 'btn-g'}" style="flex:none" data-toggle-slide="${s.id}">
+        ${s.on ? 'تعطيل' : 'تفعيل'}
+       </button>
+       <button class="btn btn-danger btn-sm" style="flex:none;color:var(--red)" data-del-slide="${s.id}">
+        ${svg('<path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2M6 6l1 15h10l1-15"/>',13)}
+       </button>
+      </div>
+     </div>
+    </div>
+   `).join('')}
+  </div>
+ `;
 }
 /* ================= صفحة الإعدادات ================= */
 function setDraft(){ if(!S.setDraft)S.setDraft=JSON.parse(JSON.stringify(DB.settings)); return S.setDraft }
@@ -858,6 +904,114 @@ function modalOrder(id) {
     };
   }
 }
+function modalSlide(id) {
+  editId = id;
+  const s = id ? DB.slides.find(x => x.id === id) : null;
+  tmpStatus = s ? s.on : true;
+  tmpImg = s ? s.img : '';
+  
+  openModal(`
+    <div class="mh">
+      <b>${id ? 'تعديل الشريحة' : 'إضافة شريحة جديدة'}</b>
+      <button class="x" onclick="closeModal()">${svg('<path d="M18 6L6 18M6 6l12 12"/>',15)}</button>
+    </div>
+    <div class="mb" style="text-align:right">
+      <div class="fld">
+        <label>عنوان الشريحة (الرئيسي)</label>
+        <input id="slT" placeholder="مثال: استمتع بلعب الفيديو" value="${s ? s.t : ''}">
+      </div>
+      <div class="fld">
+        <label>وصف الشريحة (الفرعي)</label>
+        <textarea id="slP" placeholder="مثال: تسلى بأروع الألعاب أثناء انتظار موعدك..." style="min-height:60px">${s ? s.p : ''}</textarea>
+      </div>
+      <div class="fld">
+        <label>رابط الصورة</label>
+        <div style="display:flex;gap:10px">
+          <input id="slImg" placeholder="أو الصق رابط الصورة هنا" value="${tmpImg}" style="flex:1">
+          <button class="btn btn-ghost" id="slUploadBtn" style="padding:0 12px;height:38px;border-radius:10px">
+            رفع ملف
+          </button>
+          <input type="file" id="slFileInput" accept="image/*" style="display:none">
+        </div>
+        <div style="margin-top:10px;height:120px;border:1px dashed var(--line);border-radius:10px;background:#FAF8F5;display:grid;place-items:center;overflow:hidden" id="slPreview">
+          ${tmpImg ? `<img src="${tmpImg}" style="width:100%;height:100%;object-fit:cover">` : `<span style="font-size:11px;color:var(--mute)">معاينة الصورة</span>`}
+        </div>
+      </div>
+      <div class="fld">
+        <label>حالة الشريحة</label>
+        <div class="seg">
+          <button class="stg ${tmpStatus ? 'on' : ''}" data-st="1">${svg('<path d="M20 6L9 17l-5-5"/>',14)} نشطة</button>
+          <button class="stg ${!tmpStatus ? 'on' : ''}" data-st="0">${svg('<path d="M18 6L6 18M6 6l12 12"/>',14)} معطلة</button>
+        </div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-g" id="saveSlideBtn">حفظ الشريحة</button>
+      <button class="btn btn-ghost" onclick="closeModal()">إلغاء</button>
+    </div>
+  `);
+  
+  bindStatusSeg();
+  
+  const uploadBtn = $('#slUploadBtn');
+  const fileInput = $('#slFileInput');
+  const slImg = $('#slImg');
+  const preview = $('#slPreview');
+  
+  if (uploadBtn && fileInput) {
+    uploadBtn.onclick = () => fileInput.click();
+    fileInput.onchange = e => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = evt => {
+          tmpImg = evt.target.result;
+          slImg.value = file.name;
+          preview.innerHTML = `<img src="${tmpImg}" style="width:100%;height:100%;object-fit:cover">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+  }
+  
+  slImg.oninput = () => {
+    tmpImg = slImg.value.trim();
+    if (tmpImg) {
+      preview.innerHTML = `<img src="${tmpImg}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='logo.png'">`;
+    } else {
+      preview.innerHTML = `<span style="font-size:11px;color:var(--mute)">معاينة الصورة</span>`;
+    }
+  };
+  
+  $('#saveSlideBtn').onclick = () => {
+    const t = $('#slT').value.trim();
+    const p = $('#slP').value.trim();
+    if (!t) return toast('يرجى كتابة عنوان الشريحة');
+    if (!tmpImg) return toast('يرجى اختيار أو رفع صورة');
+    
+    if (editId) {
+      const slide = DB.slides.find(x => x.id === editId);
+      slide.t = t;
+      slide.p = p;
+      slide.img = tmpImg;
+      slide.on = tmpStatus;
+    } else {
+      const newId = 's_' + Date.now();
+      if (!DB.slides) DB.slides = [];
+      DB.slides.push({
+        id: newId,
+        t: t,
+        p: p,
+        img: tmpImg,
+        on: tmpStatus
+      });
+    }
+    save();
+    render();
+    toast('تم حفظ الشريحة بنجاح ✓');
+    closeModal();
+  };
+}
 function modalCat(id){
  editId=id;const c=id?catOf(id):null;tmpStatus=c?c.on:true;
  openModal(`<div class="mh"><b>${id?'تعديل القسم':'إضافة قسم جديد'}</b><button class="x" data-close>${svg('<path d="M18 6L6 18M6 6l12 12"/>',15)}</button></div>
@@ -960,6 +1114,7 @@ const PAGES={
  menu:{t:'المشروبات',s:'إدارة قائمة مشروبات المقهى',fn:menuPage},
  cats:{t:'الأقسام',s:'أقسام المشروبات والتحكم بحالتها',fn:catsPage},
  tables:{t:'الطاولات',s:'إدارة الطاولات ورموز QR',fn:tablesPage},
+ slides:{t:'إدارة السلايدر',s:'إدارة شرائح العرض وصور المقهى الترويجية',fn:slidesPage},
  settings:{t:'الإعدادات',s:'إعدادات المقهى العامة والتشغيلية',fn:settingsPage},
 };
 function syncBadge(){
@@ -1015,9 +1170,29 @@ function bindPage(){
   o.status=NEXT[o.status];save();render();toast('تم تحديث الطلب إلى: '+STATUS[o.status].n);
  }));
  const rf=$('#refreshOrd');if(rf)rf.addEventListener('click',()=>{render();toast('تم تحديث قائمة الطلبات')});
+ // السلايدر
+ $$('[data-edit-slide]').forEach(b=>b.addEventListener('click',()=>modalSlide(b.dataset.editSlide)));
+ $$('[data-toggle-slide]').forEach(b=>b.addEventListener('click',()=>{
+  const s = DB.slides.find(x=>x.id===b.dataset.toggleSlide);
+  s.on = !s.on;
+  save();
+  render();
+  toast(s.on ? 'تم تفعيل الشريحة' : 'تم تعطيل الشريحة');
+ }));
+ $$('[data-del-slide]').forEach(b=>b.addEventListener('click',()=>{
+  if(!confirm('هل تريد حذف هذه الشريحة نهائيًا؟')) return;
+  DB.slides = DB.slides.filter(x=>x.id!==b.dataset.delSlide);
+  save();
+  render();
+  toast('تم حذف الشريحة بنجاح');
+ }));
  // إضافة عبر المودال
  $$('[data-modal]').forEach(b=>b.addEventListener('click',()=>{
-  const m=b.dataset.modal;if(m==='cat')modalCat();else if(m==='drink')modalDrink();else if(m==='table')modalTable();
+  const m=b.dataset.modal;
+  if(m==='cat')modalCat();
+  else if(m==='drink')modalDrink();
+  else if(m==='table')modalTable();
+  else if(m==='slide')modalSlide();
  }));
 }
 /* ================= ربط الإعدادات ================= */

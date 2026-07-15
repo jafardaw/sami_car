@@ -258,39 +258,33 @@ function render(){
  const cats=DB.cats.filter(c=>c.on);
  if(!cats.find(c=>c.id===S.tab))S.tab=cats[0]?cats[0].id:null;
  const drinks=DB.drinks.filter(d=>d.cat===S.tab);
+ const activeSlides = (DB.slides || [
+  {id:'s1', img:'cafe_play.jpg', t:'لأن التجربة لا تنتهي عند الخدمة', p:'استمتع بلعب الفيديو لبين ما يجي موعدك في صالون عناية سامي', on:true},
+  {id:'s2', img:'cafe_slide1.png', t:'قهوة مختصة محضّرة بشغف', p:'تذوق أجود أنواع البن المختص مع تشكيلة واسعة من المشروبات والحلويات', on:true},
+  {id:'s3', img:'cafe_slide2.png', t:'أجواء مريحة تليق بك', p:'استمتع بوقتك في أجواء من الرفاهية والهدوء أثناء زيارتك لنا', on:true}
+ ]).filter(s => s.on);
  $('#app').innerHTML=`
  <div class="chero">
   <div class="top"><img class="lg" src="${LOGO}" alt=""><span><b>مقهى عناية سامي</b><small>SAMI CAFE</small></span>
    <span class="tbadge">${svg('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>',13)} طاولة ${rs(TABLE)}</span></div>
   
+  ${activeSlides.length ? `
   <div class="cslider">
-    <div class="cslide active">
-      <img src="cafe_play.jpg" alt="ألعاب الفيديو">
-      <div class="cslide-info">
-        <h3>لأن التجربة لا تنتهي عند الخدمة</h3>
-        <p>استمتع بلعب الفيديو لبين ما يجي موعدك في صالون عناية سامي</p>
-      </div>
+   ${activeSlides.map((s, idx) => `
+    <div class="cslide ${idx === 0 ? 'active' : ''}">
+     <img src="${s.img}" alt="${s.t}" onerror="this.src='logo.png'">
+     <div class="cslide-info">
+      <h3>${s.t}</h3>
+      <p>${s.p}</p>
+     </div>
     </div>
-    <div class="cslide">
-      <img src="cafe_slide1.png" alt="قهوة مختصة">
-      <div class="cslide-info">
-        <h3>قهوة مختصة محضّرة بشغف</h3>
-        <p>تذوق أجود أنواع البن المختص مع تشكيلة واسعة من المشروبات والحلويات</p>
-      </div>
-    </div>
-    <div class="cslide">
-      <img src="cafe_slide2.png" alt="أجواء مريحة">
-      <div class="cslide-info">
-        <h3>أجواء مريحة تليق بك</h3>
-        <p>استمتع بوقتك في أجواء من الرفاهية والهدوء أثناء زيارتك لنا</p>
-      </div>
-    </div>
-    <div class="cslider-dots">
-      <i class="active"></i>
-      <i></i>
-      <i></i>
-    </div>
-  </div>
+   `).join('')}
+   <div class="cslider-dots">
+    ${activeSlides.map((_, idx) => `
+     <i class="${idx === 0 ? 'active' : ''}"></i>
+    `).join('')}
+   </div>
+  </div>` : ''}
  </div>
  <div class="tabs">${cats.map(c=>`<button class="ctab ${S.tab===c.id?'on':''}" data-tab="${c.id}">${c.n}
    <span class="cn">${rs(DB.drinks.filter(d=>d.cat===c.id&&d.on).length)}</span></button>`).join('')}</div>
