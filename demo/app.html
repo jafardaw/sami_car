@@ -6,7 +6,7 @@
 <title>عناية سامي | التطبيق</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Aref+Ruqaa:wght@700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --org:#CE9234; --org-d:#A6741F; --org-soft:#F6E7C8;
@@ -35,8 +35,8 @@ a{color:inherit;text-decoration:none}
 .hd .bell .bdg{position:absolute;top:2px;left:2px;min-width:17px;height:17px;border-radius:9px;background:var(--org);
   color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;padding-inline:4px}
 .hd .logo{flex:1;display:flex;justify-content:center;align-items:center}
-.hd .logo img{height:34px!important;width:auto!important;object-fit:contain}
-.hd .logo b,.hd .logo small{display:none}
+.hd .logo .logo-txt{font-family:'Aref Ruqaa','Amiri',serif;font-size:24px;font-weight:700;color:var(--org);white-space:nowrap;display:inline-block;transform:skewX(-10deg) rotate(-1deg);transition:color var(--dur)}
+.hd .logo b,.hd .logo small,.hd .logo img{display:none}
 .hd .loc{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink);
   background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px;flex:none}
 .hd .loc svg{color:var(--org)}
@@ -46,7 +46,7 @@ a{color:inherit;text-decoration:none}
 .app.home-shell .hd .in{padding-top:calc(12px + env(safe-area-inset-top))}
 .app.home-shell .hd .bell,.app.home-shell .hd .logo-right{color:#F9E9C5;background:rgba(255,255,255,.08);border:1px solid rgba(232,190,108,.24);backdrop-filter:blur(10px);box-shadow:0 12px 24px -18px rgba(0,0,0,.7)}
 .app.home-shell .hd .bell .bdg{background:linear-gradient(135deg,var(--gold),var(--org));color:#1B140D}
-.app.home-shell .hd .logo{color:#fff;text-shadow:0 8px 22px rgba(0,0,0,.55)}
+.app.home-shell .hd .logo .logo-txt{color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
 .app.home-shell .hd .logo img{opacity:.76;filter:drop-shadow(0 10px 20px rgba(0,0,0,.55))}
 .app.home-shell .hd .loc{color:#F9E9C5;background:rgba(255,255,255,.08);border-color:rgba(232,190,108,.24);backdrop-filter:blur(10px);box-shadow:0 12px 24px -18px rgba(0,0,0,.7)}
 .app.home-shell .hd .loc svg{color:#F4D48E}
@@ -290,7 +290,7 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
       </button>
       <button class="loc" id="locBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span id="locLabel">جدة</span> <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="logo">
-        <img src="logo.png" alt="عناية سامي">
+        <span class="logo-txt">عناية سامي</span>
       </div>
       <div class="logo-right">
         <img src="logo.png" alt="عناية سامي لوجو">
