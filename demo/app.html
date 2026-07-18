@@ -249,6 +249,122 @@ footer{background:radial-gradient(circle at 18% 0,rgba(232,190,108,.16),transpar
 @media(max-width:900px){.f-grid{grid-template-columns:1fr 1fr}.nav{overflow-x:auto;justify-content:flex-start}.nav::-webkit-scrollbar{height:0}.f-brand{grid-column:1/-1}.f-bottom{grid-template-columns:1fr}.pay{justify-self:stretch;width:100%}}
 @media(max-width:640px){footer{padding:42px 16px calc(22px + env(safe-area-inset-bottom))}.f-grid{grid-template-columns:1fr 1fr;gap:22px 14px}.f-brand,.f-grid>div:last-child{grid-column:1/-1}.f-brand{text-align:center}.f-brand .logo{justify-content:center}.f-brand p{max-width:none;margin-inline:auto;font-size:13px}.socials{justify-content:center}.f-grid h4,footer h4{font-size:15px;margin-bottom:10px}.f-links a{font-size:12.5px}.f-branch{background:rgba(255,255,255,.035);border:1px solid rgba(198,161,91,.18);border-radius:14px;padding:12px}.f-bottom{margin-top:24px;text-align:center}.pay{grid-template-columns:repeat(3,1fr);gap:8px}.pay span{min-height:44px;border-radius:12px}.pay span:nth-child(5){grid-column:2/3}}
 
+/* ===== تحسين وتحجيم فوتر التطبيق فقط (تقليل الازدحام وتصغير الخطوط) ===== */
+footer {
+  padding: 24px 14px calc(20px + env(safe-area-inset-bottom)) !important;
+  background: #090704 !important;
+  border-top: 1px solid rgba(198,161,91,0.2) !important;
+  margin-top: 24px !important;
+}
+footer .wrap {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+footer .f-grid {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 14px 10px !important;
+  align-items: start !important;
+}
+footer .f-brand {
+  grid-column: 1 / -1 !important;
+  text-align: center !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  margin-bottom: 4px !important;
+}
+footer .f-brand p {
+  font-size: 10.5px !important;
+  line-height: 1.5 !important;
+  color: #a89d8c !important;
+  max-width: 270px !important;
+  margin: 0 auto !important;
+}
+footer .socials {
+  justify-content: center !important;
+  gap: 8px !important;
+  margin-top: 8px !important;
+}
+footer .socials a {
+  width: 28px !important;
+  height: 28px !important;
+  border-color: rgba(198,161,91,0.25) !important;
+}
+footer .socials svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+footer h4, footer .f-grid h4 {
+  font-size: 12.5px !important;
+  color: #f7d995 !important;
+  margin: 0 0 6px !important;
+  font-weight: 700 !important;
+}
+footer .f-links {
+  gap: 4px !important;
+}
+footer .f-links a {
+  font-size: 10.5px !important;
+  color: #c4baab !important;
+  line-height: 1.55 !important;
+}
+footer .f-branch {
+  background: rgba(255,255,255,0.025) !important;
+  border: 1px solid rgba(198,161,91,0.12) !important;
+  border-radius: 8px !important;
+  padding: 6px 8px !important;
+  margin-bottom: 4px !important;
+  gap: 2px !important;
+}
+footer .f-branch b {
+  font-size: 10.5px !important;
+  color: #fff !important;
+}
+footer .f-branch small {
+  font-size: 9px !important;
+  color: #9e9383 !important;
+  line-height: 1.35 !important;
+}
+footer .f-branch a {
+  font-size: 9.5px !important;
+  color: var(--gold-bright) !important;
+}
+footer .f-bottom {
+  margin-top: 14px !important;
+  padding-top: 10px !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-align: center !important;
+}
+footer .f-bottom small {
+  font-size: 9.5px !important;
+  color: #8c8273 !important;
+}
+footer .pay {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  width: 100% !important;
+  flex-wrap: wrap !important;
+}
+footer .pay span {
+  min-height: 28px !important;
+  padding: 0 8px !important;
+  border-radius: 6px !important;
+  min-width: 46px !important;
+  border-color: rgba(232,190,108,0.2) !important;
+}
+footer .pay span::before {
+  font-size: 9.5px !important;
+}
+footer .pay span:nth-child(2)::before {
+  width: 24px !important;
+  height: 15px !important;
+  font-size: 8.5px !important;
+}
+
 
 
 /* ===== إصلاح هيدر الموقع على الجوال ===== */
