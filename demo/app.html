@@ -50,20 +50,22 @@ a{color:inherit;text-decoration:none}
 .app.home-shell .hd .logo img{opacity:.76;filter:drop-shadow(0 10px 20px rgba(0,0,0,.55))}
 .app.home-shell .hd .loc{color:#F9E9C5;background:rgba(255,255,255,.08);border-color:rgba(232,190,108,.24);backdrop-filter:blur(10px);box-shadow:0 12px 24px -18px rgba(0,0,0,.7)}
 .app.home-shell .hd .loc svg{color:#F4D48E}
-/* ===== شريط التنقل السفلي ===== */
-.tabbar{position:fixed;bottom:0;right:50%;transform:translateX(50%);width:100%;max-width:430px;z-index:320;
-  background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);
-  display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px calc(10px + env(safe-area-inset-bottom));direction:ltr}
-.tab{display:flex;flex-direction:column;align-items:center;gap:4px;padding:7px 4px;font-size:10.5px;color:var(--soft);
-  min-height:44px;border-radius:12px;transition:color var(--dur);direction:rtl}
-.tab svg{transition:transform .25s var(--ease)}
-.tab.on{color:var(--org);font-weight:700}
-.tab.on svg{transform:translateY(-2px)}
-.tab .tbdg{position:absolute;margin-top:-4px;margin-inline-start:20px;min-width:16px;height:16px;border-radius:8px;
-  background:var(--org);color:#fff;font-size:9.5px;font-weight:700;display:grid;place-items:center;padding-inline:4px;
-  transition:transform .3s var(--ease)}
-.tab .tbdg.hide{display:none}
-.tab .tbdg.pop{transform:scale(1.35)}
+/* ===== شريط التنقل السفلي الفاخر المحدث (Floating Pill Notch Bar) ===== */
+.tabbar{position:fixed;bottom:14px;right:50%;transform:translateX(50%);width:calc(100% - 24px);max-width:410px;z-index:320;
+  background:rgba(250,247,242,0.96);backdrop-filter:blur(16px);border:1px solid rgba(210,190,165,0.5);
+  border-radius:28px;box-shadow:0 16px 40px rgba(40,30,15,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
+  display:grid;grid-template-columns:1fr 1fr 1.2fr 1fr 1fr;align-items:center;padding:6px 8px;direction:rtl;box-sizing:border-box}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 2px;font-size:10.5px;color:#6C6050;
+  min-height:46px;border-radius:14px;transition:all .25s var(--ease);border:none;background:none;cursor:pointer;position:relative}
+.tab span{font-size:10.5px;font-weight:600;color:inherit;font-family:inherit}
+.tab.on{color:#1B130B;font-weight:800}
+.tab.on svg{color:var(--gold-deep);transform:translateY(-1px)}
+.tab.on::after{content:"";position:absolute;bottom:2px;width:24px;height:3px;border-radius:999px;background:linear-gradient(90deg,var(--gold-deep),#C5A059);box-shadow:0 2px 6px rgba(197,160,89,0.4)}
+.tab-center-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;margin-top:-22px;position:relative;z-index:10;outline:none}
+.tab-center-btn .center-ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2B2117 0%,#120D08 100%);border:2.5px solid #D4AF37;box-shadow:0 10px 24px rgba(27,19,11,0.38),inset 0 2px 4px rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;transition:transform .2s var(--ease)}
+.tab-center-btn:active .center-ring{transform:scale(0.92)}
+.tab-center-btn .center-ring img{width:32px;height:32px;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5))}
+.tab-center-btn span{font-size:11px;font-weight:800;color:#1B130B;margin-top:2px;font-family:inherit}
 /* ===== عناصر عامة ===== */
 .screen{display:none;padding-bottom:96px;animation:scrIn .35s var(--ease)}
 .screen.on{display:block}
@@ -400,9 +402,9 @@ footer .pay span:nth-child(2)::before {
 <div class="app">
   <header class="hd">
     <div class="in">
-      <button class="bell" id="bellBtn" aria-label="الإشعارات">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
-        <span class="bdg">3</span>
+      <button class="bell" id="headerCartBtn" aria-label="السلة" data-tab="cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/></svg>
+        <span class="bdg hide" id="cartBdgHeader">0</span>
       </button>
       <button class="loc" id="locBtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span id="locLabel">جدة</span> <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="logo">
@@ -417,11 +419,28 @@ footer .pay span:nth-child(2)::before {
 </div>
 
 <nav class="tabbar" id="tabbar">
-  <button class="tab" data-tab="account"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>ملفاتي</button>
-  <button class="tab" data-tab="bookings"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>حجوزاتي</button>
-  <button class="tab" data-tab="cart"><span class="tbdg hide" id="cartBdg">0</span><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l1.5 14h-15zM8 7a4 4 0 018 0"/></svg>السلة</button>
-  <button class="tab" data-tab="store"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l1-5h16l1 5M4 9v11h16V9M9 20v-6h6v6"/></svg>المتجر</button>
-  <button class="tab on" data-tab="home"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><path d="M9 21V12h6v9"/></svg>الرئيسية</button>
+  <button class="tab on" data-tab="home">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><path d="M9 21V12h6v9"/></svg>
+    <span>الرئيسية</span>
+  </button>
+  <button class="tab" data-tab="bookings">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <span>حجوزاتي</span>
+  </button>
+  <button class="tab-center-btn" id="centerBookBtn" data-go="book">
+    <div class="center-ring">
+      <img src="logo.png" alt="عناية سامي">
+    </div>
+    <span>احجز</span>
+  </button>
+  <button class="tab" data-tab="store">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 17A2 2 0 0011 19A2 2 0 0013 17M3 3H5L6.6 13.59A2 2 0 008.57 15H18.43A2 2 0 0020.4 13.59L22 6H6"/></svg>
+    <span>المنتجات</span>
+  </button>
+  <button class="tab" data-tab="account">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>حسابي</span>
+  </button>
 </nav>
 <div class="toast" id="toast"></div>
 <style>
@@ -1494,9 +1513,13 @@ function toggleAppCart(id){
 function cartQty(){let n=0;S.cart.forEach(q=>n+=q);return n}
 function cartTotal(){let t=0;S.cart.forEach((q,id)=>t+=PRODUCTS.find(p=>p.id===id).pr*q);return t}
 function refreshBadge(pop){
- const b=$('#cartBdg'),n=cartQty();
- b.textContent=n;b.classList.toggle('hide',!n);
- if(pop){b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');setTimeout(()=>b.classList.remove('pop'),320)}
+ const b=$('#cartBdg'), bh=$('#cartBdgHeader'), n=cartQty();
+ if(b){b.textContent=n;b.classList.toggle('hide',!n);}
+ if(bh){bh.textContent=n;bh.classList.toggle('hide',!n);}
+ if(pop){
+  if(b){b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');setTimeout(()=>b.classList.remove('pop'),320)}
+  if(bh){bh.classList.remove('pop');void bh.offsetWidth;bh.classList.add('pop');setTimeout(()=>bh.classList.remove('pop'),320)}
+ }
 }
 function closeBottomSheet(){
  const ov=$('#bsOv'),sheet=$('#bs');
@@ -3317,10 +3340,27 @@ function bind(){
   });
  }
 }
+function openBookingWizard(){
+ S.bookWizard=true;
+ S.bookDone=false;
+ S.bookStep=1;
+ S.bookServices=new Set();
+ S.bookOpenCats=new Set(['hair']);
+ S.bookMode=null;S.bookEmp={};S.bookDate=null;S.bookTime=null;S.bookPay=null;
+ S.svSel=null;S.svExtras.clear();S.barOpen=false;S.svPage=false;
+ bSyncEmp();
+ render();
+ scrollTo({top:0,behavior:'smooth'});
+ setTimeout(()=>openBranchSheet('booking'),80);
+}
+
 $$('#tabbar .tab').forEach(t=>t.addEventListener('click',()=>go(t.dataset.tab)));
-$('#bellBtn').addEventListener('click',()=>toast('لديك إشعاران جديدان 🔔'));
-$('#locBtn').addEventListener('click',()=>openBranchSheet('header'));
+$('#centerBookBtn')?.addEventListener('click', openBookingWizard);
+$('#headerCartBtn')?.addEventListener('click', ()=>go('cart'));
+$$('[data-go="book"]').forEach(b=>b.addEventListener('click', openBookingWizard));
+$('#locBtn')?.addEventListener('click',()=>openBranchSheet('header'));
 syncBranchHeader();
+refreshBadge();
 render();
 })();
 </script>
